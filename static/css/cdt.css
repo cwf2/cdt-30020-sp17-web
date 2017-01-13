@@ -1,0 +1,13 @@
+.table tbody tr td.schedule-break {
+	border-top: 2px solid #ddd; 
+	border-bottom: 2px solid #ddd; 
+	padding: 4px;
+}
+
+.table tbody tr td.unit {
+	background-color: #fff;
+	border-right: 2px solid #ddd;
+	text-align: right;
+	max-width: 100px;
+	vertical-align: middle;
+}

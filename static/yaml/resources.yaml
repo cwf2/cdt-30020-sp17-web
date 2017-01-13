@@ -1,0 +1,183 @@
+- title: Textbooks
+  desc: All of the course textbooks are freely available online.
+  
+  items:
+   - title: Automate the Boring Stuff with Python
+     link:  https://automatetheboringstuff.com/
+     desc:  |
+         A book dedicated to teaching beginnings how to program in Python.
+         The website includes a variety of extra resources including videos.
+
+   - title: "Python for Informatics: Exploring Information"
+     link:  http://www.pythonlearn.com/
+     desc:  |
+         A set of course materials for introducing Python to informaticians.
+         The website includes a variety of resources including multiple
+         versions of the book, slides, videos, audio, and more.  The book is
+         based on <a href="http://www.greenteapress.com/thinkpython/">Think
+         Python: How to Think Like a Computer Scientist</a>.
+
+   - title: A Byte of Python
+     link:  http://www.swaroopch.com/notes/python/
+     desc:  |
+         A free book on programming using the Python language.
+
+   - title: Python Scientific Lecture Notes
+     link:  http://scipy-lectures.github.com/
+     desc:  |
+         A collection of lecture notes used to train scientists interesting
+         in utilizing Python in their workflows.  The notes are available
+         in <strong>PDF</strong> and <strong>HTML</strong> format.
+
+- title:  Software
+  desc:  All of the course software is freely available online.
+  
+  items:
+   - title: Python
+     link:  http://www.python.org/
+     desc:  |
+         The official Python programming language website.
+
+   - title: Anaconda
+     link:  https://store.continuum.io/cshop/anaconda/
+     desc:  |
+         A large and relatively complete Python distribution for large-scale
+         data processing, predictive analytics, and scientific
+         computing.
+   - title: Enthought Python Distribution
+     link:  http://www.enthought.com/products/epd_free.php
+     desc:  |
+         A free lightweight Python distribution geared towards scientific
+         computing.
+
+   - title: PythonXY
+     link:  http://python-xy.github.io/
+     desc:  |
+         Python(x,y) is a free scientific and engineering development software
+         for numerical computations, data analysis and data visualization.
+
+   - title: Sage Math
+     link:  http://www.sagemath.org/
+     desc:  |
+         A free open-source mathematics software system.
+
+- title:  References
+  desc:  These are additional resources and references that may be useful.
+  
+  items:
+   - title: Python 2.7 Documentation
+     link:  http://docs.python.org/2.7/
+     desc:  |
+         The documentation included with [http://www.python.org](Python 2.7),
+         which is the version we will be using.
+      
+   - title: Online Python Tutor
+     link:  http://pythontutor.com/
+     desc:  |
+         An interactive website you can use to visually trace through the
+         execution of your Python code.
+
+   - title: "PythonBooks: The best free Python resources"
+     link:  http://pythonbooks.revolunet.com/
+     desc:  |
+         A collection of free Python books.
+
+   - title: Python Programming
+     link:  http://en.wikibooks.org/wiki/Python_Programming
+     desc:  |
+         An incomplete Wiki Book about programming in Python.
+
+   - title: Python Module of the Week
+     link:  http://www.doughellmann.com/PyMOTW/contents.html
+     desc:  |
+         A collection of tutorials on how to use a variety Python's many
+         included modules.
+
+   - title: Python For Beginners
+     link:  http://www.pythonforbeginners.com/
+     desc:  |
+         A blog filled with tutorials and lessons on Python and its various
+         libraries.
+
+   - title: Getting started with Python in HPC
+     link:  http://andy.terrel.us/blog/2012/09/27/starting-with-python/
+     desc:  |
+         A collection of links to various Python resources related to high
+         performance computing.
+
+- title: Unix
+  desc:  References for navigating the command line
+
+  items:
+   - title: Learning the Shell
+     link:  http://linuxcommand.org/lc3_learning_the_shell.php
+
+   - title: UNIX / Linux Tutorial for Beginners
+     link:  http://www.ee.surrey.ac.uk/Teaching/Unix/
+     
+   - title: FreeBSD Handbook - UNIX Basics
+     link:  https://www.freebsd.org/doc/handbook/basics.html
+     
+   - title: Linux man pages online
+     link:  http://man7.org/linux/man-pages/index.html
+     
+   - title: FreeBSD man pages
+     link:  https://www.freebsd.org/cgi/man.cgi
+     
+   - title: POSIX Standard
+     link:  http://pubs.opengroup.org/onlinepubs/9699919799/
+
+- title: Git
+  desc:  Help on git commands and techniques
+  
+  items:
+   - title: Git-Scm
+     link:  https://git-scm.com/
+     desc:  The website for git; you can download the software here.
+     
+   - title: Pro Git
+     link:  https://git-scm.com/book/en/v2
+     desc:  The official git manual.
+     
+   - title: Atlassian Getting Started Git Tutorials
+     link:  https://www.atlassian.com/git/tutorials/
+     
+   - title: gittutorial
+     link:  http://git-scm.com/docs/gittutorial/
+     
+   - title: Git - Tutorial
+     link:  http://www.vogella.com/tutorials/Git/article.html
+     
+   - title: Learn Git Branching
+     link:  http://pcottle.github.io/learnGitBranching/
+     
+- title: Web Programming
+  desc:  Helpful references for authoring HTML, CSS, JavaScript and more.
+  
+  items:
+   - title: W3Schools
+     link:  http://www.w3schools.com
+     desc:  A really useful reference site for HTML, CSS, JavaScript, Bootstrap
+     
+   - title: W3C HTML5 Validator
+     link:  https://validator.w3.org/nu/
+     desc:  Paste in your own HTML or the URL of a site on the web to check
+            against the language standards and see any bugs.
+   
+   - title: Bootstrap
+     link:  https://getbootstrap.com
+     desc:  Official website for Bootstrap. Download your own copy, check the
+            docs, look at examples.
+   
+   - title: Font Awesome
+     link:  http://fontawesome.io
+     desc:  Free, useful icons to spruce up your site.
+     
+   - title: Tornado
+     link:  http://www.tornadoweb.org/en/stable/
+     desc:  Official site for the Tornado web framework.
+     
+   - title: JQuery
+     link:  http://jquery.com/
+     desc:  Ancillary JavaScript functions to make your life easier.
+     

@@ -1,0 +1,152 @@
+title:      "Reading 08: JavaScript"
+icon:       fa-book
+navigation: []
+internal:
+external:
+body:       |
+
+  ## Readings
+
+  We will now explore bringing web pages to life by adding [JavaScript] to
+  modify and manipulate the [HTML] and [CSS] elements on our web pages.
+
+  For this reading assignment, you are to work through another [Codecademy]
+  tutorial and then build a web page that supports displaying search results in
+  real-time (ie. as the user types in the query) using [HTML], [CSS], and
+  [JavaScript].
+
+  [Python]:         https://www.python.org/
+  [HTML]:           https://developer.mozilla.org/en-US/docs/Web/HTML
+  [CSS]:            https://developer.mozilla.org/en-US/docs/Web/CSS
+  [JavaScript]:     https://developer.mozilla.org/en-US/docs/Web/JavaScript
+
+  ## Activity
+
+  For this assignment, you are to go through the [HTML + JavaScript + CSS]
+  course from [Codecademy]:
+
+      https://www.codecademy.com/en/courses/html-javascript-css/
+
+  This will provide you an introduction into the basics of using [JavaScript]
+  with [HTML] and [CSS].
+
+  After you have completed the course, you are to use your newfound skills to
+  make a web page, `search.html`, which looks something like this:
+
+  <div class="thumbnail">
+    <img src="static/img/search-all.png">
+  </div>
+
+  As the user types into the input box, the [JavaScript] code should
+  automatically display the search results.  For instance, here are the results
+  after the letter `n` is typed:
+
+  <div class="thumbnail">
+    <img src="static/img/search-n.png">
+  </div>
+
+  A starter [template] is provided.  You simply need to fill out the
+  `<script></script>` tag with the specified `TODOs`.
+
+      :::javascript
+      // TODO: Define Animals Table
+      var Animals = {
+      };
+
+      // TODO: Complete displaySearchResults function
+      function displaySearchResults() {
+          // TODO: Get results element
+
+          // TODO: Build HTML results by iterating over Animals table and
+          // rendering any entries that contain the query value.
+
+          // TODO: Update HTML of results element
+      }
+
+      window.onload = function() {
+          // TODO: Get query element, attach displaySearchResults to onkeyup
+          // event, call function.
+      }
+
+  ### Tasks
+
+  Here are some details for the `TODOs` you need to complete.
+
+  1. Add at least `5` animals to the `Animals` dictionary.  The keys for this
+  collection should be the name of the animal, and the value should be the
+  **URL** to an image for the animal.
+
+  2. The `displaySearchResults` function should first get the element with the
+  `results` identifier.  Next, it should build a string containing the [HTML] to
+  be generated for each search result.  In this case, the [HTML] should look like
+  this:
+
+          :::html
+          <div class="row">
+            <div class="col-xs-3 text-center">
+              <div class="thumbnail">
+                <img src="...">
+                <h4 class="caption">...</h4>
+              </div>
+            </div>
+            ...
+          </div>
+
+      To build these results, you will need to loop over the keys in the
+      `Animals` dictionary and then check if each key contains (i.e. [indexOf])
+      the value in the current object (i.e. `this.value`).  If it does, then it
+      should add the formatted [HTML] to the results string.
+
+      When all of the `Animals` have been checked, then the function should
+      display the generated [HTML] by setting the [innerHTML] attribute of the
+      `results` object obtained earlier.
+
+  3. To register the `displaySearchResults` function, you need to first get the
+  element with the identifier `query`, and then set its [onkeyup] attribute to
+  `displaySearchResults`.  Afterwards, you should call the [onkeyup] method of
+  the `query` object to render initial the [HTML].
+
+  [HTML + JavaScript + CSS]: https://www.codecademy.com/en/courses/html-javascript-css/
+  [Codecademy]: https://www.codecademy.com/
+  [template]:   https://www3.nd.edu/~pbui/teaching/cdt.30020.sp16/static/html/reading08.html
+  [indexOf]:    http://www.w3schools.com/jsref/jsref_indexof.asp
+  [innerHTML]:  https://developer.mozilla.org/en-US/docs/Web/API/Element/innerHTML
+  [onkeyup]:    http://www.w3schools.com/jsref/event_onkeyup.asp
+
+  ## Questions
+
+  Answer the following questions in your `reading08/README.md` file:
+
+  1. How is [JavaScript] similar to [Python]?  How is it different?
+
+  2. In what way are [HTML] elements considered objects?
+
+  3. Regarding your `search.html`, answer the following questions:
+
+      1. How did you access **objects** represented by an [HTML] element?
+
+      2. How did you register the [onkeyup] event so that it would call
+      `displaySearchResults`?
+
+      3. How did you build the [HTML] for the search results?
+
+      4. How did you display the [HTML] for the search results?
+
+  ## Feedback
+
+  If you have any questions, comments, or concerns regarding the course, please
+  provide your feedback at the end of your response.
+
+  ## Submission
+
+  To submit your response, please commit your work (responses and scripts) to
+  the **reading08** folder of your your **Readings** [Bitbucket] repository by
+  the **beginning of class, Tuesday, April 5, 2016**.
+
+      :::bash
+      $ git add search.html README.md
+      $ git commit -m "reading 08: completed"
+      $ git push
+
+  [Bitbucket]:      https://bitbucket.org
+  [Git]:            https://git-scm.com/

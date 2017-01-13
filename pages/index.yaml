@@ -1,0 +1,462 @@
+title:      Elements of Computing II
+icon:       fa-code
+navigation:
+    - name: "Logistics"
+      link: "#logistics"
+      icon: "fa-cogs"
+    - name: "Schedule"
+      link: "#schedule"
+      icon: "fa-calendar"
+    - name: "Requirements"
+      link: "#Requirements"
+      icon: "fa-balance-scale"
+    - name: "Resources"
+      link: "#resources"
+      icon: "fa-external-link"
+internal:
+external:
+    schedule:   'static/yaml/schedule.yaml'
+    resources:  'static/yaml/resources.yaml'
+body:       |
+
+   <div class="row">
+   <div class="col-md-12">
+   
+   <p>
+   <strong>CSE 10102</strong>/<strong>CDT 30020</strong> is the second course
+   of the <a href="http://cdt.nd.edu">Computing & Digital Technologies</a>'s
+   core programming sequence.  Building on your prior experience with the
+   <a href="www.python.org">Python</a> programming language, you will explore
+   advanced programming paradigms such as regular expressions and
+   object-oriented programming, familiarize yourself with elements of software
+   engineering such as the command line interface, version control, development
+   environments, and testing, and utilize web technologies such as SQL
+   databases, JavaScript, and cloud-based services.  To demonstrate your
+   mastery of these skills and concepts, you will work on interdisciplinary
+   team projects throughout the semester that apply your knowledge to problems
+   related to the different CDT areas of focus.
+   </p>
+   
+   </div>
+   </div>
+      
+   <div class="row">
+   <div class="col-md-12">
+   
+   <img src="{{ page.prefix }}static/img/python-logo.png" class="pull-right" style="margin-left: 10px;"/>
+   
+   <p>
+   Upon successful completion of this course, you will be able to:
+   </p>
+   <ol>
+      <li>
+         <strong>Navigate</strong> command-line based environments effectively
+         and productively.
+      </li>
+      <li>
+         <strong>Construct</strong> object systems to model complex systems, and
+         to <strong>employ</strong> regular expressions to process large streams
+         of data.
+      </li>
+      <li>
+         <strong>Package</strong> and deploy software as stand-alone scripts,
+         library packages, or web services.
+      </li>
+      <li>
+         <strong>Utilize</strong> common software engineering tools and explain
+         how they aid in the process of producing software.
+      </li>
+      <li>
+         <strong>Develop</strong> applications that incorporate different web
+         development technologies such as SQL databases, JavaScript, and
+         cloud-based platforms.
+      </li>
+      <li>
+         <strong>Describe</strong> the key components of a typical web
+         application and how all the pieces fit together.
+      </li>
+   </div>
+   </div>
+   
+   <div class="row">
+   <div class="page-header">
+      <h2 id="logistics"><i class="fa fa-cogs"></i> Logistics</h2>
+   </div>
+   </div>
+   
+   <div class="row">
+   <div class="col-sm-3">
+      <h3>Class Information</h3>
+      <dl>
+         <dt><i class="fa fa-clock-o"></i> Lecture</dt>
+         <dd><strong>T/TH</strong> 2:00 PM - 3:15 PM</dd>
+
+         <dt><i class="fa fa-home"></i> Location</dt>
+         <dd>DeBartolo Hall 125</dd>
+
+         <dt><i class="fa fa-slack"></i> Slack</dt>
+         <dd><a href="https://cdt-30020-sp17.slack.com">#cdt-30020-sp17</a></dd>
+
+         <dt><i class="fa fa-gitlab"></i> GitLab</dt>
+         <dd><a href="https://gitlab.com/groups/nd-cdt-30020-sp17">nd-cdt-30020-sp17</a></dd>
+      </dl>
+   </div><!-- col 1 -->
+   
+   <div class="col-sm-3">
+   <h3>Instructor</h3>
+   <dl>
+      <dt><i class="fa fa-user"></i> Instructor</dt>
+      <dd><a href="https://cwforstall.net">Chris Forstall</a> (<a href="mailto:cforstal@nd.edu">cforstal@nd.edu</a>)</dd>
+
+      <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
+      <dd>
+         <strong>M/W</strong> 2:00 PM - 3:00 PM<br>
+         and by <strong>appointment</strong>
+      </dd>
+
+      <dt><i class="fa fa-briefcase"></i> Office Hours Location</dt>
+      <dd>307 Stinson-Remick Hall</dd>
+   </dl>
+   </div><!-- col 2 -->
+   
+   <div class="col-sm-6">
+      <h3>Teaching Assistants</h3>
+      <div class="row">
+      <div class="col-md-6">
+         <dl>
+            <dt><i class="fa fa-user"></i> Graduate Teaching Assistant</dt>
+            <dd>Xueying Wang (<a href="mailto:xwang41@nd.edu">xwang41@nd.edu</a>)</dd>
+            <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
+
+            <dd>TBD</dd>
+            <dt><i class="fa fa-briefcase"></i> Location</dt>
+            <dd>TBD</dd>
+         </dl>
+      </div> <!-- inner col 1 -->
+      
+      <div class="col-sm-6">
+         <dl>
+            <dt><i class="fa fa-user"></i> Undergraduate Teaching Assistant</dt>
+               <dd>Nick Jones (<a href="mailto:njones7@nd.edu">njones7@nd.edu</a>)</dd>
+               <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
+               <dd>TBD</dd>
+               <dt><i class="fa fa-briefcase"></i> Location</dt>
+               <dd>TBD</dd>
+         </dl>
+      </div> <!-- inner col 2 -->
+      </div> <!-- inner row -->
+   </div><!-- col 3 -->
+   </div><!-- outer row -->
+   
+   <div class="row">
+   <div class="col-md-10 col-md-offset-1">
+      <div class="alert alert-info">
+          <h4><i class="fa fa-question"></i> Help Protocol</h4>
+          <ol class="list-inline">
+              <li><em><i class="fa fa-lightbulb-o"></i> Think</em></li>
+              <li><small><i class="fa fa-arrow-right"></i></small></li>
+              <li><strong><i class="fa fa-slack"></i> Slack</strong></li>
+              <li><small><i class="fa fa-arrow-right"></i></small></li>
+              <li><em><i class="fa fa-lightbulb-o"></i> Think</em></li>
+              <li><small><i class="fa fa-arrow-right"></i></small></li>
+              <li><strong><i class="fa fa-envelope"></i> Email</strong></li>
+              <li><small><i class="fa fa-arrow-right"></i></small></li>
+              <li><em><i class="fa fa-lightbulb-o"></i> Think</em></li>
+              <li><small><i class="fa fa-arrow-right"></i></small></li>
+              <li><strong><i class="fa fa-briefcase"></i> Office</strong></li>
+          </ol>
+      </div>
+   </div>
+   </div>
+   
+   <div class="row">
+   <div class="page-header">
+      <h2 id="schedule"><i class="fa fa-calendar"></i> Schedule</h2>
+   </div>
+   </div>   
+
+   <div class="row">
+   <div class="col-md-12">
+   
+   <table class="table condensed table-striped schedule">
+      <thead>
+         <tr>
+            <th class="text-center">Unit</th>
+            <th class="text-center">Date</th>
+            <th class="text-center">Topics</th>
+            <th class="text-center" style="width: 125px;">Assignment</th>
+         </tr>
+      </thead>
+      <tbody>
+
+      {% for theme in page.external['schedule'] %}
+      {% if 'break' in theme['name'].lower() %}
+         <tr>
+         <td colspan="4" class="schedule-break text-center text-strong">{{ theme['name'] }}</td>
+         </tr>
+         {% continue %}
+      {% end %}
+
+      {% for index, day in enumerate(theme['days']) %}
+         <tr>
+         {% if index == 0 %}
+            <td rowspan="{{ len(theme['days']) }}" class="text-strong text-primary text-center unit">{{ theme['name'] }}</td>
+         {% end %}
+            <td class="text-center text-strong">{{ day['date'] }}</td>
+            <td>
+            {{ day.get('topics', '') }}
+            {% for item in day.get('items', []) %}
+               {% if item['name'].lower().startswith('exam') %}
+                  {% set item['label'] = 'danger' %}
+               {% elif item['name'].lower().startswith('checklist') %}
+                  {% set item['label'] = 'info' %}
+               {% elif item['name'].lower().startswith('quiz') %}
+                  {% set item['label'] = 'warning' %}
+               {% else %}
+                  {% set item['label'] = 'default' %}
+               {% end %}
+               {% if 'link' in item %}
+                  <a class="label label-{{ item['label'] }}" href="{{ item['link'] }}">{{ item['name'] }}</a>
+               {% else %}
+                  <span class="label label-{{ item['label'] }}">{{ item['name'] }}</span>
+               {% end %}
+            {% end %}
+            </td>
+            <td class="text-strong">
+            {% set assignment = day.get('assignment') %}
+            {% if assignment %}
+               {% set assignment_id = ''.join(assignment.lower().split()) %}
+               {% if assignment_id.startswith('reading') %}
+                  {% set assignment_label = 'primary' %}
+               {% elif assignment_id.startswith('project') %}
+                  {% set assignment_label = 'success' %}
+               {% else %}
+                  {% set assignment_label = 'caution' %}
+               {% end %}
+               <a href="{{ assignment_id }}.html" class="label label-{{ assignment_label }}">{{ assignment }}</a>
+            {% end %}
+            </td>
+         </tr>
+      {% end %}
+      {% end %}
+      </tbody>
+   </table>
+   </div>
+   </div>
+   
+   <div class="row">
+   <div class="page-header">
+      <h2 id="Requirements"><i class="fa fa-balance-scale"></i> Requirements</h2>
+   </div>
+   </div>   
+   
+   <div class="row">
+      <div class="col-md-6">
+         <h3>Coursework</h3>
+         <table class="table table-condensed table-bordered table-striped">
+            <thead>
+               <tr>
+                  <th class="text-center">Component</th>
+                  <th class="text-center">Points</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td><span class="label label-info">Readings</span>
+                  Weekly reading assignments and corresponding writing
+                  prompts.</td>
+                  <td class="text-center">8 &times; 5</td>
+               </tr>
+               <tr>
+                  <td><span class="label label-success">Projects</span>
+                  Focused group programming projects.</td>
+                  <td class="text-center">30 + 40 + 40</td>
+               </tr>
+               <tr>
+                  <td><span class="label label-warning">Debriefings</span>
+                  Examinations after each project.</td>
+                  <td class="text-center">25 + 35 + 35</td>
+               </tr>
+               <tr>
+                  <td><span class="label label-danger">Final Project</span>
+                  Open-ended group programming project.</td>
+                  <td class="text-center">40 &plus; 15</td>
+               </tr>
+               <tr>
+                  <td class="text-strong text-right">Total</td>
+                  <td class="text-strong text-center">300</td>
+               </tr>
+            </tbody>
+         </table>
+      </div> <!-- closes col 1 -->
+
+      <div class="col-md-6">
+         <h3>Grading</h3>
+         <table class="table table-condensed table-bordered">
+            <thead>
+               <tr>
+                  <th class="text-center">Grade</th>
+                  <th class="text-center">Points</th>
+                  <th class="text-center">Grade</th>
+                  <th class="text-center">Points</th>
+                  <th class="text-center">Grade</th>
+                  <th class="text-center">Points</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr class="success">
+                  <td></td>
+                  <td></td>
+                  <td class="text-center text-strong">A</td>
+                  <td class="text-center">280-300</td>
+                  <td class="text-center text-strong">A-</td>
+                  <td class="text-center">270-279</td>
+               </tr>
+               <tr class="info">
+                  <td class="text-center text-strong">B+</td>
+                  <td class="text-center">260-269</td>
+                  <td class="text-center text-strong">B</td>
+                  <td class="text-center">250-259</td>
+                  <td class="text-center text-strong">B-</td>
+                  <td class="text-center">240-249</td>
+               </tr>
+               <tr class="warning">
+                  <td class="text-center text-strong">C+</td>
+                  <td class="text-center">230-239</td>
+                  <td class="text-center text-strong">C</td>
+                  <td class="text-center">220-229</td>
+                  <td class="text-center text-strong">C-</td>
+                  <td class="text-center">210-219</td>
+               </tr>
+               <tr class="danger">
+                  <td class="text-center text-strong">D</td>
+                  <td class="text-center">180-209</td>
+                  <td class="text-center text-strong">F</td>
+                  <td class="text-center">0-179</td>
+                  <td></td>
+                  <td></td>
+               </tr>
+            </tbody>
+         </table>
+      </div> <!-- closes col 2 -->
+   </div> <!-- closes row -->
+   
+   <div class="row">
+   <div class="col-md-10 col-md-offset-1">
+      <div class="alert alert-info">
+         <h4><i class="fa fa-gitlab"></i> GitLab Repository</h4>
+         <p>
+         All your <b>Readings</b> and <b>Projects</b> are to be submitted
+         to your own <b>private</b> <a href="https://gitlab.com">GitLab</a>
+         repository.
+         </p>
+         <p>
+         <ul class="list list-spaced">
+            <li><b>Readings</b> are due at <b>midnight</b> on the night
+            before the day assigned in the schedule above (ie.
+            <b>Monday &rarr; Tuesday</b>).</li>
+            <li><b>Projects</b> are due at <b>midnight</b> on the night
+            the day assigned in the schedule above (ie.
+            <b>Thursday &rarr; Friday</b>).</li>
+         </ul>
+         </p>
+      </div>
+   </div>
+   </div>
+   
+   <div class="row">
+   <div class="col-md-12">
+      <h3>Policies</h3>
+      
+      <div class="row">
+      <div class="col-md-3">
+         <h4>Participation</h4>
+         <p>
+         You are expected to attend and contribute regularly in class. This
+         means answering questions in class, participating in discussions, 
+         and helping other students.
+         </p>
+         <p>
+         Foreseeable absences should be discussed with the instructor ahead
+         of time.
+         </p>      
+      </div><!-- inner col 1 -->
+      <div class="col-md-3">
+         <h4>Late Work</h4>
+         <p>
+         In the case of a serious illness or other excused absence, as defined
+         by university policies, coursework submissions will be accepted late
+         by the same number of days as the excused absence.
+         </p>
+         <p>
+         Otherwise, there is a penalty of 25% per day late (except where 
+         noted). You may submit some parts of an assignment on time and some
+         parts late. Each submission must clearly state which parts it
+         contains; no part can be submitted more than once.
+         </p>
+      </div><!-- inner col 2 -->
+      <div class="col-md-3">
+         <h4>Honor Code</h4>
+         <p>
+         All work that you submit must be your own. Collaboration is encouraged
+         but must be disclosed by all parties. Print or online resources are
+         allowed, but must be disclosed. However, you may not look at solutions
+         from other current or past students, or any other source.
+         </p>
+      </div><!-- inner col 3 -->
+      <div class="col-md-3">
+         <h4>Students with Disabilities</h4>
+         <p>
+         Any student who has a documented disability and is registered with
+         Disability Services should speak with the professor as soon as
+         possible regarding accommodations. Students who are not registered
+         should contact the <a href="http://disabilityservices.nd.edu/">Office
+         of Disabilities</a>.
+         </p>
+      </div><!-- inner col 4 -->
+      </div><!-- inner row-->
+   </div><!-- outer col -->
+   </div><!-- outer row -->
+   
+   <div class="row">
+   <div class="page-header">
+      <h2 id="resources"><i class="fa fa-external-link"></i> Resources</h2>
+   </div>
+   </div>
+   
+   <div>
+   {% set cols = page.external['resources'] %}
+   {% set i = 0 %}
+   {% for col in cols %}
+      {% if i==0 %}
+         <div class="row">
+      {% end %}
+         <div class="col-sm-4">
+         <h3>{{ col.get('title') }}</h3>
+         {% set description = col.get('desc') %}
+         {% if description %}
+            <p>
+            {% raw description %}
+            </p>
+         {% end %}
+         <ul>
+         {% for item in col.get('items', []) %}
+            <li>
+               <a href="{{ item.get('link', '') }}">{{ item.get('title', '')}}</a>
+               <p>
+               {% set desc_html = item.get('desc', '') %}
+               {% raw desc_html %}
+               </p>
+            </li>
+         {% end %}   
+         </ul>
+         </div>
+      {% if i==2 %}
+         </div>
+         {% set i = 0 %}
+      {% else %}
+         {% set i = i + 1 %}
+      {% end %}
+   {% end %}
+   </div>
+

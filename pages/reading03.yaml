@@ -1,0 +1,57 @@
+title:      "Reading 03: Server-side Programming"
+icon:       fa-book
+navigation: []
+internal:
+external:
+body:       |
+
+  ## Readings
+
+  This week we will be returning to **web programming** and our friend the
+  [Tornado] web framework.  The readings for this week will be mostly review.
+
+  The readings for **Tuesday, February 9** are:
+
+  1. [HTTP: The Protocol Every Web Developer Must Know - Part 1](http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177)
+
+  2. [Structure of a Tornado web application](http://www.tornadoweb.org/en/stable/guide/structure.html)
+
+  [Tornado]:    http://www.tornadoweb.org/en/stable/
+
+  ## Questions
+
+  Once you have completed these readings, please answer the following
+  questions:
+
+  1. What are the components of a **URL**?  Given the **URL**,
+  `http://127.0.0.1:9123/files?name=echosmith.mp3`, identify each component.
+
+  2. In the context of [HTTP], what is a **client** and what is a **server**?
+  What is each side responsible for in a [HTTP] transaction?
+
+  3. Using the [slides] and [files] from last semester as references, write a
+  [Tornado] web application named `searchit.py` that allows users to enter in
+  some text in an input box and when they press `Enter` or click on a button,
+  the application searches a list of favorite song titles and displays any
+  matches.
+
+      An example of the application you are to build can be found at
+      [http://xavier.h4x0r.space:9999/](http://xavier.h4x0r.space:9999/)
+
+  [slides]: https://docs.google.com/presentation/d/1h-ecPAZyxt_5zBcbEeYx4F5hYYpn7C-gy2u1ciVC-Us/edit#slide=id.p
+  [files]:  http://www3.nd.edu/~pbui/teaching/cdt.30010.fa15/static/zip/tornado.zip
+  [HTTP]:   https://en.wikipedia.org/wiki/Hypertext_Transfer_Protocol
+  [Python]: https://www.python.org/
+
+  ## Feedback
+
+  If you have any questions, comments, or concerns regarding the course, please
+  provide your feedback at the end of your response.
+
+  ## Submission
+
+  To submit your response, please commit your work (responses and scripts) to
+  the **reading03** folder of your your **Readings** [Bitbucket] repository.
+
+  [Bitbucket]:  https://bitbucket.org
+  [Git]:        https://git-scm.com/

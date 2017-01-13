@@ -1,0 +1,144 @@
+title:      "Reading 01: Packaging"
+icon:       fa-book
+navigation: []
+internal:
+external:
+body:       |
+
+  ## Readings
+
+  The readings for **Tuesday, January 19** are:
+
+    1. [Scipy Lecture Notes](http://www.scipy-lectures.org/)
+
+        - [1.2.5. Reusing code: scripts and modules](http://www.scipy-lectures.org/intro/language/reusing_code.html)
+
+    2. [A Byte of Python](http://www.swaroopch.com/notes/python/)
+
+        - [11. Modules](http://www.swaroopch.com/notes/python/#module)
+
+  ## Questions
+
+  Once you have completed these readings, please answer the following
+  questions:
+
+  1. What is the difference between a **script**, **module**, and **package**.
+  Can a single [Python] file be both a **script** and a **module**?  Explain.
+
+  2. What happens when you perform an `import` in your [Python] program?  Why
+  is the following command dangerous?
+
+          :::python
+          from math import *
+
+  3. Create a script, `hello1.py` that asks the user for their name and then
+  prints out `Hello, <name>!`.  Here is an example execution of your script:
+
+          $ ./hello.py
+          What is your name? Bob
+          Hello, Bob!
+
+  4. Create a second script, `hello2.py` that takes one argument, `name` and
+  prints `Hello, <name>!`.  Here is an example execution of your script:
+
+          $ ./hello.py Bob
+          Hello, Bob!
+
+  5. Create a **module** called `greeter.py` that contains a single function:
+
+          :::python
+          def greet(name):
+              ''' Prints "Hello, <name>!" '''
+              # TODO: Implement function
+
+      Create a third script called `hello3.py` that utilizes your `greeter.py`
+      module to implement the same program above (ie. take one argument `name`
+      and prints `Hello, <name>!`.
+
+  [Python]: https://www.python.org/
+
+  ## Feedback
+
+  If you have any questions, comments, or concerns regarding the course, please
+  provide your feedback at the end of your response.
+
+  ## Submission
+
+  To submit your response, please commit your work (responses and scripts) to
+  your **Readings** [GitLab] repository.
+
+  If you wish to utilize [Git] in the terminal, here is a rough
+  outline of the workflow:
+
+  1. If you don't have a copy of your [Git] repository yet, you need to
+  **clone** it first:
+
+          :::bash
+          # Create local clone of Git repository
+          $ git clone https://YOUR_USERNAME@bitbucket.org/YOUR_USERNAME/readings.git
+
+      Of course, replace `YOUR_USERNAME` with your username **:]**.
+
+      **Note:** If you have already cloned it to your machine, you don't need
+      to do this again.  You only need to **clone** once.
+
+      <div class="alert alert-warning" markdown="1">
+      #### <i class="fa fa-thumbs-o-up"></i> SSH_ASKPASS workaround
+
+      If you try to do a `git clone` on the **student** machines and it starts
+      but fails to ask you for a password, try running this command first:
+
+          unsetenv SSH_ASKPASS
+
+      This will force `git` to use the terminal to ask you for your password
+      rather than popup a window.
+      </div>
+
+  2. Once you have a local [Git] repository go into the `readings` folder,
+  record your answers in the `reading01.md` file, and edit your scripts:
+
+          :::bash
+          # Go into the readings directory
+          $ cd readings
+
+          # Record answers in reading01.md
+          $ nano reading01.md
+
+          # Write hello1.py script
+          $ nano hello1.py
+
+          # Write hello2.py script
+          $ nano hello2.py
+
+          # Write greeter.py script
+          $ nano greeter.py
+
+          # Write hello3.py script
+          $ nano hello3.py
+
+  3. Once you have recorded your answers and written your scripts, you can 
+  **commit** to the [Git] log and then send your changes to [GitLab]:
+
+          :::bash
+          # Add files to Git staging area
+          $ git add reading01.md hello1.py hello2.py greeter.py hello3.py
+
+          # Commit work to log
+          $ git commit -m "Complete Reading 01"
+
+      If you need to additional edits or modifications after you commit, you
+      simply perform the `add` and `commit` to record each change.
+
+      When you are done with your work, you can send it to your [GitLab]
+      repository:
+
+          # Send work to GitLab
+          $ git push
+
+
+  Of course, you may choose to edit and upload files via [GitLab]'s web
+  interface, but I recommend you become familiar with [Git]'s command-line
+  workflow.
+
+  [GitLab]:     https://gitlab.com/
+  [Git]:        https://git-scm.com/
