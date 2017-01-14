@@ -15,6 +15,7 @@ navigation:
       icon: "fa-external-link"
 internal:
 external:
+    tas:        'static/yaml/ta.yaml'
     schedule:   'static/yaml/schedule.yaml'
     resources:  'static/yaml/resources.yaml'
 body:       |
@@ -115,36 +116,30 @@ body:       |
       </dd>
 
       <dt><i class="fa fa-briefcase"></i> Office Hours Location</dt>
-      <dd>307 Stinson-Remick Hall</dd>
+      <dd>
+         <a href="http://library.nd.edu/cds/">Center for Digital
+          Scholarship</a></br>
+         (Hesburgh Library 130)
+      </dd>
    </dl>
    </div><!-- col 2 -->
    
    <div class="col-sm-6">
       <h3>Teaching Assistants</h3>
-      <div class="row">
-      <div class="col-md-6">
-         <dl>
-            <dt><i class="fa fa-user"></i> Graduate Teaching Assistant</dt>
-            <dd>Xueying Wang (<a href="mailto:xwang41@nd.edu">xwang41@nd.edu</a>)</dd>
-            <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
-
-            <dd>TBD</dd>
-            <dt><i class="fa fa-briefcase"></i> Location</dt>
-            <dd>TBD</dd>
-         </dl>
-      </div> <!-- inner col 1 -->
-      
-      <div class="col-sm-6">
-         <dl>
-            <dt><i class="fa fa-user"></i> Undergraduate Teaching Assistant</dt>
-               <dd>Nick Jones (<a href="mailto:njones7@nd.edu">njones7@nd.edu</a>)</dd>
-               <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
-               <dd>TBD</dd>
-               <dt><i class="fa fa-briefcase"></i> Location</dt>
-               <dd>TBD</dd>
-         </dl>
-      </div> <!-- inner col 2 -->
-      </div> <!-- inner row -->
+        <div class="row">
+            {% for ta in sorted(page.external['tas'], key=lambda ta: ta['name'].split()[-1]) %}
+            <div class="col-md-4">
+                <dl>
+                  <dt><i class="fa fa-user"></i> Teaching Assistant</dt>
+                  <dd>{{ ta['name'] }} (<a href="mailto:{{ ta['netid'] }}@nd.edu">{{ ta['netid'] }}@nd.edu</a>)</dd>
+                  <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
+                  <dd>{{ ta.get('hours', 'TBD') }}</dd>
+                  <dt><i class="fa fa-briefcase"></i> Office Location</dt>
+                  <dd>{{ ta.get('location', 'TBD') }}</dd>
+                </dl>
+            </div>
+            {% end %}
+        </div>
    </div><!-- col 3 -->
    </div><!-- outer row -->
    
@@ -174,9 +169,6 @@ body:       |
       <h2 id="schedule"><i class="fa fa-calendar"></i> Schedule</h2>
    </div>
    </div>   
-
-   <div class="row">
-   <div class="col-md-12">
    
    <table class="table condensed table-striped schedule">
       <thead>
@@ -241,8 +233,6 @@ body:       |
       {% end %}
       </tbody>
    </table>
-   </div>
-   </div>
    
    <div class="row">
    <div class="page-header">
@@ -352,12 +342,15 @@ body:       |
          </p>
          <p>
          <ul class="list list-spaced">
-            <li><b>Readings</b> are due at <b>midnight</b> on the night
-            before the day assigned in the schedule above (ie.
-            <b>Monday &rarr; Tuesday</b>).</li>
-            <li><b>Projects</b> are due at <b>midnight</b> on the night
-            the day assigned in the schedule above (ie.
-            <b>Thursday &rarr; Friday</b>).</li>
+            <li>
+            <b>Readings</b> are assigned on Tuesday. To avoid penalties 
+            for lateness, you should upload your responses before 10:00 pm
+            on the following Friday, unless otherwise directed.
+            </li>
+            <li>
+            <b>Projects</b> should be uploaded before 6:00 am on the day
+            assigned in the schedule.
+            </li>
          </ul>
          </p>
       </div>
@@ -374,12 +367,15 @@ body:       |
          <p>
          You are expected to attend and contribute regularly in class. This
          means answering questions in class, participating in discussions, 
-         and helping other students.
-         </p>
-         <p>
-         Foreseeable absences should be discussed with the instructor ahead
-         of time.
+         and helping other students. Foreseeable absences should be discussed
+         with the instructor ahead of time.
          </p>      
+         <p>
+         You are equally expected to follow and to use the class Slack team.
+         If you have a question, ask on Slack first. That way everyone can
+         benefit from the answer. If someone has a problem that you can help
+         with, chime in.
+         </p>
       </div><!-- inner col 1 -->
       <div class="col-md-3">
          <h4>Late Work</h4>
@@ -400,8 +396,12 @@ body:       |
          <p>
          All work that you submit must be your own. Collaboration is encouraged
          but must be disclosed by all parties. Print or online resources are
-         allowed, but must be disclosed. However, you may not look at solutions
-         from other current or past students, or any other source.
+         allowed, but must be disclosed. However, you may not copy-paste
+         solutions from other current or past students, or any other source.
+         </p>
+         <p>
+         As a rule of thumb, you should be able to explain any written response
+         or code you submit, and to reproduce it in your own words.
          </p>
       </div><!-- inner col 3 -->
       <div class="col-md-3">
