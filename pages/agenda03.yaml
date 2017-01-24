@@ -1,0 +1,173 @@
+title:      Agenda for January 24
+icon:       fa-list-alt
+navigation:
+    - name: "Class Home"
+      link: "/~cforstal/cdt-30020-sp17"
+      icon: "fa-home"
+internal:
+external:
+body:       |
+  ### GitLab checkup
+  
+   - Some people are running into a few snags with GitLab. In particular, if you
+   have not yet made your personal Homework repository *private*, please check
+   [these instructions](sidebar-gitlab-setup.html#visibility).
+
+   - We will talk a little more about how to upload your homework on Thursday.
+  
+  
+  ### Vagrant checkup
+  
+   - Who can `vagrant ssh` into a virtual machine running Ubuntu?
+   
+   - Who is having trouble?
+  
+   - It seems likely that many Windows users will connect to the virtual
+   machine using PuTTY. The steps listed in [this guide](
+   https://www.sitepoint.com/getting-started-vagrant-windows/) (also linked
+   from last week's homework) worked for everyone who came to office hours.
+  
+  <div class="alert alert-info" markdown="1">
+  #### <i class="fa fa-life-ring"></i> Something not working right?
+  
+     If you run into difficulty, get in touch!
+  
+     - <i class="fa fa-slack"></i> Ask on Slack
+     
+     - <i class="fa fa-briefcase"></i> Come to office hours
+     
+     **We're here to help**
+     
+  </div>
+  
+    - <a data-toggle="collapse" href="#vagrant_workflow" aria-expanded="false" aria-controls="vagrant_workflow">Vagrant workflow?</a>
+
+  <div class="collapse" id="vagrant_workflow" markdown=1>
+    <div class="card card-block" markdown="1">
+    
+  ### Suggested Vagrant setup
+  
+   - **On my own computer*:*
+      
+       - I keep files related to this class in a special folder, like "CDT"
+       
+       - That's where I do `vagrant init` and other vagrant commands
+       
+       - Eventually, I'll keep a copy of my *Homework* repo here
+       
+       - I create a dedicated folder for in-class work and other experimentation
+         -- let's call it "practice" (or whatever you want)
+      
+              :::bash
+  
+              CDT/
+                 Vagrantfile                 # created by vagrant
+                 homework/                   # to be created by git
+                 practice/                   # I make this folder
+                 ...                         # ... more to come (project1, etc.)
+             
+             
+   - **On the virtual machine**
+   
+      - On the Vagrant machine, the contents of 'CDT' (or wherever you did
+        `vagrant init`) are shared as `/vagrant/`.
+        
+      - Don't confuse that with `/home/vagrant/`, your home directory.
+      
+      - That's where you end up when you log in each time. Files you create
+        there won't automatically be available to you outside the vm.
+        
+      - You could do `cd /vagrant/` every time you log in, and just work
+        out of the shared directory.
+        
+      - Or you could create a symlink to your `practice` directory in your
+        home dir. Then you'd see it right when you log in. Talk to me if you
+        would like help with this.
+        
+    </div>
+  </div>
+  
+  ### Python workflow
+  
+  #### Fooling around (I mean, "development")
+  
+     - Jupyter notebook
+     
+     - interactive mode
+     
+     - separate scripts
+     
+  #### Scripts
+  
+     - should be on VM (eventually)
+     
+     - can be edited there
+     
+        - [nano](https://www.nano-editor.org/dist/v2.7/nano.html)
+        - [vim](http://vimdoc.sourceforge.net/htmldoc/usr_02.html)
+        - [emacs](https://www.gnu.org/software/emacs/tour/)
+        - ...
+     
+     - can be shared, and edited, on your own computer
+     
+        - [Notepad++](https://notepad-plus-plus.org)
+        - [Atom](https://atom.io)
+        - [Brackets](http://brackets.io)
+        - [Sublime Text](http://www.sublimetext.com)
+        - ...
+        
+     - run (on the VM) from the command line
+     
+
+  ### Exercises
+  
+  Take a minute now to get comfortable with some kind of Python environment,
+  where you can work on and test out your <a data-toggle="collapse"
+  href="#exercises" aria-expanded="false" aria-controls="exercises">code</a>.
+
+  <div class="collapse" id="exercises" markdown=1>
+    <div class="card card-block" markdown="1">
+  
+  #### A few experiments with words
+  
+    1. Create a function, *is_anagram()*, that takes two words as arguments
+       and determines whether the second is an anagram of the first.
+       
+          :::python
+          
+          def is_anagram(word1, word2):
+             '''Returns true if word2 is an anagram of word1.'''
+             # TODO
+             
+       **Bonus:**  check a given word for all possible anagrams using
+       a [dictionary](static/text/aspell_en.txt).
+             
+    2. Create a function, *is_palindrome()*, that takes one word as an argument
+       and determines whether it is a palindrome.
+      
+          :::python
+          
+          def is_palindrome(word):
+             '''Returns true if word is a palindrome.'''
+             # TODO
+
+       **Bonus:**  check for all palindromes in a [dictionary](
+       static/text/aspell_en.txt).
+
+           
+    3. Create a function, *char_count()*, that takes a phrase as input and 
+       counts how many times each letter occurs. Return the tallies as a 
+       dictionary.
+      
+          :::python
+           
+          def char_count(phrase):
+             '''Returns a dictionary containing character counts for phrase.'''
+              #TODO
+              
+       **Bonus:** Use the result to figure out the most frequent 10 letters in
+       [Pride and Prejudice](static/text/austen.pride_and_prejudice.txt).
+       
+     </div>
+   </div>
+   
