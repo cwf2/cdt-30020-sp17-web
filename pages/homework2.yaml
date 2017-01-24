@@ -1,13 +1,13 @@
-title:      "Reading 01: Packaging"
+title:      "Homework 2: Packaging"
 icon:       fa-book
 navigation: []
 internal:
 external:
 body:       |
 
-  ## Readings
+  Homework for **Tuesday, January 24**  and **Thursday, January 26** are
 
-  The readings for **Tuesday, January 19** are:
+  ## Readings
 
     1. [Scipy Lecture Notes](http://www.scipy-lectures.org/)
 
@@ -15,45 +15,51 @@ body:       |
 
     2. [A Byte of Python](http://www.swaroopch.com/notes/python/)
 
-        - [11. Modules](http://www.swaroopch.com/notes/python/#module)
+        - [11. Modules](https://python.swaroopch.com/modules.html)
 
   ## Questions
 
   Once you have completed these readings, please answer the following
   questions:
 
-  1. What is the difference between a **script**, **module**, and **package**.
-  Can a single [Python] file be both a **script** and a **module**?  Explain.
+  1. What is the difference between a **script** and a **module**? What is a
+  **package**?
 
-  2. What happens when you perform an `import` in your [Python] program?  Why
-  is the following command dangerous?
+  2. What is the difference between these two statements? How do I call the
+  `math` module's `cos` function in each case? Do I have access to `math`'s
+  other functions?
+  
+          # Version 1
+          import math
+    
+          # Version 2
+          from math import cos
+  
+  3. Create a script, `counter1.py`, that asks the user for a word and then
+  counts the number of characters in it. Here is an example execution of
+  your script:
+
+          $ ./counter1.py
+          Enter any word: providential
+          You typed 12 characters.
+
+  4. Create another script, `counter2.py` that does the same thing, but takes
+  its input from a single command line argument. I.e.
+  
+          $ ./counter1.py providential
+          You typed 12 characters.
+  
+  5. Create a **module** called `letters.py` that contains a single function:
 
           :::python
-          from math import *
-
-  3. Create a script, `hello1.py` that asks the user for their name and then
-  prints out `Hello, <name>!`.  Here is an example execution of your script:
-
-          $ ./hello.py
-          What is your name? Bob
-          Hello, Bob!
-
-  4. Create a second script, `hello2.py` that takes one argument, `name` and
-  prints `Hello, <name>!`.  Here is an example execution of your script:
-
-          $ ./hello.py Bob
-          Hello, Bob!
-
-  5. Create a **module** called `greeter.py` that contains a single function:
-
-          :::python
-          def greet(name):
-              ''' Prints "Hello, <name>!" '''
+          def letter_count(string):
+              ''' Prints "You typed N characters." 
+                  Where N is the number of chars in STRING.
+              '''
               # TODO: Implement function
 
-      Create a third script called `hello3.py` that utilizes your `greeter.py`
-      module to implement the same program above (ie. take one argument `name`
-      and prints `Hello, <name>!`.
+  5. Create a new script called `counter3.py` that utilizes your `letters.py`
+  module to implement the same program as above.
 
   [Python]: https://www.python.org/
 
@@ -75,7 +81,7 @@ body:       |
 
           :::bash
           # Create local clone of Git repository
-          $ git clone https://YOUR_USERNAME@bitbucket.org/YOUR_USERNAME/readings.git
+          $ git clone git@gitlab.com:YOUR_USERNAME/homework.git
 
       Of course, replace `YOUR_USERNAME` with your username **:]**.
 
@@ -94,37 +100,40 @@ body:       |
       rather than popup a window.
       </div>
 
-  2. Once you have a local [Git] repository go into the `readings` folder,
-  record your answers in the `reading01.md` file, and edit your scripts:
+  2. Once you have a local [Git] repository go into the `homework/homework2`
+  directory, record your answers in the `README.md` file, and edit your scripts:
 
           :::bash
-          # Go into the readings directory
-          $ cd readings
+          # Go to the right directory
+          $ cd homework/homework2/
 
-          # Record answers in reading01.md
-          $ nano reading01.md
+          # Record your reading responses in README.md
+          $ nano README.md
 
-          # Write hello1.py script
-          $ nano hello1.py
+          # Write counter1.py script
+          $ nano counter1.py
 
-          # Write hello2.py script
-          $ nano hello2.py
+          # Write counter2.py script
+          $ nano counter2.py
 
-          # Write greeter.py script
-          $ nano greeter.py
+          # Write letters.py module
+          $ nano letters.py
 
-          # Write hello3.py script
-          $ nano hello3.py
+          # Write counter3.py script
+          $ nano counter3.py
 
   3. Once you have recorded your answers and written your scripts, you can 
   **commit** to the [Git] log and then send your changes to [GitLab]:
 
           :::bash
           # Add files to Git staging area
-          $ git add reading01.md hello1.py hello2.py greeter.py hello3.py
+          $ git add README.md counter1.py counter2.py letters.py counter3.py
+
+          # Review the changes you've staged
+          $ git status
 
           # Commit work to log
-          $ git commit -m "Complete Reading 01"
+          $ git commit -m "Complete homework 2"
 
       If you need to additional edits or modifications after you commit, you
       simply perform the `add` and `commit` to record each change.
@@ -134,7 +143,6 @@ body:       |
 
           # Send work to GitLab
           $ git push
-
 
   Of course, you may choose to edit and upload files via [GitLab]'s web
   interface, but I recommend you become familiar with [Git]'s command-line

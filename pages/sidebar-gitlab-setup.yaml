@@ -1,0 +1,86 @@
+title:      GitLab Setup
+icon:       fa-life-ring
+navigation:
+    - name: "Class Home"
+      link: "/~cforstal/cdt-30020-sp17"
+      icon: "fa-home"
+internal:
+external:
+body:       |
+
+  ## GitLab homework repository
+   
+  Here's a walkthrough of the process to set up your GitLab homework repository.
+   
+  ### Join the group
+   
+  1. Create an account and [sign in](https://gitlab.com/) if you haven't
+     already.
+   
+  2. Locate the group [nd-cdt-30020-sp17](https://gitlab.com/nd-cdt-30020-sp17)
+   
+  3. Request membership:
+      
+      <img class="img-thumbnail img-responsive" alt="img"
+      src="{{ page.prefix }}static/img/screenshot_gitlab-setup-00.png">
+      
+  4. **Ignore this warning** about SSH keys for now. (It's totally fine if 
+     you've already created one.)
+      
+       <img class="img-thumbnail img-responsive" alt="img"
+       src="{{ page.prefix }}static/img/screenshot_gitlab-warning-keygen.png">   
+    
+  ### Fork the Homework repository
+  
+  1. Click on "Homework", or follow [this link](
+     https://gitlab.com/nd-cdt-30020-sp17/homework)
+     
+  2. Click on <img src="{{ page.prefix }}static/img/screenshot_gitlab-fork.png" 
+     width="80" alt="Fork"> to make your own copy
+
+
+  ### Make your copy private
+  
+  1. From the Settings menu, choose "Edit Project"
+  
+       <img class="img-thumbnail img-responsive" alt="img"
+       src="{{ page.prefix }}static/img/screenshot_gitlab-setup-02.png">
+          
+  2. Set the Visibility Level to Private
+  
+       <img class="img-thumbnail img-responsive" alt="img"
+       src="{{ page.prefix }}static/img/screenshot_gitlab-setup-03.png">
+ 
+ 
+  ### Add the instructor and TAs
+  
+  1. From the Settings menu, choose "Members"
+  
+       <img class="img-thumbnail img-responsive" alt="img"
+       src="{{ page.prefix }}static/img/screenshot_gitlab-setup-04.png">
+  
+  2. Add the following users as "Developers":
+     
+      - **cwf2** - Chris Forstall
+
+      - **schneeying** - Xueying Wang
+
+      - **njones7** - Nick Jones
+      
+       <img class="img-thumbnail img-responsive" alt="img"
+       src="{{ page.prefix }}static/img/screenshot_gitlab-setup-05.png">
+  
+  3. Double-check
+  
+      - look at [https://gitlab.com/dashboard/projects](
+         https://gitlab.com/dashboard/projects)
+      
+      - look for "Your Name / Homework", your personal copy of the repo
+      
+      - at the right, there should be an icon of a lock
+        (<i class="fa fa-lock"></i>)
+        not a shield (<i class="fa fa-shield"></i>).
+
+       <img class="img-thumbnail img-responsive" alt="img"
+       src="{{ page.prefix }}static/img/screenshot_gitlab-setup-06.png">
+       

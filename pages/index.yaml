@@ -111,7 +111,8 @@ body:       |
 
       <dt><i class="fa fa-life-ring"></i> Office Hours</dt>
       <dd>
-         <strong>M/W</strong> 2:00 PM - 3:00 PM<br>
+         <strong>Tues.</strong> 3:20 PM - 4:20 PM<br>
+         <strong>Fri.</strong> 1:00 PM - 2:00 PM<br>
          and by <strong>appointment</strong>
       </dd>
 
@@ -198,11 +199,9 @@ body:       |
             <td>
             {{ day.get('topics', '') }}
             {% for item in day.get('items', []) %}
-               {% if item['name'].lower().startswith('exam') %}
+               {% if item['name'].lower().startswith('final') %}
                   {% set item['label'] = 'danger' %}
-               {% elif item['name'].lower().startswith('checklist') %}
-                  {% set item['label'] = 'info' %}
-               {% elif item['name'].lower().startswith('quiz') %}
+               {% elif item['name'].lower().startswith('test') %}
                   {% set item['label'] = 'warning' %}
                {% else %}
                   {% set item['label'] = 'default' %}
@@ -218,8 +217,8 @@ body:       |
             {% set assignment = day.get('assignment') %}
             {% if assignment %}
                {% set assignment_id = ''.join(assignment.lower().split()) %}
-               {% if assignment_id.startswith('reading') %}
-                  {% set assignment_label = 'primary' %}
+               {% if assignment_id.startswith('homework') %}
+                  {% set assignment_label = 'info' %}
                {% elif assignment_id.startswith('project') %}
                   {% set assignment_label = 'success' %}
                {% else %}
@@ -252,25 +251,25 @@ body:       |
             </thead>
             <tbody>
                <tr>
-                  <td><span class="label label-info">Readings</span>
+                  <td><span class="label label-info">Homework</span>
                   Weekly reading assignments and corresponding writing
                   prompts.</td>
-                  <td class="text-center">8 &times; 5</td>
+                  <td class="text-center">9 &times; 5</td>
                </tr>
                <tr>
                   <td><span class="label label-success">Projects</span>
                   Focused group programming projects.</td>
-                  <td class="text-center">30 + 40 + 40</td>
+                  <td class="text-center">30 &plus; 40 + 40</td>
                </tr>
                <tr>
-                  <td><span class="label label-warning">Debriefings</span>
+                  <td><span class="label label-warning">Tests</span>
                   Examinations after each project.</td>
-                  <td class="text-center">25 + 35 + 35</td>
+                  <td class="text-center">25 &plus; 35 &plus; 35</td>
                </tr>
                <tr>
                   <td><span class="label label-danger">Final Project</span>
                   Open-ended group programming project.</td>
-                  <td class="text-center">40 &plus; 15</td>
+                  <td class="text-center">50</td>
                </tr>
                <tr>
                   <td class="text-strong text-right">Total</td>
@@ -336,16 +335,18 @@ body:       |
       <div class="alert alert-info">
          <h4><i class="fa fa-gitlab"></i> GitLab Repository</h4>
          <p>
-         All your <b>Readings</b> and <b>Projects</b> are to be submitted
+         All your <b>Homework</b> and <b>Projects</b> are to be submitted
          to your own <b>private</b> <a href="https://gitlab.com">GitLab</a>
          repository.
          </p>
          <p>
          <ul class="list list-spaced">
             <li>
-            <b>Readings</b> are assigned on Tuesday. To avoid penalties 
-            for lateness, you should upload your responses before 10:00 pm
-            on the following Friday, unless otherwise directed.
+            <b>Homework</b> is assigned on a weekly basis. It will generally
+            cover topics for both Tuesday and Thursday. I encourage you to do
+            the readings and to try to answer the questions <strong>before
+            </strong> class. Your responses must be uploaded by 10:00 pm on
+            Friday unless otherwise specified.
             </li>
             <li>
             <b>Projects</b> should be uploaded before 6:00 am on the day

@@ -1,0 +1,150 @@
+title:      "Homework 1: Command-Line Crash Course"
+icon:       fa-book
+navigation: []
+internal:
+external:
+body:       |
+
+  Homework for **Tuesday, January 17** and **Thursday, January 19**
+
+  ## Activities
+    1. **Slack**
+    
+      If you haven't already, **sign up** for the Elements of Computing II
+      [Slack team](https://cdt-30020-sp17.slack.com). Anybody with an '@nd.edu'
+      email address should be able to join; if you really need to use a
+      different one, let me know.
+       
+    2. **GitLab**
+    
+      Make sure you have a [GitLab](https://gitlab.com) account -- most of you
+      should have one from last semester.
+       
+       **Fork** the [homework](https://gitlab.com/nd-cdt-30020-sp17/homework)
+       repository. Make your copy private under "Settings." Then, under
+       "Members," add users `cwf2` (Chris), `schneeying` (Xueying) and
+       `njones7` (Nick) as "developers."
+       
+    3. **VirtualBox &plus; Vagrant**
+    
+      **Install** [VirtualBox](https://www.virtualbox.org/)
+      and [Vagrant](https://www.vagrantup.com/) on your personal computer.
+              
+      Try to **create** a Vagrant virtual machine.
+      
+        1. Create a new directory to hold your work.
+
+        2. Use Terminal (OS X) or CMD (Windows) to navigate to this directory.
+
+        3. Issue these commands to setup the virtual machine. (This involves
+           downloading a machine image from the Internet, and could take a
+           little while.)
+              
+              vagrant init ubuntu/trusty64
+              vagrant up
+
+    4. **Linux command line**
+    
+      **Connect** to a Linux machine and work through the readings below.
+      If you got Vagrant working, try logging into the virtual machine with
+      `vagrant ssh`.
+      
+      *Note for Windows users*: If you have trouble logging in, take a look at 
+      [this guide](https://www.sitepoint.com/getting-started-vagrant-windows/) 
+      for help with setting up keys and using [PuTTY] with Vagrant.
+      
+      After you log out of your virtual machine, you can shut it down with
+      `vagrant halt`. To start it back up again later, use `vagrant up`.
+      For more help on Vagrant see their 
+      [Getting Started](https://www.vagrantup.com/docs/getting-started/).
+      
+  <div class="alert alert-info" markdown="1">
+  #### <i class="fa fa-life-ring"></i> Alternate Method
+   
+  If you can't get Vagrant working, you have some options for test-driving
+  the Linux shell:
+            
+  ##### Windows
+
+  For Windows users, you can connect to a remote Unix machine 
+  [run by Notre Dame](http://www.cse.nd.edu/resources/student-machines.html).
+  To do so, you will again need to use the [PuTTY] terminal application.
+
+  You can use this [tutorial](
+  https://mediatemple.net/community/products/dv/204404604/using-ssh-in-putty-)
+  on how to use use PuTTY to connect to a remote Unix machine:
+
+    - For the **Hostname**: you can use either `student00.cse.nd.edu` or `student01.cse.nd.edu`.
+
+    - For the **Username**: you must use your Notre Dame **netid**.
+
+    - For the **Password**: you must use your Notre Dame password.
+      
+  ##### OSX
+   
+  For Mac OS X users, you can simply open a **Terminal** to practice the
+  commands.  If you wish to login to remote Unix machine, you can use the
+  `ssh` command as follows:
+
+      $ ssh NETID@student00.cse.nd.edu
+
+  This will connect to the remote machine `student00.cse.nd.edu` using the
+  username `NETID`.
+  </div>
+   
+  ## Readings
+
+    1. [Learning the Shell](http://linuxcommand.org/lc3_learning_the_shell.php)
+
+       This is a crash course into using a command line interface (focus on the
+       **Unix** shell).
+
+  <div class="alert alert-info" markdown="1">
+  #### <i class="fa fa-life-ring"></i> Don't Panic!
+
+  If you are confused or have trouble either connecting to a **Unix** shell or
+  **forking** the GitLab repository, don't worry!  We will sort all these
+  logistics out the first week of class.  Do as much as you can and then come
+  to class with questions.
+
+  </div>
+
+  ## Questions
+
+  Once you have completed the reading, please answer the following questions:
+
+  1. In the bash shell, what do the following keys do?
+
+       1. tab
+  
+       2. up-arrow
+
+  2. Identify which shell commands you would use to perform the following
+     tasks:
+
+       1. Print the name of the current directory
+
+       2. Copy a file to another location
+
+       3. List the files in the current directory
+
+       4. Change to another directory
+
+  3. In a Linux file path, what does `..` mean?
+
+  4. When chaining commands together, what does the `|` ("pipe") mean?
+
+  ## Feedback
+
+  If you have any questions, comments, or concerns regarding the course, please
+  provide your feedback at the end of your response.
+
+  ## Submission
+
+  To submit your response, please commit your work to your **homework**
+  [GitLab] repository.
+
+  **Note**: Keep the name of the repository **homework**.
+
+  [PuTTY]:  http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html
+  [GitLab]:    https://gitlab.com
