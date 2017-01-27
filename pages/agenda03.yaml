@@ -136,8 +136,8 @@ body:       |
           :::python
           
           def is_anagram(word1, word2):
-             '''Returns true if word2 is an anagram of word1.'''
-             # TODO
+              '''Returns true if word2 is an anagram of word1.'''
+              # TODO
              
        **Bonus:**  check a given word for all possible anagrams using
        a [dictionary](static/text/aspell_en.txt).
@@ -148,8 +148,8 @@ body:       |
           :::python
           
           def is_palindrome(word):
-             '''Returns true if word is a palindrome.'''
-             # TODO
+              '''Returns true if word is a palindrome.'''
+              # TODO
 
        **Bonus:**  check for all palindromes in a [dictionary](
        static/text/aspell_en.txt).
@@ -162,11 +162,13 @@ body:       |
           :::python
            
           def char_count(phrase):
-             '''Returns a dictionary containing character counts for phrase.'''
-              #TODO
-              
+              '''Returns a dictionary containing character counts for phrase.'''
+               #TODO
+       
        **Bonus:** Use the result to figure out the most frequent 10 letters in
        [Pride and Prejudice](static/text/austen.pride_and_prejudice.txt).
+
+       **Double bonus:** What about the most common two-character strings?
        
      </div>
    </div>

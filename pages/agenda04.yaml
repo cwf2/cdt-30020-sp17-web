@@ -1,0 +1,145 @@
+title:      Agenda for January 26
+icon:       fa-list-alt
+navigation:
+    - name: "Class Home"
+      link: "/~cforstal/cdt-30020-sp17"
+      icon: "fa-home"
+internal:
+external:
+body:       |
+
+  ### Modules and packages
+
+   1. Let's create two standalone files, `anagram.py` and `palindrome.py`.
+   
+      - Inside each one, we'll have the respective function definition from
+        Tuesday.
+        
+      - Using the `if __name__ == "__main__"` syntax, let's have them take
+        input from the command line arguments if they're executed as scripts.
+        
+          - quick and dirty: `sys.argv`
+        
+          - a good alternative, if you want to check it out, is [argparse](
+            https://docs.python.org/2/howto/argparse.html).
+          
+      - How would we pass a longer phrase to `palindrome.py` as a single 
+        command line argument?
+        
+     
+   2. Now, in interactive mode, we'll try importing the functions.
+   
+      - What's the difference between:
+      
+              :::python
+              import anagram
+      
+          and 
+        
+              :::python
+              from anagram import is_anagram
+
+   3. Let's create a new **module**, `wordplay.py`, and collect both functions
+      there.
+      
+      - How do we import them now?
+      
+      - What happens when we use `help()` (in Python) or `pydoc` (in the shell)?
+      
+      
+   4. Finally, let's try using a new directory `wordplay2/` as a **package**, in
+      which we can gather `anagram.py` and `palindrome.py` as separate modules.
+      
+      - We'll have to create `__init__.py`
+      
+      - Now what are our `import` options?
+
+  ### Suggested Vagrant setup
+  
+  #### On my own computer
+      
+    - I keep files related to this class in a special folder, like "CDT"
+    
+    - That's where I do `vagrant init` and other vagrant commands
+    
+    - I'm going to use Git to maintain a copy of my **Homework** repo here
+    
+    - I've created a dedicated folder for in-class work and other
+      experimentation--let's call it "practice" (or whatever you want)
+   
+          :::bash
+          CDT/
+             Vagrantfile                 # created by vagrant
+             homework/                   # to be created by git
+             practice/                   # I make this folder
+             ...                         # ... more to come (project1, etc.)
+             
+             
+  #### On the virtual machine
+   
+    - On the Vagrant machine, the contents of 'CDT' (or wherever you did
+       `vagrant init`) are shared as `/vagrant/`.
+     
+    - Don't confuse that with `/home/vagrant/`, your home directory.
+   
+    - That's where you end up when you log in each time. Files you create
+      there won't automatically be available to you outside the vm.
+     
+    - You could do `cd /vagrant/` every time you log in, and just work
+      out of the shared directory.
+     
+    - Or you could create a symlink to your `practice` directory in your
+      home dir. 
+     
+          :::bash
+          ln -s /vagrant/practice /home/vagrant/practice
+     
+      Then you'd see it right when you log in. Talk to me if you
+      would like help with this.
+
+  <div class="alert alert-info">
+  <h4><i class="fa fa-life-ring"></i> Vagrant Tip</h4>
+
+  If you think you've lost track of the virtual machine, or you might have 
+  more than one running, you can start VirtualBox manually to see a list of
+  running VMs.
+  </div>
+  
+  ### Git setup
+  
+  You will ultimately want to have the ability to work with your **Homework**
+  repository using the **git** command-line tools.
+  
+   - We are going to install git **on our Vagrant virtual machine**. That way
+     the same instructions will work for everyone.
+   
+     <div class="alert alert-warning" markdown="1">
+     <i class="fa fa-warning"></i> **If you aren't able to log in to your
+     vagrant box yet**, and you aren't already familiar with git on your 
+     own machine, then **don't proceed**. 
+   
+     Instead, you can upload your Python scripts to your "homework2" folder
+     using the GitLab web interface. Just like last week, you can edit
+     `homework2/README.md` to type your answers to this week's reading
+     questions.
+     </div>
+   
+   <h4> On the Vagrant VM ... </h4>
+   
+   <h5>Installing git</h5>
+   
+      :::bash
+      
+      sudo apt-get update
+      sudo apt-get install -y git
+   
+   <h5>Clone the repository</h5>
+   
+      :::bash
+      
+      cd /vagrant
+      git clone https://gitlab.com/USERID/homework.git # where USERID is you
+
+
+      
+   This is possibly as far as we'll get today. Let's see how things play out...

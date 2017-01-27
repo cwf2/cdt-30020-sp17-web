@@ -8,16 +8,23 @@
         topics:         Vagrant, Git
         items:
            - name: Notes
-             link: http://www3.nd.edu/~cforstal/cdt-30020-sp17/notes02.html
+             link: notes02.html
 
 - name:     Packaging
   days:
       - date:           01/24
         topics:         Scripts, Modules
-        assignment:     Homework 2        
+        assignment:     Homework 2
+        items:
+           - name: Notes
+             link: notes03.html
 
       - date:           01/26
         topics:         Packages
+        items:
+           - name: Agenda
+             link: agenda04.html
+
 
 - name:     Object-Oriented Programming
   days:
