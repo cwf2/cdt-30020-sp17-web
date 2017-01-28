@@ -46,7 +46,7 @@ body:       |
   4. Create another script, `counter2.py` that does the same thing, but takes
   its input from a single command line argument. I.e.
   
-          $ ./counter1.py providential
+          $ ./counter2.py providential
           You typed 12 characters.
   
   5. Create a **module** called `letters.py` that contains a single function:

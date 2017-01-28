@@ -22,8 +22,8 @@
       - date:           01/26
         topics:         Packages
         items:
-           - name: Agenda
-             link: agenda04.html
+           - name: Notes
+             link: notes04.html
 
 
 - name:     Object-Oriented Programming
