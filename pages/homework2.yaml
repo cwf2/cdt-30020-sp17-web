@@ -1,6 +1,9 @@
 title:      "Homework 2: Packaging"
 icon:       fa-book
-navigation: []
+navigation:
+    - name: "Class Home"
+      link: "/~cforstal/cdt-30020-sp17"
+      icon: "fa-home"
 internal:
 external:
 body:       |

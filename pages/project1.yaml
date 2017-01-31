@@ -1,0 +1,485 @@
+title:      "Project 01: DrawIt"
+icon:       fa-code
+navigation: []
+internal:
+external:
+body:       |
+
+  ## Overview
+
+  The goal of the first project is to refresh some basic logic and Python coding 
+  practices from last semester,  while also exploring the basics of 
+  object-oriented programming.  Therefore, this project requires you to complete
+  a Python package, originally written by Peter Bui, called **DrawIt**, which is
+  a simple drawing library for composing two-dimensional images in [PPM] format.
+
+  You should work in small groups. Three people is probably ideal, two or four 
+  is ok too. One copy of the repository will be submitted for the group, but
+  everyone should have contributed. There will be an in-class test covering
+  concepts from the project and you are responsible for being able to explain
+  your teammates' work as well as your own.
+
+
+  [PPM]:            https://en.wikipedia.org/wiki/Netpbm_format
+
+  ## Activity 1: Projects Repository
+
+  To keep track of your work and to facilitate collaboration, your group will
+  use a dedicated repository on [GitLab](https://gitlab.com).
+  
+    1. **one** member of your group should fork the **project1**
+       repository [https://gitlab.com/nd-cdt-30020-sp17/project_1](
+       https://gitlab.com/nd-cdt-30020-sp17/project_1)
+
+    2. That person should give the other members access by going to `Settings` >
+       `Members` and then adding the other group members. Don't forget to add
+       the instructor and TAs as well.
+       
+    3. As with the 'Homework' repo, you can use the Settings menu again to
+       mark your project as private to protect your work, and click the 
+       "remove fork relationship" button to prevent annoying merge request
+       prompts.
+
+    4. Now clone the project on your virtual machine.
+      
+          :::text
+          git clone https://gitlab.com/USER/project1  # user is whoever forked the project, not necessarily you
+       
+       <i class="fa fa-hand-o-right"></i> If you've never used git on the VM,
+       you have to install it:
+       
+          :::text
+          sudo apt-get update
+          sudo apt-get install -y git
+      
+       <i class="fa fa-hand-o-right"></i> Each group member can clone the repo 
+       if you choose. Since we're new to git, you should avoid all working on 
+       the same files and trying to push conflicting changes back to GitLab. 
+       
+       <i class="fa fa-hand-o-right"></i> Instead, either have one person make 
+       the official commits (safest), or have everyone work on different parts 
+       of the code (works just fine if you're careful).
+
+       <i class="fa fa-life-ring"></i> If you just can't get git to work, let me
+       know and I will help you get the code.
+
+ 
+  ## Activity 2: DrawIt Package
+
+  Once you have **forked** and **cloned** the [Projects] repository, you should
+  go into the `drawit` folder.  As you can see, the `drawit` project has the
+  following layout:
+
+      project1
+          \_ drawit                           DrawIt Python Package
+                  \_ __init__.py
+                  \_ color.py                 DrawIt Color Module
+                  \_ image.py                 DrawIt Image Module
+                  \_ point.py                 DrawIt Point Module
+                  \_ ppm.py                   DrawIt PPM Module
+                  \_ mpimg.py                 DrawIt Matplotlib Module
+                  \_ tests                    DrawIt Tests
+                      \_ color_tests.py       DrawIt Color Module Tests
+                      \_ image_tests.py       DrawIt Image Module Tests
+                      \_ point_tests.py       DrawIt Point Module Tests
+          \_ draw_circle.py                   Circle Demo Script
+          \_ draw_freight_train.py            Freight Train Demo Script
+          \_ draw_line.py                     Line Demo Script
+          \_ draw_point.py                    Point Demo Script
+          \_ draw_rectangle.py                Rectangle
+
+  For this activity, you only need to modify the `color.py`, `image.py`, and 
+  `point.py` modules, adding the code detailed below to get the project working.
+  Then in Activity 3, you will write a couple new scripts of your own.
+
+  ### Color Module
+
+  The first module is `drawit.color` which defines the `drawit.color.Color`
+  class.  As we discussed [last semester](https://docs.google.com/presentation/d/1y-mKJLfX3iY6ZRbDh3O9nAzAmjAwkHwJagMutGGXWSk/edit#slide=id.p), 
+  colors typically store `red`, `green`, and `blue` (aka `rgb`) values which 
+  define the color value for a **pixel**.
+
+  For this activity you are to complete the `drawit.color.Color` class by
+  defining the following methods:
+
+  1. `__init__(self, r=0, g=0, b=0)`:
+
+      > This is a **constructor method** which initializes the instance 
+      variables of a new Color object (ie. r, g, b).
+
+  2. `__eq__(self, other)`:
+
+      > This is a **protocol method** which is called when we evaluate an 
+      equality expression comparing two `drawit.color.Color` objects (ie. 
+      `color0 == color1`).  It should return `True` if the respective instance 
+      variables of the objects have equal values.
+
+  3. `__ne__(self, other)`:
+
+      > This is the complement to `__eq__()` above, called when we evaluate
+      `color0 != color1`. It should return `True` when the two objects compared
+      *don't* have the same values for their instance variables. 
+      
+      <i class="fa fa-hand-o-right"></i> **Hint**: you can just use the `not` 
+      operator on `__eq__()`.
+
+  4. `__repr__(self)`:
+
+      > This is a **protocol method** which is called when we want a string
+      representation of the object (e.g. `print color`).  It should return a 
+      string of the form `Color(r=?,g=?,b=?)` with the appropriate `r`, `g`, `b`
+      instance variables.
+      
+  5. `brightness(self)`:
+     
+      > This is a method that returns the average brightness of the pixel
+      (taking into account r, g, and b values) as single integer (0-255).
+
+  6. In addition to defining this class, you must also define some basic colors:
+
+          WHITE
+          RED
+          GREEN
+          BLUE
+          CYAN
+          MAGENTA
+          YELLOW
+          BLACK
+       
+   <br />
+
+  ### Point Module
+
+  The second module is `drawit.point` which defines the `drawit.point.Point`
+  class.  This object contains `x` and `y` attributes that can be used to
+  specify a location.
+
+  For this activity, you are to complete the `drawit.point.Point` class by
+  defining the following methods:
+
+  1. `__init__(self, x=0, y=0)`:
+
+      > This is a **constructor method** which should set the instance variables
+      of newly created Point objects (ie. `x`, `y`).
+       
+      <i class="fa fa-hand-o-right"></i> **Hint**: This method should ensure 
+      that the attributes are stored as type `int`.
+
+  2. `__eq__(self, other)`:
+
+      > This is a **protocol method** which is called when we evaluate an 
+      equality expression comparing two `drawit.point.Point` objects (ie. 
+      `point0 == point1`).  It should return `True` if the instance variables of
+      each object are equal.
+      
+  3. `__ne__(self, other)`:
+     
+      > This is a **protocol method** which is called when we evaluate an 
+      *inequality* expression comparing two `drawit.point.Point` objects 
+      (i.e. `point0 != point1`).  It should return the logical negation of
+      `__eq__()`.
+      
+  4. `__repr__(self)`:
+
+      > This is a **protocol method** which is called when we want a string
+      representation of the object (e.g. `print point`).   It should
+      return a string of the form `Point(x=?,y=?)` with the appropriate `x`,
+      `y` instance variables.
+
+  5. `distance_from(self, other)`:
+
+      > This is a **method** which returns the [distance] from the current
+      instance to other Point.
+
+      <i class="fa fa-hand-o-right"></i> **Hint**: You can use the `math.hypot` function.
+
+  [distance]: http://www.purplemath.com/modules/distform.htm
+
+  ### Image Module
+
+  The last module is the `drawit.image` module which defines the
+  `drawit.image.Image` class.  This object contains the `width` and `height` of
+  the image along with the `pixels` associated with the image.
+
+  For this activity, you are to complete the `drawit.image.Image` class by
+  defining the following methods:
+
+  1. `__init__(self, width=DEFAULT_WIDTH, height=DEFAULT_HEIGHT)`
+
+      > This **constructor method** should set the instance variables of the
+      object (ie. `width`, `height`) and initialize the internal collection of
+      `pixels`.
+
+  2. `__eq__(self, other)`:
+
+      > This is a **protocol method** which is called when we evaluate an 
+      equality expression comparing two `drawit.image.Image` objects (ie. 
+      `image0 == image1`).  It should return `True` if the instance variables 
+      of each object have equal values.
+      
+  3.  `__ne__(self, other)`:
+     
+      > This is a **protocol method** which is called when we evaluate an 
+      *inequality* expression comparing two `drawit.image.Image` objects (i.e.
+      `image0 != image1`. It should return the logical negation of `__eq__()`.
+
+  4. `__repr__(self)`:
+
+      > This is a **protocol method** which is called when we want a
+      string representation of the object (e.g. `print image`).   It should
+      return a string of the form `Image(width=?,height=?)` with the
+      appropriate `width`, `height` instance variables.
+
+  5. `__getitem__(self, point)`:
+
+      > This is a **protocol method** which is called when we use the **index**
+      operator to read a value (ie. `image[point]`).  It should return the
+      pixel color at the location specified by `point`. If `point` is not with
+      the bounds of the image, then an `IndexError` should be **raised**.
+
+  6. `__setitem__(self, point, color)`:
+
+      > This is a **protocol method** which is called when we use the **index**
+      operator to store a value (ie. `image[point] = color`).  It should set
+      the pixel at the location specified by `point` to the given `color`. If
+      `point` is not with the bounds of the image, then an `IndexError` should
+      be **raised**.
+
+  7. `clear(self)`:
+
+      > This is a **method** which clears the image by setting all pixels to
+      default the `Color`.
+
+      <i class="fa fa-hand-o-right"></i> **Hint**: You can call this in the 
+      **constructor** to reduce code duplication.
+
+  8. `draw_line(self, point0, point1, color)`:
+
+      > This is a **method** which draw a line from `point0` to `point1` with
+      the given `color`.
+
+      To draw a **line** using [polar coordinates], you can use the following 
+      recipe:
+
+      1. Compute the angle defined by the two points using the `math.atan2()` 
+         function.
+
+      2. Compute the distance between the two points.
+
+      3. Draw the line by drawing a point every few lengths from the first
+         point until we have reached the distance computed in step two.
+
+      The point at distance `d` with angle `a` is defined as:
+
+          P(d, a).x = point0.x + d*cos(a)
+          P(d, a).y = point0.y + d*sin(a)
+
+  9. `draw_rectangle(self, point0, point1, color)`:
+
+      > This is a **method** which draws a solid rectangle with one corner at 
+      `point0` and another at `point1`, filled in with the given `color`.
+
+      To draw a **rectangle** one row at at time, you can use the following
+      recipe:
+
+      1. Determine the column start and end.
+
+      2. Determine the row start and end.
+
+      3. For each row from the start to the end determined in step 2:
+
+          - For each column from the start to the end determined in step 1:
+
+              - Draw a pixel at point(column, row)
+
+      <br/>
+
+  10. `draw_circle(self, center, radius, color)`:
+
+      > This is a **method** which draws a circle with the specified `center`
+      and `radius` and filled with the given `color`.
+
+      To draw a **circle** by walking the rectangular area, you can use the
+      following recipe:
+
+      1. Determine the column start and end based on the center point and the 
+         radius.
+
+      2. Determine the row start and end based on the center point and the 
+         radius.
+
+      3. For each row from the start to the end determined in step 2:
+
+          - For each column from the start to the end determined in step 1:
+
+              - If point p is in circle then draw a pixel at point(column, row)
+
+      <br/>
+      
+  11. `gradient(self, center, color0, color1)`:
+     
+       > This is a **method** which paints the entire image with a radial color 
+       gradient. Pixel color should gradually transition from `color0` to 
+       `color1` based on distance from a point `center`.
+        
+       To calculate a given pixels' `r`, `g`, and `b` values based on its
+       distance from the center, use the following recipe:
+          
+       1. Figure out the maximum distance any pixel in the image can be from
+          center. Hint: it will be one of the corners.
+          
+       2. For a given pixel, each component will be a weighted average of color0
+          and color1 based on the proportion of the max distance covered:
+
+               new_color = color_0(1 - progress) + color_1(progress)
+             
+          where 
+          
+               progress = this_distance / max_distance
+          
+          <br />
+
+  ### Testing
+
+  We have provided tests that you can run to verify that your code is behaving
+  properly.  To run these tests, you can use the [unittest] module as follows:
+
+      $ python -m unittest -v drawit.tests
+      test00_ColorInit (drawit.tests.color_tests.ColorTest) ... ok
+      test01_ColorEq (drawit.tests.color_tests.ColorTest) ... ok
+      test02_ColorStr (drawit.tests.color_tests.ColorTest) ... ok
+      test03_ColorGlobals (drawit.tests.color_tests.ColorTest) ... ok
+      test00_ImageInit (drawit.tests.image_tests.ImageTest) ... ok
+      test01_ImageEq (drawit.tests.image_tests.ImageTest) ... ok
+      test02_ImageStr (drawit.tests.image_tests.ImageTest) ... ok
+      test03_ImageGetItem (drawit.tests.image_tests.ImageTest) ... ok
+      test03_ImageSetItem (drawit.tests.image_tests.ImageTest) ... ok
+      test04_ImageClear (drawit.tests.image_tests.ImageTest) ... ok
+      test05_ImageLine (drawit.tests.image_tests.ImageTest) ... ok
+      test06_ImageRectangle (drawit.tests.image_tests.ImageTest) ... ok
+      test07_ImageCircle (drawit.tests.image_tests.ImageTest) ... ok
+      test00_PointInit (drawit.tests.point_tests.PointTest) ... ok
+      test01_PointStr (drawit.tests.point_tests.PointTest) ... ok
+      test02_PointStr (drawit.tests.point_tests.PointTest) ... ok
+      test03_PointDistanceFrom (drawit.tests.point_tests.PointTest) ... ok
+
+      ----------------------------------------------------------------------
+      Ran 17 tests in 5.369s
+
+      OK
+
+  For your convenience, you can also use the following command to run the
+  tests:
+
+      $ make test
+
+  ### Scripts
+
+  In addition to the unit tests, you are also provided a few example demo
+  scripts.  The first few scripts demonstrate each of the drawing primitives:
+
+      $ ./draw_point.py > draw_point.ppm
+
+  ![draw_point](/~cforstal/cdt-30020-sp17/static/img/draw_point.png)
+
+
+      $ ./draw_line.py > draw_line.ppm
+
+  ![draw_line](/~cforstal/cdt-30020-sp17/static/img/draw_line.png)
+
+      $ ./draw_rectangle.py > draw_rectangle.ppm
+
+  ![draw_rectangle](/~cforstal/cdt-30020-sp17/static/img/draw_rectangle.png)
+
+      $ ./draw_circle.py > draw_circle.ppm
+
+  ![draw_circle](/~cforstal/cdt-30020-sp17/static/img/draw_circle.png)
+
+  One special script, demonstrates how you can put all of these things together
+  to make a pretty cool image:
+
+      $ ./draw_freight_train.py > draw_freight_train.ppm
+
+  ![draw_freight_train](/~cforstal/cdt-30020-sp17/static/img/draw_freight_train.png)
+
+  For your convenience, you can run all of these scripts at once by doing:
+
+      $ make ppms
+
+  This will generate [PPM] files that you can view.  If you prefer [PNG] files,
+  you will first have to install a conversion tool on your vagrant machine.
+  
+      $ sudo apt-get install -y imagemagick
+  
+  Now you can do the following:
+
+      $ make pngs
+
+  To `make` a single image, you can do:
+
+      $ make draw_line.ppm.  # or draw_line.png
+
+  <i class="fa fa-hand-o-right"></i> **Note**: The `make` commands will 
+  automatically run any script that begins with `draw_`, so if you use that 
+  prefix for your scripts, then you can also use the `make` command.
+  
+  <i class="fa fa-warning"></i> **However**: If the destination image exists,
+  `make` won't overwrite it. Delete the old version manually, or do `make clean`
+  to get rid of everything and start over.
+
+  ## Activity 3: DrawIt Artwork
+
+  Once you have a **working** and **tested** **DrawIt** package, then you are
+  to use the library by writing **scripts** that produce cool images!
+
+  Specifically, each group must write a script, `draw_group_logo.py` that will
+  generate an image that serves as the group's logo.
+
+  Afterwards, each group member should write their own `draw_NETID.py` script
+  that
+
+  1. Draws your initials.
+
+  2. Draws a smiley face.
+
+  3. Loads an image from the `img/` folder and "decorates" it with your own art.
+  
+  4. Loads an image and converts it to greyscale
+  
+      <i class="fa fa-hand-o-right"></i> **Hint**: use the 
+      `color.Color.brightness()` method. 
+
+  5. Draws something super awesome and cool!
+
+  <h5>working with files</h5>
+
+   - To save an image you've made, use `ppm.PPM.write(image, path)`.
+
+   - For steps 3 and 4 (and possibly 5), you can use `ppm.PPM.read(path)` to load
+     a PPM file from the `img/` folder.
+  
+   - If you want to load PNG images (e.g. from the Internet), you have two 
+     choices:
+       1.  At the command line (if you installed ImageMagic above): 
+        
+              $ convert some_file.png new_name.ppm
+            
+       2. In your Python script:
+
+              :::python
+              from drawit import MPImage
+            
+              MPImage.write_png(image, path)
+
+      <br />
+
+
+  ## Submission
+
+  To submit your project, please commit your work to your **project1**
+  repository by **the morning of Thursday, February 9**.
+
+  [unittest]:   https://docs.python.org/2/library/unittest.html
+  [git]:        https://www.git-scm.com
+  [polar coordinates]:  https://en.wikipedia.org/wiki/Polar_coordinate_system
+  [PNG]:        http://www.libpng.org/pub/png/
