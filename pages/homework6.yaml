@@ -1,0 +1,236 @@
+title:      "Homework 6: Tornado Templates"
+icon:       fa-book
+navigation: []
+internal:
+external:
+body:       |
+
+  ## Readings
+
+  This week, you will be finishing up [Project 02: SearchIt].  This reading
+    assignment will allow you practice using [templates] in [Tornado] by
+    modifying a small web application.
+
+  [Project 02: SearchIt]:   project02.html
+  [templates]:              http://www.tornadoweb.org/en/stable/template.html
+  [Tornado]:                http://www.tornadoweb.org/
+  [separation of concerns]: https://en.wikipedia.org/wiki/Separation_of_concerns
+
+  ## Template Review
+
+  The idea behind using [templates] in web application frameworks such as
+  [Tornado] is to allow developers to separate data processing logic from the
+  presentation code.  This [separation of concerns] allows each component to only
+  focus on what is necessary with the hopes of making the code simpler to modify
+  and maintain (but not necessarily to initially create).
+
+  To use [templates] in [Tornado], simply create a [HTML] file such as
+  `page.html` and then use the [render] method on that file:
+
+      :::python
+      def get(self):
+          # Do some data processing
+          self.render('page.html', variable=value)
+
+  As shown above, you can pass data to the template by specifying **named
+  arguments** to the [render] method.  The following provides details on how to
+  use the data passed to the [templates].
+
+  ### Variables and Values
+
+  To use the value of a variable, do the following:
+
+      :::html
+      {{! variable }}
+
+  To set the value of a variable, do the following:
+
+      :::html
+      {%! set variable = value %}
+
+  ### Conditionals
+
+  To check the value of a variable, do the following:
+
+      :::html
+      {%! if variable == 0 %}
+      variable has the value: 0
+      {%! elif variable == 1 %}
+      variable has the value: 1
+      {%! else %}
+      variable has the value: {{! variable }}
+      {%! end %}
+
+  Note, to display text inside [templates], we simply type in the text.  We do
+  not need to `print` or `format` anything.
+
+  ### Loops
+
+  To loop over a collection, do the following:
+
+      :::html
+      <ol>
+      {%! for item in collection %}
+      <li>{{! item }}</li>
+      {%! end %}
+      </ol>
+
+  The code above will loop through `collection` and for each `item`, it will
+  generate a **list item** with the value of each `item`.  For instance, if the
+  `collection` was `[1, 2, 3]`, the code above would result in the following [HTML]:
+
+      :::html
+      <ol>
+      <li>1</li>
+      <li>2</li>
+      <li>3</li>
+      </ol>
+
+  As you can see, [templates] are a way to programmatically geneerate or modify
+  [HTML] documents outside of a [Python] script.  Rather than having long
+  strings inside a [Tornado] web application, we can move the [HTML] code to
+  external [templates].
+
+  ## Activity
+
+  For this assignment, you will need to download the [reading06.zip] archive:
+
+      :::bash
+      $ curl -O https://www3.nd.edu/~pbui/teaching/cdt.30020.sp16/static/zip/reading06.zip
+      $ unzip reading06.zip
+      $ ls
+      students.html  students.py  students.tsv
+
+  The archive contains the following files:
+
+  1. `students.html`: This is the [HTML] template that you will be modifying.
+
+  2. `students.py`: This is the [Python] web application that you will be modifying.
+
+  3. `students.tsv`: This contains the student data as seen in [Reading 04].
+
+  An example of the web application can be found at [xavier.h4x0r.space:9999](http://xavier.h4x0r.space:9999/).
+
+  ### `students.py`
+
+  First, you will need to modify the web application in `students.py` by
+  completing the `TODOs` in the `IndexHandler` and `Application` classes:
+
+      :::python
+      # Handlers
+
+      class IndexHandler(tornado.web.RequestHandler):
+          def get(self):
+              # TODO: Get field and query value from form
+
+              # TODO: Search for students if field and query are valid
+
+              # TODO: Render 'students.html' template by passing field, query, and
+              # search results
+
+  For the `IndexHandler` class, you need to do the following:
+
+  1. Retrieve the `field` and `query` values from the [HTML] form by using the
+  [get_argument] method.
+
+  2. If the `field` and `query` values are valid, then perform a search on the
+  database with the `field` and `query` values and store the results in a
+  variable called `students`.
+
+  3. Render the `students.html` template by using the [render] method and
+  passing the appropriate arguments (ie. `field`, `query`, and `students`).
+
+  The `IndexHandler` will resemble what you have seen in [Project 02: SearchIt]
+  and [Reading 05].
+
+      :::python
+      # Application
+
+      class Application(tornado.web.Application):
+          def __init__(self, port=PORT):
+              tornado.web.Application.__init__(self, debug=True)
+              self.logger   = logging.getLogger()
+              self.ioloop   = tornado.ioloop.IOLoop.instance()
+              # TODO: Define database and port instance variables
+
+              # TODO: Add IndexHandler
+
+
+  For the `Application` class, you need to complete the **constructor** by
+  doing the following:
+
+  1. Define the `database` and `port` instance variables.
+
+  2. Add the `IndexHandler` to the `Application` instance.
+
+  The `Application` will resemble what you have seen in [Project 02: SearchIt]
+  and [Reading 05].
+
+  ### `students.html`
+
+  Once you have the `students.py` web application working, you can then modify
+  the the `students.html` template by doing the following:
+
+      :::html
+      <!--// TODO:
+
+      Create Form that contains:
+
+      1. Text Input for the query
+
+      2. Select dropdown for the field
+
+      3. Submit button
+
+      //-->
+
+
+      <!--// TODO:
+
+      If query is valid, then display a table containing the NetID, First Name,
+      Last Name, and Classification from the search results.
+
+      Otherwise, display a message telling the user to enter in something to
+      search.
+
+      //-->
+
+  The first `TODO` requires you to create a form, while the second `TODO`
+  requires you to display the results of the search in a table.
+
+  ## Questions
+
+  Answer the following questions in your `reading06/README.md` file:
+
+  1. How are values from the [HTML] form accessed from the [Tornado] web
+  application?
+
+  2. How are values from the [Tornado] web application passed to the [HTML]
+  template?
+
+  3. What do you think of [templates]?  Are they worth the hassle?
+
+  ## Feedback
+
+  If you have any questions, comments, or concerns regarding the course, please
+  provide your feedback at the end of your response.
+
+  ## Submission
+
+  To submit your response, please commit your work (responses and scripts) to
+  the **reading06** folder of your your **Readings** [Bitbucket] repository.
+
+      :::bash
+      $ git add students.py students.html students.tsv README.md
+      $ git commit -m "reading 06: completed"
+      $ git push
+
+  [Bitbucket]:      https://bitbucket.org
+  [Git]:            https://git-scm.com/
+  [reading06.zip]:  static/zip/reading06.zip
+  [HTML]:           https://developer.mozilla.org/en-US/docs/Web/HTML
+  [Python]:         https://www.python.org/
+  [Reading 04]:     reading04.html
+  [get_argument]: http://www.tornadoweb.org/en/stable/web.html?highlight=get_argument#tornado.web.RequestHandler.get_argument
+  [render]:     http://www.tornadoweb.org/en/stable/web.html?highlight=get_argument#tornado.web.RequestHandler.render
+  [Reading 05]:     reading05.html

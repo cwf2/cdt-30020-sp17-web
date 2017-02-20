@@ -177,7 +177,8 @@ body:       |
             <th class="text-center">Unit</th>
             <th class="text-center">Date</th>
             <th class="text-center">Topics</th>
-            <th class="text-center" style="width: 125px;">Assignment</th>
+            <th style="width: 125px;">Assignment</th>
+            <th >Due on</th>
          </tr>
       </thead>
       <tbody>
@@ -185,7 +186,7 @@ body:       |
       {% for theme in page.external['schedule'] %}
       {% if 'break' in theme['name'].lower() %}
          <tr>
-         <td colspan="4" class="schedule-break text-center text-strong">{{ theme['name'] }}</td>
+         <td colspan="5" class="schedule-break text-center text-strong">{{ theme['name'] }}</td>
          </tr>
          {% continue %}
       {% end %}
@@ -213,10 +214,10 @@ body:       |
                {% end %}
             {% end %}
             </td>
-            <td class="text-strong">
             {% set assignment = day.get('assignment') %}
             {% if assignment %}
-               {% set assignment_id = ''.join(assignment.lower().split()) %}
+               {% set assignment_name = assignment.get('name') %}
+               {% set assignment_id = ''.join(assignment_name.lower().split()) %}
                {% if assignment_id.startswith('homework') %}
                   {% set assignment_label = 'info' %}
                {% elif assignment_id.startswith('project') %}
@@ -224,9 +225,16 @@ body:       |
                {% else %}
                   {% set assignment_label = 'caution' %}
                {% end %}
-               <a href="{{ assignment_id }}.html" class="label label-{{ assignment_label }}">{{ assignment }}</a>
+               <td>
+               <a href="{{ assignment_id }}.html" class="label label-{{ assignment_label }}">{{ assignment_name }}</a>
+               </td>
+               <td>
+                {{ assignment['due'] }}
+               </td>
+            {% else %}
+               <td></td>
+               <td></td>
             {% end %}
-            </td>
          </tr>
       {% end %}
       {% end %}
@@ -349,8 +357,9 @@ body:       |
             Friday unless otherwise specified.
             </li>
             <li>
-            <b>Projects</b> should be uploaded before 6:00 am on the day
-            assigned in the schedule.
+            <b>Projects</b> should be uploaded before 10:00 pm on the Friday
+            following the final in-class work period. Only one project will be
+            graded per group; all members are expected to contribute.
             </li>
          </ul>
          </p>

@@ -1,0 +1,54 @@
+title:      Test 1 - Practical section
+icon:       fa-code
+navigation:
+    - name: "Materials"
+      link: "#materials"
+      icon: "fa-file-code-o"
+internal:
+external:
+body:       |
+  ## Test 1
+  ### Practical component
+  
+  In this part of the test, you will write some new code using the DrawIt 
+  package from Project 1.
+  
+  <i class="fa fa-hand-o-right"></i> Each section below asks you to generate 
+  Python code using a provided template. You should work on your own computer.
+  
+  1. Read the section's instructions
+  
+  2. Write the code, run it, see whether it works
+  
+  3. When you're happy with it, email your code file to me at 
+     <a href="mailto:cforstal@nd.edu">cforstal@nd.edu</a>.
+ 
+  <h4>Writing your code</h4> 
+  
+  You may either:
+
+     - create a new file and copy-paste the template into it
+     
+     - download the template using the link below
+     
+     - download a Jupyter Notebook with the template code using the link below
+   
+  <div class="alert alert-warning" markdown="1">
+     
+  <i class="fa fa-caution"></i> It is assumed you are working in a
+  directory where a working copy of the `drawit/` package is available.
+  
+  <i class="fa fa-hand-o-right"></i> If your copy of drawit is in a folder
+  called `project_1`, for example, then go there to do your work.
+  
+  <i class="fa fa-hand-o-right"></i> If you don't have drawit, or it's broken,
+  download the zipped folder linked below. Inside the folder you'll find
+  
+    - the `drawit` package
+     
+    - template python files
+    
+  <i class="fa fa-hand-o-right"></i> You should save this folder in your vagrant
+  machine's shared space, so you can run the python files on the vm. If you
+  have trouble, let me know.
+  </div>

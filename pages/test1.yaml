@@ -1,0 +1,125 @@
+title:      Test 1
+icon:       fa-code
+navigation:
+    - name: "Class Home"
+      link: "/~cforstal/cdt-30020-sp17"
+      icon: "fa-home"
+internal:
+external:
+body:       |
+  ## Test 1
+  ### Practical component
+  
+  In this part of the test, you will write some new code using the DrawIt 
+  package from Project 1.
+  
+  <i class="fa fa-hand-o-right"></i> Each section below asks you to generate 
+  Python code using a provided template. You should work on your own computer.
+  
+  1. Read the section's instructions
+  
+  2. Write the code, run it, see whether it works
+  
+  3. When you're happy with it, email your code file to me at 
+     <a href="mailto:cforstal@nd.edu">cforstal@nd.edu</a>.
+ 
+  <h4>Writing your code</h4> 
+  
+  You may either:
+
+     - create a new file and copy-paste the template into it
+     
+     - download the template using the link below
+  
+  <div class="alert alert-warning" markdown="1">
+     
+  <i class="fa fa-caution"></i> It is assumed you are working in a
+  directory where a working copy of the `drawit/` package is available.
+  
+  <i class="fa fa-hand-o-right"></i> If your copy of drawit is in a folder
+  called `project_1`, for example, then go there to do your work.
+  
+  <i class="fa fa-hand-o-right"></i> If you don't have drawit, or it's broken,
+  download the zipped folder linked below. Inside the folder you'll find
+  
+    - the `drawit` package
+     
+    - template python files
+    
+  <i class="fa fa-hand-o-right"></i> You should save this folder in your vagrant
+  machine's shared space, so you can run the python files on the vm. If you
+  have trouble, let me know.
+  </div>
+  
+  ## Activity
+  
+  <img src="/~cforstal/cdt-30020-sp17/static/img/mountain.png">
+  
+  <h4>mountain.py</h4>
+  
+  In this script, we're going to create a snow-covered mountain.
+  
+   - A docstring and `import` statements have been added already
+   
+   - Two output commands have been included, one for `.ppm` output and one for
+     `.png`. Feel free to comment out whichever you don't need.
+     
+   - Fill in the rest of the skeleton according to the steps below.
+   
+   - `# TODO` tags show where you need to add something
+   
+  
+  <h4>1. Set colors</h4>
+
+  Choose three colors for the basic components of the picture. Make the sky some
+  shade of **blue**, the mountain some shade of **grey** and the snow **white**.
+  
+  <h4>2. Create the image canvas.</h4>
+
+  This must be a new Image instance
+  
+  <h4>3. Draw the sky</h4>
+  
+  This is a new rectangle. Its corners are the upper left and lower right of
+  the image.
+  
+  **Think**: how do the max x and y values relate to image width and height?
+  
+  <h4>4. Draw the mountain</h4>
+  
+   - Create a new Point for the peak.
+   
+   - In a `for` loop:
+
+      - Iterate over every x value in the image
+    
+      - Identify a point along the base of the image at that x co-ordinate
+    
+      - Draw a line from the peak to that point, in the mountain color
+    
+   - Finally, take a "bite" out of the peak using a circle the same color as
+     the sky.
+   
+   <h4>5. Add snow</h4>
+   
+   Using nested `for` loops, iterate over every x and y in the image. Inside,
+   this loop,
+   
+     - create a point for the x and y combo
+     
+     - use it to index the image and see whether the color there equals the
+       mountain color.
+       
+     - `if` so: 
+     
+       - pick a random number between 0 and `y` and test whether it's equal to 0
+         (the chances of this are higher as you go higher up the mountain)
+       
+       - `if` so:
+         
+           - make the image at that point snow color
+  
+  ## Materials
+  
+   - <a href="/~cforstal/cdt-30020-sp17/static/misc/mountain.py">mountain.py</a>
+   - <a href="/~cforstal/cdt-30020-sp17/static/misc/drawit.zip">drawit.zip</a>

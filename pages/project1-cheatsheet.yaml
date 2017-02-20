@@ -1,0 +1,55 @@
+title:      Notes for January 19
+icon:       fa-code
+navigation:
+    - name: "Project 1"
+      link: "/~cforstal/cdt-30020-sp17/project1.html"
+      icon: "fa-code"
+    - name: "Class Home"
+      link: "/~cforstal/cdt-30020-sp17"
+      icon: "fa-home"
+internal:
+external:
+body:       |
+  ## Project 1 Quick Start Guide
+  
+  ### Here are all the steps to get Project 1 working on your Vagrant VM
+  
+  <h4>On my own computer</h4>
+  
+      :::bash
+      vagrant up
+      vagrant ssh  # or use PuTTY if you're on Windows
+     
+  <h4>On the VM</h4>
+  
+      :::bash
+      # add prerequisite packages
+      sudo apt-get update
+      sudo apt-get install -y git imagemagick python-matplotlib
+     
+      # go to shared folder
+      cd /vagrant
+
+      # clone repo
+      git clone https://gitlab.com/USERID/project_1 # fill in userid of whoever forked the project
+      cd project_1
+
+      # add upstream and pull changes
+      git remote add upstream https://gitlab.com/nd-cdt-30020-sp17/project_1
+      git pull upstream master
+
+      # run tests -- everything fails
+      make test
+     
+  <div class="alert alert-info">
+  <h5><i class="fa fa-code"></i> Here's the part where you fill in the code ... </h5>
+  <br />
+  </div>
+  
+  <h4>Still on the VM ...</h4>
+
+      :::bash  
+      # run test again with code in place -- everything works
+      make test
+      # create the demo pictures -- they should look like the instructions page
+      make ppms

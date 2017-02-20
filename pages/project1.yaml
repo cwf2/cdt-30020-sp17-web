@@ -1,6 +1,9 @@
 title:      "Project 01: DrawIt"
 icon:       fa-code
-navigation: []
+navigation: 
+    - name: "Class Home"
+      link: "/~cforstal/cdt-30020-sp17"
+      icon: "fa-home"
 internal:
 external:
 body:       |
@@ -43,7 +46,7 @@ body:       |
     4. Now clone the project on your virtual machine.
       
           :::text
-          git clone https://gitlab.com/USER/project1  # user is whoever forked the project, not necessarily you
+          git clone https://gitlab.com/USER/project_1  # user is whoever forked the project, not necessarily you
        
        <i class="fa fa-hand-o-right"></i> If you've never used git on the VM,
        you have to install it:
@@ -51,6 +54,19 @@ body:       |
           :::text
           sudo apt-get update
           sudo apt-get install -y git
+          
+       <div class="alert alert-info">
+          <h5><i class="fa fa-warning"></i> Update</h5>
+          A couple of minor bugs have been pointed out and fixed. In order to
+          benefit from these fixes, you should add the original repository as
+          an "upstream" source:
+             
+            :::text
+            $ git remote add upstream https://gitlab.com/nd-cdt-30020-sp17/project_1
+            $ git pull upstream master
+               
+         
+       </div>
       
        <i class="fa fa-hand-o-right"></i> Each group member can clone the repo 
        if you choose. Since we're new to git, you should avoid all working on 
@@ -63,6 +79,20 @@ body:       |
        <i class="fa fa-life-ring"></i> If you just can't get git to work, let me
        know and I will help you get the code.
 
+    5. For full functionality, you should also install a couple of helper
+       applications on your vagrant machine. One is ImageMagick, which will
+       provide the ability to convert between PPM and PNG formats, the other
+       is Python's matplotlib library, which will allow you to do some of the 
+       tricks you've already used in Jupyter on the vagrant machine as well.
+       
+          :::text
+          $ sudo apt-get install -y imagemagick
+          $ sudo apt-get install -y python-matplotlib
+          
+      <br />
+      
+       <h4><a class="label label-info" href="/~cforstal/cdt-30020-sp17/project1-cheatsheet.html">
+       <i class="fa fa-life-ring"></i> Quick Start Cheatsheet</a></h4>
  
   ## Activity 2: DrawIt Package
 
@@ -87,6 +117,7 @@ body:       |
           \_ draw_line.py                     Line Demo Script
           \_ draw_point.py                    Point Demo Script
           \_ draw_rectangle.py                Rectangle
+          \_ img                              Some PPM images to play with
 
   For this activity, you only need to modify the `color.py`, `image.py`, and 
   `point.py` modules, adding the code detailed below to get the project working.
@@ -408,8 +439,7 @@ body:       |
 
   This will generate [PPM] files that you can view.  If you prefer [PNG] files,
   you will first have to install a conversion tool on your vagrant machine.
-  
-      $ sudo apt-get install -y imagemagick
+  (See Activity 1, Step 5, above)
   
   Now you can do the following:
 
