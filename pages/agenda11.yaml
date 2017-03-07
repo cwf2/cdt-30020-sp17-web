@@ -1,0 +1,169 @@
+title:      "Notes for February 21"
+icon:       fa-list-alt
+navigation:
+  - name: "Class Home"
+    link: "/~cforstal/cdt-30020-sp17"
+    icon: "fa-home"
+internal:
+external:
+body:       |
+
+  ## Python and SQLite3
+  
+  Last week we had a first look at simple database operations. In this class 
+  we began using Python's sqlite3 package to interact with a SQLite database
+  backend from within our Python scripts.
+  
+  <h4>Review</h4>
+  
+  - `CREATE TABLE`
+  
+  - data models
+  
+  - `INSERT`
+  
+  - `SELECT`
+  
+  
+  <h4>Python sqlite3</h4>
+  
+  <h5>connections</h5>
+  
+  - To communicate with a SQLite database, we use package `sqlite3`.
+  
+  - The first step is to open a **connection** to the database
+  
+  - We have to specify the file where the database is (or will be) saved
+  
+          :::python
+          import sqlite3
+         
+          conn = sqlite3.connect("foo.db")
+  
+  - We generally have one connection to the database for our application
+  
+  <h5>cursors</h5>
+  
+  - From the database **connection**, we can spin off one or more **cursors**.
+  
+  - These objects are our primary interface with SQLite:
+  
+      - parse SQL instructions
+      
+      - send them on to the database
+      
+      - retrieve the results of queries
+      
+      - iterate over results on an as-needed basis in our script
+  
+   - We use a cursor by
+   
+      - composing our SQL statement as a string
+      
+      - using the cursor to `execute()` our string:
+  
+              :::python
+              cur = conn.cursor()
+    
+              sql = '''
+              CREATE TABLE Books (
+                id     INTEGER PRIMARY KEY,
+                author TEXT,
+                title  TEXT,
+                chapters   INTEGER
+              )
+              '''
+              cur.execute(sql)
+  
+  <div class="alert alert-info" markdown="1">
+  <h4>Exercise: using connections and cursors</h5>
+  
+  Write a script to 
+  
+   - create a new database connection
+   
+   - create a new table
+   
+   - add some rows
+  
+  </div>
+  
+  <h5>Binding Python variables to SQL statements</h5>
+  
+  We want to be able to cook up a template SQL statement, say, for inserting
+  a generic row, and then run it over and over on different values.
+  
+   - Use `?` as a positional variable in the SQL statement (if you're passing
+     a tuple)
+   
+   - Or `:name` as a named variable (if you're passing a dictionary)
+   
+   - Then pass the corresponding values using a second argument to `execute()`
+
+   - (There's also `executemany()`, for situations where you want to add a list
+     of records all at once.)
+   
+          :::python
+          sql = '''
+          INSERT INTO Books VALUES (NULL, ?, ?, ?)
+          '''
+          cur.execute(sql, ('Virgil', 'Aeneid', 12))
+   
+  <div class="alert alert-warning" markdown="1">
+  <h5><i class="fa fa-hand-o-right"></i> Why don't we just use str.format()?</h5>
+  </div>
+  
+  
+  <h5>Getting back query results</h5>
+  
+  - use a **cursor** object to pass your `SELECT` to SQLite
+  
+  - the cursor now has access to your results, but you won't get them until you
+    ask for them using a 'fetch' method:
+    
+      - `fetchone()`  -- a single row
+      
+      - `fetchall()`  -- an iterable yielding one row at at time
+      
+              :::python
+              sql = '''
+              SELECT * FROM Books WHERE author == ?
+              '''
+              cur.execute(sql, ('Virgil',))
+            
+              for row in cur.fetchall():
+                  id = row[0]
+                  auth = row[1]
+                  title = row[2]
+                  chaps = int(row[3])
+                  print "{} ({} chapters)".format(title, chaps)
+      
+  <div class="alert alert-info" markdown="1">
+  <h4>Exercise: building a table from a list of data</h4>
+  
+   Here's an interesting looking data set, the list of **failed banks** 
+   reported since 2000 by the FDIC (original on [data.gov](
+   https://catalog.data.gov/dataset/fdic-failed-bank-list))
+     
+   <h4><a class="label label-info" 
+   href="/~cforstal/cdt-30020-sp17/static/misc/banks.tsv">
+   <i class="fa fa-file-code-o"></i> banks.tsv</a></h4>
+   
+   - Download the data
+   
+   - Consider the data model for these records
+   
+   - Write a Python script to 
+   
+      - build a table
+     
+      - populate it with records
+     
+      - answer a question 
+     
+          - like, which state had the most failed banks?
+        
+          - or, which company bought the most failed banks?
+  </div>
+  
+  

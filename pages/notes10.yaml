@@ -1,0 +1,314 @@
+title:      "Agenda for February 16"
+icon:       fa-list-alt
+navigation:
+  - name: "Class Home"
+    link: "/~cforstal/cdt-30020-sp17"
+    icon: "fa-home"
+internal:
+external:
+body:       |
+
+  ## Databases
+  
+  Today we're going to start working with databases using SQLite3. First, let's
+  take a look at the kind of task that might call for a database.
+  
+  <h4>Exercise: life without databases...</h4>
+  
+  I've prepared a small sample of data from the catalogue of the [Carnegie 
+  Museum of Art](http://cmoa.org).
+  
+   - Download the JSON data: <a class="label label-info" 
+  href="/~cforstal/cdt-30020-sp17/static/misc/catalog.json">catalog.json</a>
+
+  Working with the person next to you, spend a few minutes and **take a look at
+  the data**.
+  
+    - What is the structure of the data?
+  
+    - What fields does each record have?
+    
+    - What kinds of data do you expect in each field?
+    
+  Now, working with the person on the other side, **write a Python script** to:
+    
+    - Load the JSON data into a list. Hint: do you remember `json.load` from
+      last semester?
+    
+    - Pick one of the fields, and ask the user for a value to search for. For
+      example, ask the user to specify a nationality.
+    
+    - Print out all the records that match the user's query. You can decide
+      how much data to print for each matching record.
+      
+  Let's reflect:
+    
+    - What's involved in finding the data we want?
+    
+    - How might this process scale with
+    
+       - more data
+       
+       - more complex queries
+       
+       - more simultaneous users
+  
+  ### Databases
+  
+  Really briefly, databases are a way of outsourcing all of this data management
+  to another piece of software, something your code can count on as part of the 
+  environment.
+  
+  <h4>Databases, tables, and rows</h4>
+  
+  A database is a collection of data tables. Each table contains a series of
+  records, all in the same format. Imagine an excel spreadsheet, with column
+  headers giving field names. Each row is one record, containing the values for
+  each field in the respective cells.
+  
+  In general, databases are pretty strict about the kind of data that you can
+  put in each field. (SQLite is actually less picky, but we'll overlook this.)
+  Each column should have a defined **data type**, specifying what sort of 
+  values you expect that field to take.
+  
+  <h4>SQL</h4>
+  
+  There are lots of different kinds of database management systems, but a
+  family of popular implementations share a common language for creating,
+  maintaining, and searching tables of data. This language is the **Structured
+  Query Language** or **SQL**.
+  
+  <i class="fa fa-hand-o-right"></i> Yes, we're learning a new language. But
+  just a little.
+  
+    - SQL is used to give commands to the database, using (mostly) just a few
+      verbs:
+        
+        - Tables:
+        
+          - **CREATE** - Create a table and specify its columns
+        
+          - **DROP** - Delete a table
+        
+        - Rows:
+          
+          - **INSERT** - Add a new row to a table
+          
+          - **UPDATE** - Modify the contents of a row
+          
+          - **DELETE** - Delete a row
+          
+          - **SELECT** - Lookup a row based on some criteria    
+  
+  <h4>SQLite3</h4>
+  
+  In this course, we're going to use one of the simplest database management
+  systems, SQLite.
+  
+    - it doesn't need a special service running in the background
+    
+    - each database is saved as a single file
+    
+    - tools for talking to it come built into Python
+  
+  <h4>Exercises: test-driving SQLite3</h4>
+  
+  Before we combine SQL and Python, let's try test-driving a bare-bones
+  SQLite database.
+  
+  <h5>Install SQLite</h5>
+  
+  On your vagrant virtual machine:
+    
+      :::text  
+      sudo apt-get install -y sqlite3
+  
+  <h5>Fire it up</h5>
+  
+      :::text
+      sqlite3 pets.db
+  
+  Which produces:
+    
+      :::text
+      SQLite version 3.8.2 2013-12-06 14:53:30
+      Enter ".help" for instructions
+      Enter SQL statements terminated with a ";"
+      sqlite>
+
+  <i class="fa fa-hand-o-right"></i> Ah, good. Another prompt for my collection!
+     
+  <div class="alert alert-warning" markdown="1">
+  <h4>Interacting with SQLite</h4>
+  
+  At the SQLite prompt, you can type two kinds of commands. SQL commands, and
+  special instructions for SQLite. The latter start with a dot. Some of the
+  useful ones are:
+    
+    - `.tables` - show all tables in the database
+
+    - `.mode column` - display rows in nice columns
+
+    - `.header on` - put titles on the columns
+    
+    - `.quit` - to quit (Control-D also works).
+  
+  When typing SQL:
+  
+  - By convention, SQL commands are written IN ALL UPPERCASE, so they tend
+    to stand out.
+    
+  - SQL commands end with a semicolon (`;`)
+  
+  - comments start with `--`
+  
+  </div>
+  
+  <h4>Working with tables</h4>
+  
+  To create a table, we use the `CREATE` command, give the table a name, and
+  specify the data types for all its columns.
+  
+      :::SQL
+      CREATE TABLE Pets (
+        id     INTEGER PRIMARY KEY,
+        name   TEXT,
+        breed  TEXT,
+        age    INTEGER
+      );
+  
+  - Just for reference, the data types in SQLite are 
+
+      - **INTEGER** - whole numbers
+    
+      - **REAL** - decimal numbers
+    
+      - **TEXT** - strings of any length
+    
+      - **NULL** - a way of representing nothingness
+    
+      - **BLOB** - miscelaneous data
+    
+  - I imagine we'll mostly use **INTEGER** and **TEXT**.
+  
+  
+  To delete a table (permanently):
+    
+      :::SQL
+      DROP TABLE Pets;
+      
+  - Paste the CREATE statement to recreate the table.
+  
+  - What happens if you create a table that already exists?
+  
+  <h4>Adding rows</h4>
+  
+  To add a row, use the `INSERT` command, specify the table name, and then
+  give the values for the new record.
+  
+      :::SQL
+      INSERT INTO Pets VALUES (0, 'Rover', 'dog', 5);
+      INSERT INTO Pets VALUES (1, 'Pickle', 'cat', 3);
+      INSERT INTO Pets VALUES (2, 'Spot', 'dog', 7);
+  
+   - The id field doesn't need an explicit value; it will autoincrement.   
+
+          :::SQL
+          INSERT INTO Pets VALUES (NULL, 'Rory', 'fish', 5);
+          INSERT INTO Pets (name, breed, age) VALUES ('Penelope', 'frog', 1);
+     
+   - What happens if you try to add a duplicate id?
+  
+  <h4>Looking up rows</h4>
+  
+  To retrieve rows from the table, use `SELECT`:
+
+      :::SQL
+      SELECT * FROM Pets;
+      
+  To get only certain columns, specify them
+
+      :::SQL
+      SELECT name, breed FROM Pets;
+      
+  To get only certain rows, use a `WHERE` clause.
+    
+      :::SQL
+      SELECT * FROM Pets WHERE id == 2;
+      SELECT * FROM Pets WHERE age > 4;
+      SELECT * FROM Pets WHERE name LIKE "Ro%";
+  
+  <h4>Modifying rows</h4>
+  
+  To change the values in a row, we use `UPDATE`:
+
+      :::SQL
+      UPDATE Pets SET name = 'Patches', age = 6 WHERE id == 2;
+
+  <h4>Deleting rows</h4>
+  
+  To remove rows from the table, use `DELETE` together with some criteria
+  identifying the rows to remove.
+  
+      :::SQL
+      DELETE FROM Pets WHERE id == 4;
+      
+    <i class="fa fa-warning"></i> Watch out for `DELETE FROM` with no `WHERE` -- this will **permanently delete
+  everything**
+  
+  ### Reprise
+  
+  If we have time, let's go back to the CMOA data, now in database format.
+  
+   - Download the sqlite3 file: <a class="label label-info" 
+  href="/~cforstal/cdt-30020-sp17/static/misc/cmoa.sqlite3">cmoa.sqlite3</a>
+  
+  We spent the remainder of the class on a few more interesting queries:
+    
+  How many works are there from each country?
+    
+      :::sql
+      SELECT nationality, COUNT(nationality) AS tally FROM Catalogue 
+        GROUP BY nationality ORDER BY tally DESC;
+
+   - Results:
+
+          :::text
+          nationality  tally     
+          -----------  ----------
+          Japanese     42        
+          French       39        
+          English      25        
+          Italian      19        
+          British      18        
+          American     9         
+          Dutch        7         
+          German       6         
+          Irish        4         
+          Austrian     2         
+          Danish       1         
+          Russian      1         
+          Spanish      1         
+          Swedish      1         
+          undetermine  1
+  
+    - In this example we used:
+      
+        - `COUNT()` to count results on the fly
+        
+        - `AS` to rename a column on the fly (otherwise it would have been
+          called 'COUNT(nationality)')
+        
+        - `GROUP BY` to group results based on the value of a column (otherwise
+           `COUNT` would have given a single total for all rows.
+        
+        - `ORDER BY` to reorder the results based on a particular column
+        
+        - `DESC` reverses `ORDER BY` so the results are 'descending'. That way
+          the highest tallies are at the top of the list.
+  
+  ### Post-script
+    
+  Thanks to the [CMOA](http://cmoa.org) for making their data open source! If
+  you're interested, you can find the full catalogue [here on GitHub](
+  https://github.com/cmoa/collection).

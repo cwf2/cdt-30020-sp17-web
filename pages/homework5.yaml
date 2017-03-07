@@ -1,205 +1,127 @@
 title:      "Homework 5: Relational Databases"
 icon:       fa-book
-navigation: []
+navigation:
+      - name: "Class Home"
+        link: "/~cforstal/cdt-30020-sp17"
+        icon: "fa-home"
 internal:
 external:
 body:       |
 
   ## Readings
 
-  This week we will be discussing the **relational** nature of [SQL]
-  [Databases].  In particular, we will focus on [SQL] [JOINS].
+  1. [HTTP: The Protocol Every Web Developer Must Know - Part 1](http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177)
 
-  The readings for **Thursday, February 25** are:
-
-  1. [SQL Joins Explained](http://www.sql-join.com/)
-
-  2. [A Visual Explanation of SQL Joins](http://blog.codinghorror.com/a-visual-explanation-of-sql-joins/)
-
-  [SQL]:        https://en.wikipedia.org/wiki/SQL
-  [Databases]:  https://en.wikipedia.org/wiki/Database
-  [JOINS]:      https://en.wikipedia.org/wiki/Join_(SQL)
+  2. [Structure of a Tornado web application](
+     http://www.tornadoweb.org/en/stable/guide/structure.html)
 
   ## Questions
 
-  Once you have completed these readings, please complete the following tasks:
+  1. Given the **URL**,
+     `http://localhost:8888/search?nationality=Japanese`, identify each
+     component:
+       
+       - protocol
+       
+       - host
+       
+       - port
+       
+       - resource path
+       
+       - query
+    
 
-  1. Download and extract the [reading05.zip] archive:
-
-          :::bash
-          # Download archive
-          $ curl -O https://www3.nd.edu/~pbui/teaching/cdt.30020.sp16/static/zip/reading05.zip
-
-          # Extract archive
-          $ unzip reading05.zip
-
-          # Go to extract folder
-          $ cd reading05
-
-      The archive contains the following files:
-
-      1. `movies.dat`: This is the movies data from the [MovieLens 1M] dataset
-        that we have been using in class to explore databases.
-
-      2. `movies.html`, `groups.html`: These are the **HTML** templates for the
-        web application.  They utilize some basic [Bootstrap] elements for
-        visual appeal.  The theme is [Paper] from the [Bootswatch] collection.
-
-      3. `movielens.py`: This is the Python web application.  It utilizes both
-        [SQLite] and [Tornado].
-
-      An example of the web application in action can be found at
-      [http://xavier.h4x0r.space:9999/](http://xavier.h4x0r.space:9999/).
-
-  2. You are to complete the **eight** `TODOs` in the `movielens.py` script.
-  These `TODOs` primarily require you to complete the [SQL] statements.  You
-  should not need to modify significant amounts of [Python] code or **HTML**
-  templates, though you may if you wish.
-
-      Here is a walk-through of what you need to complete:
-
-          :::python
-          # TODO 1: Connect to database, create tables, and load tables
-
-      > For this `TODO`, you need to create a connection to the sqlite3
-      database and assign it to the `conn` instance variable of the `Database`
-      class.  Afterwards, you need to call the internal `_create_tables` and
-      `_load_tables()` methods.
-
-          :::python
-          # TODO 2: Complete movies_sql and genres_sql
-
-      > For this `TODO`, you write the [SQL] statements that **create** the
-      **Movies** and **Genres** tables, which look like the following.
-
-          Movies:
-              Columns:      MovieID | Title | Year
-              Primary Key:  MovieID
-
-          Genres:
-              Columns:      MovieID | Genre
-              Primary Key:  (MovieID, Genre)
-              Foreign Key:  MovieID
-
-        The **Genres** table is different from the previous [SQL] tables we
-          have created.  This table has a [composite key] as its [primary key].
-          That is, each row in **Genres** is uniquely identified by multiple
-          columns: **MovieID** and **Genre**.
-
-        Additionally, the **Genres** has a [foreign key] that references
-        another table in the database.  In this case, **Genres** has
-        **MovieID** which references the  **MovieID** from the **Movies**
-        table.  For a reference on how to specify a [foreign key], you can
-        refer to [Referential Integrity in
-        SQLite](http://cs.stanford.edu/people/widom/cs145/sqlite/SQLiteRefIntegrity.html)
-        or [SQLite Foreign Key
-        Support](https://www.sqlite.org/foreignkeys.html).
+  2. In the context of [HTTP], what is a **client** and what is a **server**?
+  What is each side responsible for in a [HTTP] transaction?
 
 
-        Be sure to consider the case where the tables are already in the database.
+  ## Activity
 
-          :::python
-          # TODO 3: Complete movie_sql and genre_sql
+  This week, you're going to use Tornado to create a simple web front-end for
+  the database search script you wrote in Homework 4.
+  
+  <h5>Download the files for your app</h5>
 
-      > For this `TODO`, you need to write the [SQL] statements to **insert** data
-      into the **Movies** and **Genres** table respectively.
+  <a class="label label-info"
+  href="/~cforstal/cdt-30020-sp17/static/misc/hw5_files.zip">
+  <i class="fa fa-file-o"></i> hw5_files.zip</a>
+  
+  This zip contains the following files. Extract them and copy them into your
+  `homework5/` directory.
+    
+    - `homework5.py` - The skeleton for a simple web server using Tornado.
+      
+    - `query.html` -  A template for the search page.
+      
+    - `results.html` - A template for the results page.
 
-        Be sure to consider the case where the data is already in the database.
+  <h5>Copy the script and CMOA data from last week into the same directory</h5>
+    
+    - your working copy of `homework4.py`
+    
+    - the `catalog.json` file
 
-          :::python
-          # TODO 4: Complete movie_sql
-
-      > For this `TODO`, you need to write the [SQL] statements to **select**
-      all the movies from the database that match (ie. `LIKE`) the specified
-      `title`.
-
-        This [SQL] statement will require us to perform a [JOIN], that is mix
-          data from two different tables.  Because this is a bit tricky, here
-          is a sketch of what this [SQL] statement should look like:
-
-          :::sql
-          SELECT    Movies.MovieID, Title, Year, GROUP_CONCAT(Genres.Genre) AS Genres
-          FROM      ___________
-          JOIN      ___________ ON ___________ = ___________
-          WHERE     ___________
-          GROUP BY  ___________
-          LIMIT     ___________
-
-        As can be seen from the above sketch, we want to return a collection of
-        movies which consist of `MovieID`, `Title`, `Year`, and `Genres`.
-
-        To compute `Genres`, we instruct [SQLite] to perform the [GROUP_CONCAT]
-        aggregate function.  In conjunction with the [GROUP BY], the
-        [GROUP_CONCAT] combines the column data from multiple related rows into
-        a single column entry (in this case, we are combining multiple
-        **Genres.Genre** values into a single `Genres` value for each movie.
-
-        In order for us to associate each movie with its collection of
-        `Genres`, we must perform a [JOIN].  When we perform this operation, we
-        must tell the database what table to [JOIN] and **ON** which column.
-        In this case, we know that that the **MovieID** from the **Movies**
-        table is associated with the **MovieID** from the **Genres** table.
-
-          :::python
-          # TODO 5: Complete genre_sql
-
-      > For this `TODO`, you need to write the [SQL] statements to **select**
-      all the movies from the database that have the specified `genre`.
-
-        This [SQL] statement will look like the previous `movies_sql` except
-        the **WHERE** argument will be different and there should be no
-        **LIMIT**.
-
-          :::python
-          # TODO 6: Complete year_sql
-
-      > For this `TODO`, you need to write the [SQL] statements to **select**
-      all the movies from the database that have the specified `year`.
-
-        This [SQL] statement will look like the previous `genre_sql` except
-        the **WHERE** argument will be different.
-
-          :::python
-          # TODO 7: Complete genres_sql
-
-      > For this `TODO`, you need to write the [SQL] statements to **select**
-      all the **DISTINCT** genres from the **Genres** table.
-
-        We can use the [DISTINCT] keyword with the [SELECT] statement to only
-        retrieve the unique elements from a column.  Be sure to **order** the
-        results appropriately.
-
-          :::python
-          # TODO 8: Complete years_sql
-
-      > For this `TODO`, you need to write the [SQL] statements to **select**
-      all the **DISTINCT** years from the **Movies** table.
-
-        This [SQL] statement will look like the previous `genres_sql`.
-
-  When you are finished with these tasks, please submit the complete `movielens.py`:
-
+  <h5>Make some changes to your Vagrant virtual machine</h5>
+  
+  To allow web traffic between your real computer and the VM, you need to
+  enable port forwarding on Tornado's default port, 8888:
+  
+    - On you own computer, add this line to your Vagrantfile
+    
+          :::text
+          config.vm.network "forwarded_port", guest: 8888, host: 8888
+  
+    - Restart the virtual machine with `vagrant reload` (or `vagrant halt`
+      followed by `vagrant up`)
+    
+    
+   Now, back on the VM, install tornado from the command line
+      
       :::bash
-      $ git add movielens.py
-      $ git commit -m "reading 05: completed"
-      $ git push
+      sudo apt-get install python-tornado
 
-  [reading05.zip]:  static/zip/reading05.zip
-  [MovieLens 1M]:   http://grouplens.org/datasets/movielens/1m/
-  [Bootstrap]:      http://getbootstrap.com/
-  [Paper]:          https://bootswatch.com/paper/
-  [Bootswatch]:     https://bootswatch.com/
-  [composite key]:  https://en.wikipedia.org/wiki/Compound_key
-  [SQLite]:         https://www.sqlite.org
-  [Tornado]:        https://www.tornadoweb.org
-  [primary key]:    http://www.1keydata.com/sql/sql-primary-key.html
-  [foreign key]:    http://www.1keydata.com/sql/sql-foreign-key.html
-  [JOIN]:           https://en.wikipedia.org/wiki/Join_(SQL)
-  [GROUP_CONCAT]:   http://www.w3resource.com/sqlite/aggregate-functions-and-grouping-group_concat.php
-  [GROUP BY]:       http://www.1keydata.com/sql/sqlgroupby.html
-  [DISTINCT]:       http://www.1keydata.com/sql/sqldistinct.html
-  [SELECT]:         http://www.1keydata.com/sql/sqlselect.html
-  [Python]:         https://www.python.org/
+  <h5>Finally, edit the skeleton code to make your app work</h5>
+  
+  In **homework5.py**:
+    
+    - **line 8**: add an `import` statement so you can access the **CMOAdb**
+      class from `homework4.py`.
+      
+    - **line 28**: use the `get_argument()` method to access the user's choice
+      for which field (i.e. column) to search on
+      
+    - **line 29**: use the same method to access the search string entered by
+      the user.
+      
+    - **line 31**: call the get_artthings() method from homework 4, passing
+      `field` and `search_string` as its arguments.
+      
+    - **line 40**: create a new database connection using the CMOAdb class.
+      pass 'cmoa.db' as the name for the new database, and 'catalog.json' as
+      the JSON data file.
+      
+  In **query.html**:
+    
+    - add some more &lt;option&gt; elements to fill out the dropdown list.
+    
+    - they have the format `<option value="COLNAME">LABEL</option>`, where
+    
+      - `COLNAME` is the value that will get passed to your Python script,
+        i.e., the name of one of your database columns
+        
+      - `LABEL` is what the user will see in the list. 
+
+  <h5>Run your web server and test the app</h5>
+  
+  On the virtual machine, do `python homework5.py`.
+  
+    - if all goes well, the program will run without terminating or giving any
+      error message (i.e., nothing will happen)
+      
+  Now, on back on your own computer, point your web browser to <a href="http://localhost:8888/">http://localhost:8888</a>
+
+    - You should see the search form
 
   ## Feedback
 
@@ -208,8 +130,21 @@ body:       |
 
   ## Submission
 
-  To submit your response, please commit your work (responses and scripts) to
-  the **reading05** folder of your your **Readings** [Bitbucket] repository.
-
-  [Bitbucket]:  https://bitbucket.org
-  [Git]:        https://git-scm.com/
+  When everything is working to your satisfaction, please commit your changes
+  to the following files to your git repository.
+  
+    - `README.md` (with your reading responses, feedback, etc.)
+    
+  Please add and commit the following:
+    
+    - `homework4.py`
+    
+    - `homework5.py`
+    
+    - `results.html`
+    
+    - `query.html`
+  
+  After everything has been committed, please push the changes back to your
+  GitLab account.
+  

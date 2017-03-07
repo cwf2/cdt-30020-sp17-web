@@ -1,0 +1,21 @@
+title:      "Homework 4: Databases"
+icon:       fa-book
+navigation:
+      - name: "Class Home"
+        link: "/~cforstal/cdt-30020-sp17"
+        icon: "fa-home"
+internal:
+external:
+body:       |
+
+  Homework for **Tuesday, February 28**  and **Thursday, March 2**
+  
+  ## Readings
+
+  1. [HTTP: The Protocol Every Web Developer Must Know - Part 1](http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177)
+
+  2. [Structure of a Tornado web application](http://www.tornadoweb.org/en/stable/guide/structure.html)
+
+  [Tornado]:    http://www.tornadoweb.org/en/stable/
+  
+  

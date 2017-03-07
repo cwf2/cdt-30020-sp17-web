@@ -1,0 +1,244 @@
+title:      "Agenda for March 2"
+icon:       fa-list-alt
+navigation:
+  - name: "Class Home"
+    link: "/~cforstal/cdt-30020-sp17"
+    icon: "fa-home"
+internal:
+external:
+body:       |
+
+  ## Moving parts of a basic Tornado app
+  
+  A tornado app can be contained in a single Python script, but even the most
+  basic app has a couple of distinct parts. Let's look at the most important:
+    
+  <h4>Application object</h4>
+  
+  This is where you define the resource paths that your app will serve, and 
+  hook them up to Python code that does something appropriate for each path
+  requested.
+
+    - You instantiate a new tornado.web.Application object
+    
+    - you pass a list of tuples, each containing
+    
+       - a pattern for URLs to be served
+       
+       - a handler method to do something when the URL(s) matching this pattern
+         are requested
+       
+       - an optional dictionary containing additional variables you want your
+         method to use
+         
+       - etc.
+  
+    - You can also specify application-wide configuration options, like
+      `debug=True`.
+      
+  <div class="alert alert-warning" markdown="1">
+    <h5><i class="fa fa-hand-o-right"></i> Use `debug=True` while you're
+    building your app</h5>
+    
+    - it will autoreload your code for you when you save changes
+      
+    - it will print error messages directly to the browser
+      
+    - just remember to **turn it off** for deployment
+      
+  </div>
+      
+  Here's the relevant part of Homework 5, as an example:
+    
+      :::python
+      # create app, register handlers
+      app = tornado.web.Application([
+          (r"/", MainHandler),
+          (r"/search", SearchHandler, {'db': db}),
+      ], debug=True)
+
+  Here we specify two URL paths that will be served:
+  
+  `/` 
+  
+    - this is where you land if you don't specify any path, i.e., the root
+    
+    - we're going to display a page asking the user for a query
+    
+  `/search`
+
+    - we'll use this path to signify a search operation
+    
+    - the query form will send the user here
+    
+    - we'll display the results of the search
+    
+  
+  <h4>Handler methods</h4>
+  
+  This is where you'll actually be writing some Python code, most likely. You
+  will create a new handler for each kind of task the app needs to do. For
+  example:
+  
+    - process data submitted through particular web form
+    
+    - generate a detailed display for a particular class of record
+    
+    - display a summary or results list for a particular class of record
+    
+    - etc.
+    
+  Each handler will subclass RequestHandler, giving you most of the 
+  functionality you need for free. 
+  
+  To make the handler do something, define one or more of the following methods:
+    
+  <h5>get()</h5>
+  <h5>post()</h5>
+
+  These methods are called in response to HTTP GET and POST requests from the
+  client. Common tasks:
+        
+    - get the value of any user-passed key-value pairs (see below for details)
+    
+    - get the value of any capture groups in the URL (see below)    
+    
+    - do something using Python
+    
+    - generate HTML (or other) content to send back to the client
+
+  <h5>initialize()</h5>
+  
+  This is called first, before anything else.
+    
+    - Think of it like `__init__`: it
+      gives you a chance to set variables or do other initialization tasks.
+    
+    - You can pass it key-value pairs using a `dict()` For example, in 
+      Homework 5, we pass it the CMOAdb object containing our database
+      connection
+
+    - in the Application definition, we use a dictionary, `{'db': db}` to
+      associate the name 'db' with the object `db`
+
+          :::python
+          (r"/search", SearchHandler, {'db': db})
+      
+    - in the SearchHandler method, we can access `db` using the name, like this:
+        
+          :::python
+          def initialize(self, db):
+              self.db = db
+
+    - now in all our other functions, `db` will be accessible as `self.db`
+
+      - So, in Homework 5, inside `get()`, we can use
+        
+      - `self.db.get_artthings()`
+      
+      - to access the CMOAdb get_artthings() method we wrote last week.
+
+            
+  <h5>Retrieving arguments passed via the web interface</h5>
+  
+  These are key-value pairs passed in the URL or in the body of a POST. This
+  happens especially when you submit a web form.
+  
+    - Example: `http://localhost:8888/search?date=1788`
+    
+    - where `?` separates the query from the URL path
+  
+  We get the using built-in methods of the handler:
+  
+    - `self.get_argument()` - retrieve an argument passed by the client
+    
+    - `self.get_arguments()` - same, where the value is a list
+    
+    - `self.get_query_argument()`, `self.get_query_arguments()` - 
+      for the specific case where the GET method was used
+      
+    - `self.get_body_argument()`, `self.get_body_arguments()` - 
+      for the specific case where the POST method was used
+  
+  <h5>Retrieving capture groups from the URL</h5>
+  
+  If you put `()` around part of the URL in your Application instantiation,
+  whatever is inside will be passed as additional arguments to `get()` and 
+  `post()`.
+  
+  For example:
+    
+      :::python
+      app = tornado.web.Application([
+          (r'/', MainHandler),
+          (r'/person/([A-Z][a-z]+)', GreetingHandler)
+      ])
+      
+  - This Application looks for URLs that start with `/person/` followed by 
+    a capital letter, followed by one or more lowercase letters
+    
+  - When the client asks for a URL that fits this pattern, `GreetingHandler` is
+    called.
+    
+  - Inside GreetingHandler, we get the captured string as an argument
+  
+          :::python
+          class GreetingHandler(tornado.web.RequestHandler):
+              def get(self, name):
+                  self.write("Hello, {}".format(name))
+  
+  - Note, these patterns are [regular expressions](
+    https://docs.python.org/2/library/re.html), which have their own crazy 
+    language. If you need help with a complicated regex, feel free to ask on
+    Slack.
+  
+  <h5>Generating HTML or other content</h5>
+  
+    - `self.write()` - send arbitrary text back to the client
+    
+    - `self.render()` - use a prepared template
+  
+  <h5>Serving static files</h5>
+  
+  If the URL path maps to a real, static resource on your vm, e.g.,
+  
+    - images
+    
+    - CSS stylesheets
+    
+    - JavaScript
+    
+    - etc.
+    
+  You can use a special handler, StaticFileHandler, to just pass the content
+  on to the client.
+  
+  You need to pass it
+  
+    - the name of the file to be served, as a **capture group** in the URL spec
+    
+    - a local directory to serve the file from
+    
+  Example:
+
+      :::python
+      app = tornado.web.Application([
+          (r'/', MainHandler),
+          (r'/img/(.*)', tornado.web.StaticFileHandler, {'path':'assets/images'}),
+      ], debug = True)
+    
+  This app will look for requests like `http://localhost:8888/img/kittens.png`
+  
+   - it will chop off the prefix `/img/` and capture whatever follows
+   
+   - it will append this to the local directory `assets/images`
+   
+   - it will then attempt to serve the file `assets/images/kittens.png`
+  
+  <div class="alert alert-info" markdown="1">
+   <h5>Exercise</h4>
+   
+   Let's practice our web skills in small groups.
+   
+   Try <a href="/~cforstall/cdt-30020-sp17/static/misc/inclass14.tar.gz">this model</a> for inspiration (if needed).
+  </div>

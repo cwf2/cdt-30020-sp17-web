@@ -1,6 +1,9 @@
 title:      "Homework 4: Databases"
 icon:       fa-book
-navigation: []
+navigation:
+      - name: "Class Home"
+        link: "/~cforstal/cdt-30020-sp17"
+        icon: "fa-home"
 internal:
 external:
 body:       |
@@ -13,12 +16,6 @@ body:       |
 
   ## Readings
 
-  1. [Chapter 14  Using databases and Structured Query Language (SQL)](http://www.pythonlearn.com/html-270/book015.html)
-
-  2. [Introduction to Databases with Python](http://web.mit.edu/aizhan/www/database_ck_workshop/#/)
-
-  **Optional** resources:
-
   1. [Python School - Databases](http://www.pythonschool.net/category/databases.html)
 
       - [Introduction to databases](http://www.pythonschool.net/databases/introduction-to-databases/)
@@ -26,16 +23,20 @@ body:       |
       - [Inserting data](http://www.pythonschool.net/databases/inserting-data/)
       - [Updating and deleting data](http://www.pythonschool.net/databases/updating-and-deleting-data/)
       - [Searching and sorting data](http://www.pythonschool.net/databases/searching-and-sorting-data/)
-
-  2. [A thorough guide to SQLite database operations in Python](http://sebastianraschka.com/Articles/2014_sqlite_in_python_tutorial.html)
-
-  3. [Python Advanced: Python and SQL](http://www.python-course.eu/sql_python.php)
-
-  4. [sqlite3 - Embedded Relational Database](https://pymotw.com/2/sqlite3/)
-
-  [Database]:   https://en.wikipedia.org/wiki/Database
-  [Databases]:  https://en.wikipedia.org/wiki/Database
-
+  
+  2. [SQL Joins Explained](http://www.sql-join.com/)
+  
+  ## Optional references
+  
+  1. [w3schools SQLite](https://www.w3schools.com/sql/) -
+     a nice list of useful SQL commands, somewhat easier to read than ...
+     
+  2. The official [SQLite documentation](
+     http://www.sqlite.org/keyword_index.html)
+     
+  3. [Python SQLite documentation](
+     https://docs.python.org/2/library/sqlite3.html)
+    
   ## Questions
 
   Once you have completed these readings, please answer the following
@@ -51,105 +52,99 @@ body:       |
 
       d. **Row**
 
-  2. What is **SQL**?
+  2. Describe what the following four **SQL** verbs do:
 
-      Describe what the following four **SQL** verbs do:
+      a. **DROP TABLE**
 
-        a. **SELECT**
+      b. **SELECT**
 
-        c. **INSERT**:
+      c. **INSERT**
 
-        b. **UPDATE**:
+      d. **DELETE**
 
-        d. **DELETE**:
+  ## Activity
+  
+  <h5>Data</h5>
+  
+  If you don't already have it, download the JSON data we used last week 
+     from the catalogue of the [Carnegie Museum of Art](http://cmoa.org):
+       
+  <div>
+  <h4><a class="label label-info" 
+  href="/~cforstal/cdt-30020-sp17/static/misc/catalog.json">
+  <i class="fa fa-file-code-o"></i> catalog.json</a></h4><br />
+  </div>
+  
+  <h5>Code</h5>
 
-  3. Download the following two files:
+  Download the skeleton Python script:
+    
+  <div>
+  <h4><a class="label label-info" 
+  href="/~cforstal/cdt-30020-sp17/static/misc/homework4.py">
+  <i class="fa fa-file-code-o"></i> homework4.py</a></h4><br />
+  </div>
+    
+  Fill in the `# TODO` sections in the CMOAdb class as follows:
+    
+    a. `__init__()`
+    
+     - create a new database connection using the filename provided
+      
+    b. `_create_tables()`
+    
+     - use the database connection to create a new cursor object
+      
+     - use the cursor to execute a statement dropping any preexisting
+        table named 'Catalog'
+        
+     - write a SQL statement to create the table Catalog. assign it to
+        `create_sql`.  Columns in the table should include at least:
+          
+        - id (make this the primary key)
+        
+        - creator
+        
+        - date
+        
+        - title
+        
+        - something interesting to search on, like nationality or medium
+          
+      - use the cursor to execute your `create_sql` string
+      
+    c. `_populate_tables()`
+    
+     - create a cursor again
+      
+     - write `row_sql`, an SQL statement that inserts a row into 'Catalog'
+      
+       - use `?` or named parameters for the values
 
-      1. [cdt-30020-sp16.tsv](static/tsv/cdt-30020-sp16.tsv)
-
-          This is a **tab separated** file that contains information about all
-          the students in the class in the following format:
-
-              NETID   CLASSIFICATION  FIRST_NAME  LAST_NAME
-
-      2. [students_database.py](static/py/students_database.py)
-
-          This is a script loads the file above and allows the user to search
-          for information by field.
-
-      To download the files via the command line, you can do the following:
-
-          $ curl -O https://www3.nd.edu/~pbui/teaching/cdt.30020.sp16/static/tsv/cdt-30020-sp16.tsv
-          $ curl -O https://www3.nd.edu/~pbui/teaching/cdt.30020.sp16/static/py/students_database.py
-
-      To use the script, you to pass the following command line arguments:
-
-      - **TYPE**: This should either be `list` or `sql` to choose between which
-        database backend you wish to use.
-
-      - **TSV_FILE**: This is the path to the `cdt-30020-sp16.tsv` file.
-
-      - **FIELD**: This is one of the four fields to search (ie. `netid`,
-        `classification`, `first_name`, or `last_name`).
-
-      - **QUERY**: This what value to search for.
-
-      For instance, to search for all students that are sophomores using the
-      `list` database method you can do the following:
-
-          $ python students_database.py list cdt-30020-sp16.tsv classification Sophomore
-
-      Likewise, to search for all students with the first name `Erica` using the
-      `sql` database method, you can do the following:
-
-          $ python students_database.py sql cdt-30020-sp16.tsv first_name Erica
-
-      Once you have the files downloaded, play around with the
-      `students_database.py` script, read it, and then **answer the following
-      questions**:
-
-      a. Describe what the `StudentListDatabase` class does.  How is the
-      information stored?  How does the search method work?
-
-      b. Describe what the `StudentSqliteDatabase` class does.  Explain how the
-      information is stored by discussing the following blocks of code:
-
-          :::python
-          # Block 1
-          curs      = self.conn.cursor()
-          statement = '''
-          CREATE TABLE IF NOT EXISTS Students(
-          netid           TEXT NOT NULL PRIMARY KEY,
-          classification  TEXT NOT NULL,
-          first_name      TEXT NOT NULL,
-          last_name       TEXT NOT NULL
-          )
-          '''
-          curs.execute(statement)
-
-          # Block 2
-          for line in open(path):
-              netid, classification, first_name, last_name = line.strip().split('\t')
-              statement = '''
-              INSERT OR REPLACE INTO Students (netid, classification, first_name, last_name) VALUES (?, ?, ?, ?)
-              '''
-              curs.execute(statement, (netid, classification, first_name, last_name))
-
-        Describe how the search method works by explaining the following block of code:
-
-          :::python
-          # Block 3
-          curs      = self.conn.cursor()
-          statement = 'SELECT * FROM Students WHERE {}=?'.format(field)
-          for row in curs.execute(statement, (query,)):
-              matches.append(Student(row[0], row[1], row[2], row[3]))
-
-        <div class="alert alert-warning" markdown="1">
-        <h4><i class="fa fa-database"></i> SQL Statements</h4>
-
-        For each block of code, be sure to highlight the **SQL** statement and
-        discuss what action it is performing.
-        </div>
+     - use the cursor to execute your `row_sql`, passing values for the
+        parameters from the JSON data, so that the whole table is filled
+        
+    
+    d. `get_artthings()`
+    
+     - create another cursor
+      
+     - write `sql_query` an SQL statement that selects rows based on the value
+        of a given field.
+        
+        - use `LIKE` so that we can do partial matching.
+        
+        - you'll have to use `.format` to set the field name
+        
+        - use `?` to set the value to search for
+        
+      - use the cursor to execute your query and pass the value to search
+      
+      - use the cursor again to fetch all the matching rows
+      
+    e. **optional**
+    
+     - try changing the way results are displayed to something you like
 
   ## Feedback
 
@@ -158,8 +153,5 @@ body:       |
 
   ## Submission
 
-  To submit your response, please commit your work (responses and scripts) to
-  the **reading04** folder of your your **Readings** [Bitbucket] repository.
-
-  [Bitbucket]:  https://bitbucket.org
-  [Git]:        https://git-scm.com/
+  To submit your response, please commit your work (responses and script) to
+  the **homework4** folder of your [GitLab](https://gitlab.com) repository.

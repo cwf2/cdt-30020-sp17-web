@@ -1,0 +1,202 @@
+title:      "Agenda for February 23"
+icon:       fa-list-alt
+navigation:
+  - name: "Class Home"
+    link: "/~cforstal/cdt-30020-sp17"
+    icon: "fa-home"
+internal:
+external:
+body:       |
+
+  ## Relational Databases
+  
+  The goal of a relational database is to efficiently store information about
+  the various **entities** we're interested in, and to codify the relationships
+  between them.
+  
+   - We have one table for each kind of entity we care about.
+
+   - Each entity has a single row with a unique identifier (**PRIMARY KEY**)
+   
+   - We formalize the relationships among entities using **FOREIGN KEYS**,
+     which represent links to columns in other tables.
+  
+  <div class="alert alert-info" markdown="1">
+  <h4>Exercise</h4>
+  
+  Let's look at an example, imagining we're building a library of children's
+  literature. Here's a list of novels for young people from the past century. 
+
+  <p></p>
+  
+  <h4 class="text-center">
+  <a class="label label-info" 
+  href="/~cforstal/cdt-30020-sp17/static/misc/kidslit.tsv">
+  <i class = "fa fa-file-o"></i> kidslit.tsv </a>
+  </h4>
+  
+  Take a look at the data:
+    
+    - what is our data model for these records?
+    
+    - what entities are we interested in?
+    
+    - what information is repeated?
+    
+    - could this be further broken down?
+
+  </div>
+    
+  <h4>Working multiple tables</h4>
+  
+  Let's do a quick minimalist example:
+    
+      :::sql
+      CREATE TABLE Author (
+        auth_id   INTEGER PRIMARY KEY,
+        name      TEXT
+      );
+      CREATE TABLE Book (
+        book_id   INTEGER PRIMARY KEY,
+        title     TEXT,
+        auth_id   INTEGER
+      );
+      
+      -- add some authors
+      INSERT INTO Author VALUES (1, 'Homer');      
+      INSERT INTO Author VALUES (2, 'Virgil');
+      INSERT INTO Author VALUES (3, 'Ovid');
+      
+      -- add some books
+      INSERT INTO Book VALUES (NULL, 'Iliad', 1);      
+      INSERT INTO Book VALUES (NULL, 'Odyssey', 1);
+      INSERT INTO Book VALUES (NULL, 'Eclogues', 2);
+      INSERT INTO Book VALUES (NULL, 'Georgics', 2);
+      INSERT INTO Book VALUES (NULL, 'Aeneid', 2);
+      INSERT INTO Book VALUES (NULL, 'Metamorphoses', 3);
+  
+  We can combine data from the two tables using `JOIN`:
+    
+      :::sql
+      -- this way isn't super informative
+      SELECT * FROM Book;
+      
+      -- this is better
+      SELECT Book.book_id, Author.name AS author, Book.title 
+        FROM Book JOIN Author ON Book.auth_id == Author.auth_id;
+        
+  What's happening here?
+  
+    - `JOIN` joins rows from two different tables
+    
+    - `ON` introduces a conditional relationship between the tables
+    
+    - in the default case where two columns with the same name are supposed
+      to be equal, you can use this shorthand:
+        
+          :::sql
+          SELECT Book.book_id, Author.name AS author, Book.title 
+             FROM Book JOIN Author USING (auth_id);
+    
+    - the default `JOIN` is a so-called `INNER JOIN` where only rows where 
+      the two tables match will be returned
+      
+    - (other kinds of join will include non-matching data from one or both
+       tables)
+       
+    - You can further narrow your results with a `WHERE` clause, just like a
+      single table query
+        
+          :::sql
+          SELECT Book.book_id, Author.name AS author, Book.title 
+             FROM Book JOIN Author USING (auth_id)
+             WHERE author LIKE 'Virg%';
+      
+  <h4>FOREIGN KEYs</h4>
+  
+  Once we've formalized the relationships between tables, we want to try as 
+  hard as possible not to introduce weird inconsistencies. For example:
+  
+    - adding a Book row with no auth_id
+    
+    - adding a Book whose auth_id doesn't correspond with any Author
+    
+    - deleting an Author whose Books are now orphaned
+    
+  We can use the `FOREIGN KEY` constraint in our `CREATE TABLE` statement to
+  enforce data integrity.
+  
+    - <i class="fa fa-warning"></i> You must issue this command to the database
+      or foreign keys won't be enforced. **Every time**.
+      
+          :::sql
+          PRAGMA foreign_keys = ON;
+
+    - Now, let's redo our tables:
+      
+          :::sql
+          CREATE TABLE Author (
+          auth_id   INTEGER PRIMARY KEY,
+            name      TEXT
+          );
+          CREATE TABLE Book (
+            book_id   INTEGER PRIMARY KEY,
+            title     TEXT,
+            auth_id   INTEGER,
+            FOREIGN KEY (auth_id) REFERENCES Author(auth_id)
+          );
+    
+          -- add some authors
+          INSERT INTO Author VALUES (1, 'Homer');      
+          INSERT INTO Author VALUES (2, 'Virgil');
+          INSERT INTO Author VALUES (3, 'Ovid');
+
+          -- add some books
+          INSERT INTO Book VALUES (NULL, 'Iliad', 1);      
+         
+          -- add a book whose author doesn't exist
+          INSERT INTO Book VALUES (NULL, 'Hamlet', 6);
+
+  <div class="alert alert-info" markdown="1">
+  <h4>Exercise</h4>
+  
+  Let's redo the children's library example using two tables. Here are the
+  data as TSV files as well as a basic Python script:
+
+  <p></p>
+  
+  <h4 class="text-center">
+  <a class="label label-info" 
+  href="/~cforstal/cdt-30020-sp17/static/misc/authors.tsv">
+  <i class = "fa fa-file-o"></i> author.tsv </a>
+  
+  
+  <a class="label label-info" 
+  href="/~cforstal/cdt-30020-sp17/static/misc/books.tsv">
+  <i class = "fa fa-file-o"></i> book.tsv </a>
+
+
+  <a class="label label-info" 
+  href="/~cforstal/cdt-30020-sp17/static/misc/kidslit.py">
+  <i class = "fa fa-code"></i> kidslit.py </a>
+
+  </h4>
+  
+  See if you can make the code work by adding the necessary SQL:
+    
+    - line 57: create the Author table
+    
+    - line 59: create the Book table
+    
+    - line 73: write an INSERT statement to add new authors
+
+    - line 85: write an INSERT statement to add new books
+    
+    - Once you get the script working, try to search for a book
+    
+          :::text
+          python kidslit.py Matilda
+    
+    - Then see whether you can modify the SELECT statement to get other
+      information out of the database.    
+  </div>

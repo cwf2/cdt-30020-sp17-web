@@ -1,0 +1,97 @@
+title:      "Notes for February 28"
+icon:       fa-list-alt
+navigation:
+  - name: "Class Home"
+    link: "/~cforstal/cdt-30020-sp17"
+    icon: "fa-home"
+internal:
+external:
+body:       |
+
+  ## Housekeeping
+  
+  - Fork relationship, grades, etc.
+
+  - Look forward to Homework 5 and Vagrant setup
+
+  ## Relational Databases continued
+  
+  - Questions?
+  
+  - Homework issues from last week?
+  
+  ## HTTP
+  
+  Hypertext Transfer Protocol is a standard for communicating between computers
+  over a network, used by the World Wide Web.
+  
+  Defines a set of requests and responses to be used in transactions between
+  hosts.
+  
+  The **client** sends a request, composed of a verb plus a resource. The
+  resources is specified using a **URL**. The verb is one of a very small list:
+    
+    - **GET** - ask for a resource
+    
+    - **POST** - upload data to be processed remotely
+    
+    - plus a handful of others
+    
+  The **host** receives the request, processes it, and returns a response,
+  possibly with the requested resource attached.
+  
+  ## URL
+  
+  A uniform resource locator specifies where to find something on the network.
+  It has some or all of the following components
+  
+   - **protocol** - what are the rules of communication?
+   
+   - **host** - what is the address of the computer we're talking to?
+   
+   - **port** - a specific channel on the host computer, which might be listening
+     for lots of different kinds of communications.
+     
+   - **resource path** the thing we're asking for on the remote computer
+   
+   - **query** some additional data we'd like to pass along, in the form of
+     key:value pairs.
+     
+  Consider the following:
+
+      :::text
+      https://www.amazon.com/s/?field-keywords=game+of+thrones+season+6
+     
+  ## HTML
+  
+  The HyperText Markup Language is a way of specifying functional roles (and
+  to a lesser extent the appearance) of document elements using just plain
+  text. It's up to the application rendering the document to turn these 
+  instructions into something meaningful for the reader.
+  
+  ## Statelessness
+  
+  HTTP is a **stateless** protocol -- it doesn't know anything about the history
+  or context of a request unless its included directly in the request itself.
+  
+  ## Static versus dynamic
+  
+  Static content is created ahead of time as an HTML file. Each time the client 
+  requests it, the server produces the same thing.
+  
+  Dynamic content involves replacing the fixed HTML document with some kind of 
+  program, which can generate HTML output on the fly according to the 
+  circumstances.
+   
+  ## Synchronous versus asynchronous
+  
+  In part two of this course, we're dealing with synchronous web interactions.
+  
+    - The client requests something (static or dynamic)
+    
+    - The server returns it
+    
+    - The transaction is over
+    
+  In part three, we'll see how the client and server can continue to talk to
+  one another on an ongoing basis as the user interacts with the web page.
