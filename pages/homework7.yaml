@@ -1,4 +1,4 @@
-title:      "Homework 4: Databases"
+title:      "Homework 7: HTML, CSS and Bootstrap"
 icon:       fa-book
 navigation:
       - name: "Class Home"
@@ -8,14 +8,49 @@ internal:
 external:
 body:       |
 
-  Homework for **Tuesday, February 28**  and **Thursday, March 2**
+  Homework for **Tuesday, Aril 4**  and **Thursday, April 6**
   
   ## Readings
 
-  1. [HTTP: The Protocol Every Web Developer Must Know - Part 1](http://code.tutsplus.com/tutorials/http-the-protocol-every-web-developer-must-know-part-1--net-31177)
-
-  2. [Structure of a Tornado web application](http://www.tornadoweb.org/en/stable/guide/structure.html)
-
-  [Tornado]:    http://www.tornadoweb.org/en/stable/
+  1. [w3schools Bootstrap Tutorial](https://www.w3schools.com/bootstrap/default.asp)
   
+      - [Get Started](https://www.w3schools.com/bootstrap/bootstrap_get_started.asp)
+      
+      - [Grid Basic](https://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp)
+      
+      - [Tables](https://www.w3schools.com/bootstrap/bootstrap_tables.asp)
+      
+      - [Images](https://www.w3schools.com/bootstrap/bootstrap_images.asp)
+      
+      - [Navbar](https://www.w3schools.com/bootstrap/bootstrap_navbar.asp)
+      
+      - [Forms](https://www.w3schools.com/bootstrap/bootstrap_forms.asp)
+      
+      - [Inputs](https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp)
+      
+  ## Questions
   
+  1.  What is the main division of labor between HTML and CSS in building a web
+      page?
+          
+  2.  How do you represent each of the following in HTML and in CSS?
+  
+        i) a `div` element
+        
+        ii) a `div` element in the `row` class
+        
+        iii) a `div` element with id `header`
+  
+  3.  What does "responsive design" mean in the context of web development?
+  
+
+  ## Feedback
+
+  If you have any questions, comments, or concerns regarding the course, please
+  provide your feedback at the end of your response.
+
+  ## Submission
+
+  Answer the questions above in the README.md file of your **homework7** 
+  directory. Push your modified file to GitLab or work directly through the
+  GitLab web interface.

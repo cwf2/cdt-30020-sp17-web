@@ -1,0 +1,227 @@
+title:      Test 2
+icon:       fa-code
+navigation:
+    - name: "Class Home"
+      link: "/~cforstal/cdt-30020-sp17"
+      icon: "fa-home"
+internal:
+external:
+body:       |
+  ## Part III - Alternative date
+  
+  In this part of the test, you will complete some short scripts to work with a
+  <a href="https://archive.org/details/MetadataFromLibraryOfCongressCivilWarPhotographs">
+  database of Civil War photographs</a> from the Library of Congress.
+  
+  Each section below asks you to fill in sections within a provided skeleton
+  file. You should work on your own computer.
+  
+  - Read the section's instructions
+  
+  - Write the code, run it, see whether it works
+  
+  - When you're happy with it, email your code file to me at 
+     <a href="mailto:cforstal@nd.edu">cforstal@nd.edu</a>.
+ 
+  <div class="alert alert-warning" markdown="1">
+  <h4><i class="fa fa-warning"></i> Computer issues</h4>
+  This test assumes you can test the code on your computer before you hand it
+  in. That includes running a Tornado app locally.
+  
+  <i class="fa fa-hand-o-right"></i> If for some reason you can't run Tornado,
+  Python, or something else essential to your work, <strong>DON'T SUFFER IN 
+  SILENCE!</strong> Let me know, and I'll do what I can to help.
+  </div>
+ 
+  <h4>Project outline</h4> 
+  
+  This project consists of the following files. You need to modify three of them
+  (marked <i class="fa fa-star"></i>) by adding code to `#TODO` sections.
+  
+  
+    - `cw_photos.tsv` - a tab-separated data file
+    
+    - `photos_db.py` <i class="fa fa-star"></i> - a Python module for the
+      database operations
+    
+    - `photos_web.py` <i class="fa fa-star"></i> - a Tornado web app
+    
+    - `search.html` - a Tornado template
+    
+    - `results.html` <i class="fa fa-star"></i> - another template
+         
+  <h4> Setup </h4>
+  
+   - Download the project here: 
+     <a class="label label-info" href="static/misc/test2_alt.zip">test2_alt.zip</a>
+   
+   - Unzip the folder and put it somewhere you can access on your Vagrant VM,
+     and where you are able to modify the files.
+     
+   - Try running `photos_web.py`. It should give no errors, even if it doesn't
+     do anything. 
+     
+   - Browse to <a href="http://localhost:8888">`http://localhost:8888`</a> and
+     you should see a "Test 2" page with a search form. If this doesn't work,
+     let me know before you do anything else.
+
+   - You can now proceed with the following activities.
+   
+   <div class="alert alert-warning">
+   <h4><i class="fa fa-hand-o-right"></i> pass</h4>
+   
+   You'll see `pass` at points where a method would otherwise be empty before 
+   you add your code. Please delete `pass` as you complete the methods.
+   </div>
+   
+  ### Activity
+    
+  <h4>photos_db</h4>
+  
+  In this script, you're going to create a database and populate it with the 
+  contents of `cw_photos.tsv`. You will also create a search method that looks up
+  photos by year.
+  
+  <div class="alert alert-warning" markdown="1">
+  <h4><i class="fa fa-warning"></i> Before you begin</h4>
+  
+  Examine the contents of `photos.tsv`. There are four tab-separated columns
+  in this file.
+  
+    - the photo's title
+    - the year in which it was published
+    - a description of the photo
+    - a URL pointing to a digital image on the web
+
+  Think about the appropriate data model for these records.
+  </div>
+  
+  
+  1. Create the Photo table. Add code in `_create_table()` to:
+    
+      - create a cursor using `self.conn`
+
+      - write an SQL statement to create the table
+      
+      - add a `photo_id` column and make it a PRIMARY KEY
+      
+      - execute your SQL statement using the cursor
+
+      - (You don't need to drop existing tables first. I've taken care of
+        that elsewhere.)
+  
+  2. Populate the table. Add code in `_populate_table()` to:
+
+      - write an `INSERT` statement using `?` placeholders for the values
+      
+      - account for the `photo_id` column, which should auto-increment
+
+      - create a cursor
+
+      - open the TSV file (filename is in `self.data_file`)
+
+      - iterate over all lines (there's no header)
+
+           - strip whitespace
+
+           - split on tabs
+
+           - execute your SQL, pass the record
+
+      - don't forget to use `self.conn` to commit after everything's been added
+  
+  3. Write a search method. Add code in `search_year()` to:
+    
+      - write a `SELECT` statement to retrieve rows matching a given year
+      
+      - include the following columns in your results:
+          
+          - title
+          
+          - year
+          
+          - description
+          
+          - url
+          
+      - create a cursor
+      
+      - execute, passing `year` as a binding for `?` in your SQL
+      
+      - fetch all matching rows and return them
+    
+  When you think you have it done, you can run `photos_db.py` as a script for
+  debugging purposes. It will attempt to create the database, and perform a
+  search for `1865`. If all goes well, you'll see the results.
+  
+  Run the script by doing `python photos_db.py` or `./photos_db.py`
+      
+  <h4>photos_web.py</h4>
+    
+  In this script, you'll fill out the missing sections in the web app.
+  
+  <div class="alert alert-warning" markdown="1">
+  <h4><i class="fa fa-warning"></i> Before you begin</h4>
+  
+  Examine the contents of `search.html`. You'll need the `name` of the input 
+  element to get the user's text inside your handler.
+  </div>
+  
+  1. Write a handler. Under `SearchHandler`, fill in `get()`:
+
+      - retrieve the user-supplied year from the form data
+
+      - use self.db to call your `search_year()` method and pass the year
+
+      - render the `results.html` template, passing it the rows returned by the 
+        search
+
+  2. Create a new database connection. In the main code block:
+
+      - create a new instance of PhotosDB and assign it to a variable `db`
+
+  3. Hook up your handler to the URL `/search`. In the Application definition:
+
+      - add a URL specification with the following parts
+
+          - the URL is `/search`
+
+          - the handler is `SearchHandler`
+
+          - include a dictionary with `'db'` as a key and your newly created   
+            instance of `PhotosDB` (#2 above) as its value
+  
+  To start your app, do either `python photos_web.py` or `./photos_web.py`. If
+  it's working properly, it will run without terminating. Point your browser to
+  <a href="http://localhost:8888">`http://localhost:8888`</a> and you should
+  see the search page.
+  
+  <h4>results.html</h4>
+
+  This template presents search results. Fill in the `<!-- TODO -->` section
+  to create an HTML table with one row per photo.
+  
+  <div class="alert alert-warning" markdown="1">
+  <h4><i class="fa fa-warning"></i> Before you begin</h4>
+  
+  Remember the name you gave to the search results when you passed
+  them to the template in your handler (#3 above). You'll need it here to loop
+  over the rows.
+  </div>
+    
+  1. Create an HTML table
+     
+      - iterate over the rows passed by your handler
+      
+      - for each, create an HTML table row
+      
+      - each row should have HTML table data elements containing 
+          
+          - title
+          
+          - year
+          
+          - description
+          
+      - make the title a link to the image URL, so clicking on it takes you to
+        the digital image

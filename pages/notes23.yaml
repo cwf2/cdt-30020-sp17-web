@@ -1,0 +1,243 @@
+title:      "Notes for April 11"
+icon:       fa-list-alt
+navigation:
+  - name: "Homework 8"
+    link: "homework8.html"
+    icon: "fa-book"  
+  - name: "Class Home"
+    link: "/~cforstal/cdt-30020-sp17"
+    icon: "fa-home"
+internal:
+external:
+body:       |
+
+  <script   src="https://code.jquery.com/jquery-3.2.1.min.js"       
+            integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   
+            crossorigin="anonymous"></script>
+
+  ## JQuery
+  
+   - JQuery is a JavaScript library that provides a number of convenient helper
+     functions for common tasks, particularly around building web interfaces,
+     working with asynchronous data, and managing dynamic elements of a page.
+     
+   - Reference material:
+     
+       - the official [JQuery site](http://jquery.com)
+
+       - [w3schools tutorial](https://www.w3schools.com/jquery/default.asp)
+  
+  - We're just going to look at a couple of basic tasks:
+    
+       - **selecting** existing elements of the page
+       
+       - **creating** new elements
+       
+       - **modifying** attributes and **appending** children
+       
+       - attaching custom handlers to **events**
+  
+  - JQuery methods are usually attached to the `$` object
+  
+  - JQuery methods can be *chained* to perform multiple successive actions
+  
+  - Like Bootstrap and Font Awesome, JQuery can be loaded remotely from a CDN
+  
+          :::html
+          <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+        
+  
+  <h4>Selector basics</h4>
+  
+  `$("h1")` - this selects all `<h1>` elements on the page
+  
+    - `$("tr").hide()` will hide all rows in a table
+    
+    - `$(".disabled").hide()` will hide all elements with `class="disabled"`
+    
+    - `$("#footer").hide()` will hide the single element with `id="footer"`
+
+  <h4>Creating elements</h4>
+  
+  Just put valid HTML inside `$("")`
+    
+    - `$("<div>")` a new `<div>` element
+    
+    - `$("<tr><td>4</td><td>David</td></tr>")` - a whole row
+    
+  <h4>Modifying attributes and appending children</h4>
+  
+  Start by using `$("")` to create or select an existing element. Then perform
+  an **action** on that element using dot notation with JQuery methods.
+  
+    - `$("#header").html("<h1>No Buttons Here</h1>")`
+    
+    - `$("#header").attr("class", "alert alert-danger")`
+    
+    - `$("thead tr").append("<th>New Col</th>")`
+    
+    - `$("tbody tr").append("<td>New data</td>")`
+
+  <div class="well">
+    <h4>Test JQuery here</h4>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Alice</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Bob</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Carol</td>
+        </tr>      
+      </tbody>
+    </table>
+    <div class="alert alert-info" id="header">
+      This is
+      <code>
+        &lt;div id="header"&gt;&lt;/div&gt;
+      </code>
+      
+      <button class="btn disabled">This is disabled</button>
+      <button class="btn">This is not disabled</button>
+    </div>
+    <div class="alert alert-info" id="footer">
+      This is
+      <code>
+        &lt;div id="footer"&gt;&lt;/div&gt;
+      </code>
+    </div>
+  </div>
+
+
+  <h4>Event handlers</h4>
+  
+  The document and its elements register events as it is rendered and as the 
+  user and various scripts interact with it. You can attach custom functions
+  to these events. Your event **handler** needs to be a function, but it could
+  be an anonymous one.
+  
+      :::javascript
+      // define a function
+      function clickme() {
+        alert("Don't click me!")
+      }
+      
+      // test it out
+      clickme()
+
+      // attach it to the `click` event on one of our buttons
+      $("button.disabled").click(clickme)
+
+      // same thing, but with an anonymous function
+      $("#footer").click(function(){$("#footer").attr("class", "alert alert-warning")})
+
+  One really useful event is the **ready** event that the document triggers 
+  when it is fully loaded.
+  
+    - It's common to attach a handler here that goes about constructing the
+      various elements of the page, once the HTML framework is in place
+  
+  ## Asynchronous web programming
+
+  Asynchronous (or Ajax) web apps don't require the entire page to be delivered
+  and rendered all at once. Instead, different parts can be built independently
+  on their own schedules (asynchronously) using small batches of data requested
+  and delivered from the server in the background.
+  
+   - This kind of data is very often in JSON format
+   
+   - It (usually) translates transparently into JavaScript objects, even if
+     it originally encoded a Python object!
+     
+   - We can use JQuery to request JSON data asynchronously with `$.get(URL, params, callback)`
+   
+      - URL is the resource we're requesting
+      
+      - params is a dictionary with optional query parameters
+      
+      - callback is a **function** that will be invoked when the data is ready
+  
+  ## Activity
+    
+  In class, we're going to build an asynchronous web interface for a mini-
+  database of dog breeds. 
+    
+  <h5><a class="label label-info"
+       href="https://cdt-hw8.herokuapp.com">Demo</a></h5>
+  <h5><a class="label label-info"
+       href="https://gitlab.com/nd-cdt-30020-sp17/dogs">Code</a></h5>
+
+
+  - Clone the repo on your virtual machine. (If you want to see the working 
+  version, you can do `git checkout working`)
+  
+  - The app works in most ways just like the ones we've build previously
+  
+  - The handlers have been modified to output JSON instead of HTML
+  
+  - The landing page is just a bare skeleton, to be filled in after it loads
+  
+  - We're going to write JavaScript to fill in `/js/dogs.js` to request the
+    data and build the dynamic page
+  
+  <div class="alert alert-info" markdown="1">
+    <h4>Code from class</h4>
+    
+    Here is the code we wrote in class. Cross-posted to [Homework 8](
+    homework8.html)
+      
+      :::jquery
+      function parseOneRow(row) {
+         //create a new tr element and append fields as td elements
+         var trow = $("<tr>").append(
+             $("<td>").text(row['breed']),
+             $("<td>").text(row['origin']),
+             $("<td>").text(row['akc_group'])
+         );
+         return trow
+      }
+
+
+      function parsedogdata(json) {
+         // parse json data from web
+           
+         // create a new table
+         var tab = $("<table>").append(
+            "<thead><th>breed</th><th>origin</th><th>group</th></thead>"
+         );
+ 
+         // give it a body
+         var tbody = $("<tbody>");
+         tab.append(tbody);
+    
+         // iterate over array
+         for (i in json['data']) {
+            var rec = json['data'][i];
+            var tr = parseOneRow(rec);
+            tbody.append(tr);
+         }
+ 
+         $("#main").append(tab);
+      }
+
+
+      $(document).ready(
+         function(){
+            $.get("/search", {"field":"breed", "query":"%"}, parsedogdata);
+         }
+      )
+  </div>
+  
+  
+  

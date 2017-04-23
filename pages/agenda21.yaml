@@ -1,0 +1,61 @@
+title:      "Agenda for April 4"
+icon:       fa-list-alt
+navigation:
+  - name: "Class Home"
+    link: "/~cforstal/cdt-30020-sp17"
+    icon: "fa-home"
+internal:
+external:
+body:       |
+
+  ## Review: HTML and CSS
+  
+  - What happened on Thursday?
+  
+  - What is the relationship between HTML and CSS?
+  
+  - How do we designate document elements in HTML and in CSS?
+  
+  ## Bootstrap
+    
+  - A front-end framework
+  
+     - what does this change about your website?
+    
+     - what remains the same?
+    
+  - Online references:
+ 
+     - The Bootstrap site: [https://getbootstrap.com](https://getbootstrap.com)
+ 
+     - Reference and tutorial: [https://www.w3schools.com/bootstrap/bootstrap_get_started.asp](
+       https://www.w3schools.com/bootstrap/bootstrap_get_started.asp)
+    
+  - Download a local copy, or use an online copy provided by a Content Delivery 
+    Network (CDN)
+    
+       - We'll use [https://www.bootstrapcdn.com](https://www.bootstrapcdn.com)
+     
+       - Likewise with [Font Awesome](https://www.bootstrapcdn.com/fontawesome/)
+         for our now-familiar icon set
+     
+       - And [Bootswatch](https://www.bootstrapcdn.com/bootswatch/) for additional
+         Bootstrap themes
+       
+  - What is [responsive design](https://getbootstrap.com/examples/offcanvas/)?
+  
+  - Sidetrack: where is "developer mode" on your browser?
+  
+  ## Activity
+  
+  - Let's redo the children's literature exercise from Homework 6 together, 
+    using Bootstrap for the interface.
+    
+  - You can get a working copy of the project on [GitLab](
+    https://gitlab.com/nd-cdt-30020-sp17/class_21)
+    
+  - Sidetrack: using <code>&#123;% block %&#125;</code> and <code>&#123;% 
+    extends %&#125;</code> in 
+    Tornado templates.
+  
+  

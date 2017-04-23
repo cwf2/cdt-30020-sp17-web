@@ -1,0 +1,199 @@
+title:      "Homework 8: JQuery and Ajax"
+icon:       fa-book
+navigation:
+      - name: "Notes for April 11"
+        link: "notes23.html"
+        icon: "fa-list-alt"
+      - name: "Class Home"
+        link: "/~cforstal/cdt-30020-sp17"
+        icon: "fa-home"
+internal:
+external:
+body:       |
+
+  Homework for **Tuesday, Aril 11**  and **Thursday, April 13**
+  
+  ## Readings
+
+  1. [w3schools JQuery Tutorial](https://www.w3schools.com/jquery/default.asp)
+  
+  2. [w3schools JQuery AJAX](https://www.w3schools.com/jquery/jquery_ajax_intro.asp)
+  
+      - [Intro](https://www.w3schools.com/jquery/jquery_ajax_intro.asp)
+      
+      - [Get/Post](https://www.w3schools.com/jquery/jquery_ajax_get_post.asp)
+      
+  ## Questions
+  
+  1.  What is the difference between client-side and server-side programming?
+          
+  2.  What does "asynchronous" web programming mean?
+  
+  ## Activity
+  
+  - If you haven't already, clone the [dogs](https://gitlab.com/nd-cdt-30020-sp17/dogs) repo.
+  
+  - If you don't have it working already, feel free to checkout the **working**
+    branch for a fully-functional copy.
+    
+  Your assignment is to change `/js/dogs.js`:
+  
+    - instead of generating a series of Bootstrap-styled rows and columns,
+      make it list the dogs in a single HTML table
+      
+    - Columns should include
+       
+       - breed name
+       
+       - origin
+       
+       - AKC group
+       
+       - adding the associated image is **optional**
+       
+  <div class="alert alert-info" markdown="1">
+    <h4>Code from class</h4>
+    
+    Here is the code we wrote [in class](notes23.html). With only a few light
+    modifications, this will get you most of the way to finishing the homework.
+      
+      :::jquery
+      function parseOneRow(row) {
+         //create a new tr element and append fields as td elements
+         var trow = $("<tr>").append(
+             $("<td>").text(row['breed']),
+             $("<td>").text(row['origin']),
+             $("<td>").text(row['akc_group'])
+         );
+         return trow
+      }
+
+
+      function parsedogdata(json) {
+         // parse json data from web
+         
+         // TODO: clear existing data
+         
+ 
+         // create a new table
+         var tab = $("<table>").append(
+            "<thead><th>breed</th><th>origin</th><th>group</th></thead>"
+         );
+ 
+         // give it a body
+         var tbody = $("<tbody>");
+         tab.append(tbody);
+    
+         // iterate over array
+         for (i in json['data']) {
+            var rec = json['data'][i];
+            var tr = parseOneRow(rec);
+            tbody.append(tr);
+         }
+ 
+         $("#main").append(tab);
+      }
+
+
+      $(document).ready(
+         function(){
+            $.get("/search", {"field":"breed", "query":"%"}, parsedogdata);
+         }
+      )
+  </div>
+  
+  <h4>Modifications</h4>
+  
+  Here's how to complete what we started in class, using the **working** branch
+  of the **dogs** GitLab repo.
+  
+  <i class="fa fa-hand-o-right"></i> First, you need to add an important line to
+  the *parsedogdata* function.
+  
+     - I've marked this with `// TODO` above.
+     
+     - The way we wrote this function in class, it appends a new table to
+      `#main`, but unless we first clear out any existing HTML inside `#main`,
+      we'll end up with a million tables one after the next.
+      
+     - Use a JQuery selector to get `#main`, with the `.empty()` method, which
+       will clear the div's contents.
+  
+  <i class="fa fa-hand-o-right"></i> Create a function to get the search string,
+  request the results, and call *parsedogdata*.
+  
+     - in class, we used an anonymous function to attach these actions to the
+       `document.ready` event.
+     
+     - here we'll give it a name and make it a standalone function, so we can
+       reuse it in a couple of places.
+       
+     - you can copy the version I put on GitLab [here](
+       https://gitlab.com/nd-cdt-30020-sp17/dogs/blob/working/js/dogs.js) --
+       I called the function *dogsearch*.
+       
+     - if you copy-paste my code, you'll have to alter one detail: in the 
+       `$.get` method, I mentioned a callback function is named *dogstable*,
+       but in our version from class the function is called *parsedogdata*.
+       So just make sure you use the latter name.
+       
+     - as you're pasting this code in, notice how it works:
+       
+         - the value for `field` is going to be either "origin" or "breed".
+         
+           - the function checks to see which of the two links on the nav bar
+             is currently selected.
+           
+             - it uses the ternary operator `COND ? A : B`, which evaluates
+               `COND` and returns `A` if `COND` is `True`, and `B` otherwise.
+           
+         - the value for `query` is taken from whatever has been typed into
+           the text box in the nav bar (the textbox has id `#dogsearch`)
+     
+         - then it uses `$.get` to request a new search, passes the params as
+           a dictionary, and sets *dogsearch* as the callback, to be invoked
+           once we have the data
+
+  <i class="fa fa-hand-o-right"></i> Now modify the document's `ready` handler.
+  
+     - you can copy paste again from [my working version](
+     https://gitlab.com/nd-cdt-30020-sp17/dogs/blob/working/js/dogs.js) --
+     it's right at the bottom of the file
+     
+     - first, we associate some code with the `click` event on each of the
+       two navbar links.
+          
+        - this code removes the "active" class from whichever link has it
+        
+        - and adds it to whichever link doesn't have it
+        
+        - it also clears the text box, on the assumption that switching from
+          breed to origin means you want to type in something different
+          
+        - on the same principle, it re-runs *dogsearch* -- with the textbox now
+          empty, that means we start with all the dogs in the table
+     
+     - second, we associate *dogsearch* with the textbox's `keyup` event
+     
+        - every time you type a new letter into the box, the table should
+          update with rows that match what you've typed so far
+    
+     - finally, we invoke *dogsearch()* itself.
+     
+        - as the last action on `document.ready` this means that the page
+          start with all the dogs in the table
+     
+  ## Feedback
+
+  If you have any questions, comments, or concerns regarding the course, please
+  provide your feedback at the end of your response.
+
+  ## Submission
+
+  - Answer the questions above in the **README.md** file of your **homework8** 
+  directory. 
+  
+  - **Add** just `dogs.js`, unless you decide to modify something else 
+    (e.g., `style.css`) as well.
+  
+  Push your modified files to GitLab, in the **Homework 8** folder.

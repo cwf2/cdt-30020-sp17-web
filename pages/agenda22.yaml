@@ -1,0 +1,294 @@
+title:      "Agenda for April 6"
+icon:       fa-list-alt
+navigation:
+  - name: "Class Home"
+    link: "/~cforstal/cdt-30020-sp17"
+    icon: "fa-home"
+internal:
+external:
+body:       |
+
+  ## Notes from Tuesday
+  
+  Tornado <code>&#123;% block %&#125;</code> syntax: [Tuesday's notes](notes21.html)
+  
+  ## Client-side programming with JavaScript
+    
+  To this point, dynamic content has been generated **server-side**.
+
+    - Tornado writes HTML and returns it to the client
+    
+    - As far as the browser is concerned, it gets one, static document and the
+      interaction is over.
+    
+    - Any customization has to be done before the page is sent; if the user
+      wants a change (for example, resorting a list), the whole page has to be
+      re-written and re-sent.
+      
+  <h5>Client-side programming</h5>
+  
+  **Client-side** programming means that computation is done *in the browser*,
+  after the page has been received and the connection to the server is closed.
+   
+  <h5>JavaScript</h5>
+  
+  **JavaScript** is an interpreted programming language, much like Python. The
+  JavaScript interpreter is built into all modern browsers. JavaScript code is
+  evaluated in a **sandbox**, a virtual machine inside the browser and isolated
+  from the rest of your computer (in theory).
+  
+  - JavaScript can do just about anything that we've done so far in Python:
+    
+      - store strings, numbers, list- and dictionary-like data in variables
+      
+      - perform complex calculations and manipulate data
+      
+      - iterate over loops, and evaluate complex logical structures
+      
+      - define new functions, and evaluate them later
+      
+      - collect input from the user, and return output
+      
+      - import pre-existing code libraries from elsewhere
+      
+  - JavaScript can also **read and manipulate the contents of a web page**
+  
+      <div class="alert alert-info" markdown="1">
+        <h4>Example</h4>
+    
+          :::html
+          <div class="well" id="tryme">
+          </div>
+      
+          <script>
+            function foo() {
+              var target = document.getElementById('tryme');
+              target.innerHTML = 'Hello, CDT!';
+            }
+          </script>
+    
+          <a class="label label-info" onclick="foo()">Try Me!</a>
+      
+        Here's what it looks like:
+        <div class="well" id="tryme">
+        </div>
+    
+        <script>
+          function foo() {
+            var target = document.getElementById('tryme');
+            target.innerHTML = 'Hello, CDT!';
+          }
+        </script>
+    
+        <a class="label label-info" onclick="foo()">Try Me!</a>
+      </div>
+  
+  - JavaScript can appear anywhere in your HTML, as long as it's set inside
+    `<script>` tags.
+    
+  - It can also be placed in an external file, and included into your page using
+    a `<script src="">` tag, where the `src` attribute gives the script 
+    location.
+    
+  <h5>JavaScript syntax</h5>
+  
+  JavaScript uses a syntax very similar to Python's, so much will be familiar
+  to you.
+  
+  A few differences:
+    
+    - whitespace is generally not significant
+    
+    - statements are terminated with `;`
+    
+    - blocks (like `for` or `if`) must be enclosed in `{ }`
+  
+    - functions are defined with `function` rather than `def`
+    
+    - single-line comments are indicated with `//`
+    
+    - multi-line comments begin with `/*` and end with `*/`
+  
+  <i class="fa fa-hand-o-right"></i> For a complete JavaScript reference, try 
+  the [w3schools JavaScript tutorial](https://www.w3schools.com/js/default.asp).
+  
+    - In general, if you think you should be able to do something in JavaScript,
+      you probably can. Try Googling your task and you'll likely find the 
+      solution.
+  
+  ### Activities
+  
+  <h5>JavaScript console</h5>
+  
+  - Now, find the "JavaScript console" provided by your web browser. This will
+    likely be under some kind of "Developer" tools or menubar.
+    
+  - The console provides a command-line interface to the JavaScript interpreter
+    running in your browser. It's like immediate mode in Python.
+    
+  - You can try one-off commands here. When you press ENTER, your statements
+    will be evaluated, and the result printed to the console. Many statements
+    that do useful tasks happen to evaluate to `undefined`, so you'll see this
+    a lot.
+    
+  - You can tell JavaScript to print anything you want to the console, using the
+    `console.log()` method.
+    
+  - You can print a message to the user in a special window using `alert()`.
+  
+  - Try:
+
+          :::javascript
+          console.log('Hello, world!');
+          alert('Hello, world!');
+  
+  - Let's try a `for` loop:
+    
+          :::javascript
+          for (var i=0; i<=9; i++){
+            console.log('This is iteration ' + i);
+          }
+          
+  - Defining and invoking a function:
+    
+          :::javascript
+          function hello(name){
+            if (name == undefined) {
+              name = 'world';
+            }
+            alert('Hello, ' + name + '!');
+          }
+    
+          hello();
+          hello('Chris');
+          
+  <h5>Manipulating web documents</h5>
+  
+  Let's try building a table adding it to an existing page, using JavaScript.
+  
+  - We won't need a server for this exercise. You can just create a new HTML
+    file on your desktop and paste in the following skeleton:
+      
+          :::html
+      
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+            <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="   crossorigin="anonymous"></script>
+            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            <title>In class 6 April</title>
+          </head>
+          <body>
+            <div class="container-fluid" id="container">
+              <h1>An empty page</h1>
+              <div class="row">
+                <div class="col-md-6" id="col_left">
+                </div>
+                <div class="col-md-6" id="col_right">
+                </div>
+              </div>
+            </div>
+          </body>
+          </html>
+  
+  - The `<link>` elements aren't necessary for JavaScript to work -- it's 
+    already built into your browser. I'm just including Bootstrap for continuity
+    with our other work.
+  
+  <h5>Now some JavaScript</h5>
+  
+  - Create a new file to work on this script for now. 
+
+      - We'll test one line at a time in the console
+    
+      - At the end we can include the script in the HTML either directly,
+        inside `<script>` tags, or by using `src=""` to load the separate 
+        javascript file.
+
+  - Elements within the document object model (DOM, i.e., your web page) are 
+    treated like objects in JavaScript.
+    
+      - you can save a reference to any element in a variable
+      
+      - use this variable to manipulate the element
+      
+      - DOM elements have methods to perform special actions
+      
+  - to create new elements, we start with the `document` object, which
+    represents the root of the DOM
+        
+          :::javascript 
+          // create a new table element
+          var new_tab = document.createElement('table');
+
+  - newly created elements don't appear on the page until we've appended
+    them to some existing element.
+
+  - change some attributes of the element:
+  
+          :::javascript 
+          // set attributes
+          new_tab.className = 'table table-striped';
+          new_tab.id = 'table1';
+        
+  - add a `<thead>` child using a method of the table object
+
+          :::javascript 
+          // give the table a thead element
+          var thead = new_tab.createTHead();
+    
+  - using the `innerHMTL` attribute, we can write new contents for `<thead>`
+  
+          :::javascript   
+          // manually set the contents of thead
+          thead.innerHTML = '<tr><th>id</th><th>message</th></tr>';
+
+  - now add a `<tbody>` in the same way. This will contain the rows we generate
+
+          :::javascript
+          // create a tbody
+          var tbody = new_tab.createTBody();
+  
+  - using a `for` loop, we'll add a series of rows to the table:
+    
+          :::javascript
+          // a JavaScript `for` loop, iterating over values from 0 to 9
+          for (var i=0; i < 10; i ++) {
+   
+             // inside the loop, create a new row
+             var new_row = document.createElement('tr');
+   
+             // add a cell
+             var cell1 = document.createElement('td');
+             cell1.innerText = i;
+   
+             // add another cell
+             var cell2 = document.createElement('td');
+             cell2.innerText = 'This is row ' + i;
+   
+             // add our new cells to the row
+             new_row.appendChild(cell1);
+             new_row.appendChild(cell2);
+   
+             // add the row to the tbody
+             tbody.appendChild(new_row);
+          }
+
+      - create a new row and save to a local variable
+      
+      - create the cells individually
+      
+           - set their text content
+         
+           - append them to the new row
+         
+      - append each row in turn to `<tbody>`
+  
+  - append the finished table to the page
+  
+          :::javascript  
+          // add the table to an existing column in the document
+          var lcol = document.getElementById('col_left');
+          lcol.appendChild(new_tab);
+        

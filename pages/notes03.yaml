@@ -73,8 +73,8 @@ body:       |
         
      - run (on the VM) from the command line
      
-            :::bash
-            python my_script.py    
+          :::bash
+          python my_script.py    
      
   ### Exercises
   
