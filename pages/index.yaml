@@ -217,16 +217,21 @@ body:       |
             {% set assignment = day.get('assignment') %}
             {% if assignment %}
                {% set assignment_name = assignment.get('name') %}
-               {% set assignment_id = ''.join(assignment_name.lower().split()) %}
-               {% if assignment_id.startswith('homework') %}
+               {% set assignment_link = assignment.get('link') %}
+               {% if assignment_name.startswith('Homework') %}
                   {% set assignment_label = 'info' %}
-               {% elif assignment_id.startswith('project') %}
+               {% elif assignment_name.startswith('Project') %}
                   {% set assignment_label = 'success' %}
                {% else %}
                   {% set assignment_label = 'caution' %}
                {% end %}
+               {% if assignment_link is None %}
+                  {% set assignment_element = 'span' %}
+               {% else %}
+                  {% set assignment_element = 'a' %}
+               {% end %}
                <td>
-               <a href="{{ assignment_id }}.html" class="label label-{{ assignment_label }}">{{ assignment_name }}</a>
+               <{{ assignment_element }} href="{{ assignment_link }}" class="label label-{{ assignment_label }}">{{ assignment_name }}</{{ assignment_element }}>
                </td>
                <td>
                 {{ assignment['due'] }}

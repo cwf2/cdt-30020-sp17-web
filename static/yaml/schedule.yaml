@@ -4,6 +4,7 @@
         topics:         Introduction, Syllabus, Linux Shell
         assignment:     
              name: Homework 1
+             link: homework1.html
              due:  01/20
 
       - date:           01/19
@@ -18,6 +19,7 @@
         topics:         Scripts, Modules
         assignment:
              name: Homework 2
+             link: homework2.html
              due:  01/27
         
         items:
@@ -37,6 +39,7 @@
         topics:         OOP Concepts
         assignment:
              name: Homework 3
+             link: homework3.html
              due:  02/03
         
         items:
@@ -55,6 +58,7 @@
         topics:         Review
         assignment: 
              name: Project 1
+             link: project1.html
              due:  02/10
 
       - date:           02/14
@@ -79,7 +83,8 @@
            - name: Notes
              link: notes11.html
        assignment: 
-            name: Homework 4       
+            name: Homework 4
+            link: homework4.html
             due:  02/24
 
      - date:            02/23
@@ -96,7 +101,8 @@
            - name: Notes
              link: notes13.html
        assignment: 
-            name: Homework 5     
+            name: Homework 5
+            link: homework5.html
             due:  03/03
 
      - date:            03/02
@@ -109,7 +115,8 @@
      - date:            03/07
        topics:          Tornado templates
        assignment: 
-            name: Homework 6       
+            name: Homework 6
+            link: homework6.html   
             due:  03/10
 
 - name:     Project 2
@@ -128,6 +135,7 @@
        topics:          Review
        assignment: 
             name: Project 2
+            link: https://gitlab.com/nd-cdt-30020-sp17/project_2
             due:  03/24
        
      - date:            03/28
@@ -149,7 +157,8 @@
            link: notes21.html
        topics:          Bootstrap
        assignment: 
-            name: Homework 7       
+            name: Homework 7
+            link: homework7.html
             due:  04/07
    
      - date:            04/06
@@ -165,7 +174,8 @@
            link: notes23.html
        
        assignment: 
-            name: Homework 8       
+            name: Homework 8
+            link: homework8.html
             due:  04/14
 
 - name:     Project 3 
@@ -180,13 +190,19 @@
        topics:          Review
        assignment: 
             name: Project 3
+            link: https://gitlab.com/nd-cdt-30020-sp17/project_3
             due:  04/21
 
        
      - date:            04/25
        items:
           - name:       Checklist 3
+            link:       checklist3.html
+          - name:       "Practice code"
+            link:       test3_practice.html
           - name:       Test 3
+            link:       test3.html
+
 
 - name:     Final Project
   days:
@@ -194,12 +210,14 @@
        topics:          Planning, Design
        assignment: 
             name: Homework 9
+            link: homework9.html
             due:  04/28
 
      - date:            05/02
        topics:          Sprint
 
-     - date:            TBD
+     - date:            05/08
        items:
           - name:       Final Project Presentations
+            link:       final.html
 

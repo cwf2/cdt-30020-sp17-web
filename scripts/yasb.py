@@ -60,13 +60,13 @@ def render_page(page):
         'dateutil'  : dateutil,
         'itertools' : itertools,
     }
-    print(template.generate(**settings).decode('utf-8'))
+    return template.generate(**settings).decode('utf-8')
 
 # Main Execution ---------------------------------------------------------------
 
 if __name__ == '__main__':
     for path in sys.argv[1:]:
         page = load_page_from_yaml(path)
-        render_page(page)
+        print render_page(page)
 
 # vim: set sts=4 sw=4 ts=8 expandtab ft=python:

@@ -1,0 +1,527 @@
+title:      Checklist for Test 3
+icon:       fa-list-alt
+navigation:
+    - name: "Practice code"
+      link: test3_practice.html
+      icon: fa-code
+    - name: "Class Home"
+      link: "/~cforstal/cdt-30020-sp17"
+      icon: "fa-home"
+internal:
+external:
+body:       |
+
+  ## Topics covered
+
+  ### HTML and CSS
+  
+  <a href="notes21.html" class="label label-info">Class 4/4</a>
+  <a href="homework7.html" class="label label-info">Homework 7</a>
+  
+  - Understand the relationship between HTML and CSS:
+    
+    - HTML describes the **structure** and **content** of a Web document, but
+      not its appearance.
+      
+    - CSS defines how the elements laid out in HTML should **appear** when 
+      rendered by the browser.
+      
+    <div class="alert alert-info" markdown="1">
+    <h4><i class="fa fa-warning"></i> How HTML, and CSS refer to
+    elements</h4>
+
+    It's essential to know how the same element or set of elements is
+    referred to in HTML versus CSS (and JQuery -- see below).
+
+    **HTML** 
+
+     - uses `<>` to enclose the element
+ 
+     - uses `class = ""` to specify a **class**
+
+     - uses `id = ""` to specify an **id**
+
+    **CSS**
+
+     - doesn't use angle brackets: otherwise unadorned text specifies all
+       elements of a given type
+ 
+     - uses `.` prefix to specify a **class**
+
+     - uses `#` prefix to specify an **id**
+     
+     **Examples**
+     
+    <table class="table" markdown="1">
+    <thead><tr><th>HTML</th><th>CSS</th></thead>
+    <tbody>
+    <tr>
+    <td>a div element<div style="width:200px;">
+
+      :::html
+      <div>
+         <!-- content -->
+      </div>
+
+  </div></td>
+  <td>**all** div elements<div style="width:200px;">
+  
+      :::css
+      div {
+         /* style */
+      }
+  
+  </div></td>
+  </tr>
+  <tr>
+  <td>a div in **class** "foo"<div style="width:200px;">
+
+      :::html
+      <div class="foo">
+         <!-- content -->
+      </div>
+
+  </div></td>
+  <td>**all** divs in **class** "foo"<div style="width:200px;">
+  
+      :::css
+      div.foo {
+        /* style */
+      }
+      
+  </div></td>
+  </tr>
+  <tr>
+  <td></td>
+  <td>**all elements** (any type) in **class** "foo"<div style="width:200px;">
+  
+      :::css
+      .foo {
+        /* style */
+      }
+      
+  </div></td>
+  </tr>
+  <tr>
+  <td>the (single) div element with **id** "bar"<div style="width:200px;">
+
+      :::html
+      <div id="bar">
+         <!-- content -->
+      </div>
+
+  </div></td>
+  <td>the div with **id** "bar"<div style="width:200px;">
+
+      :::css
+      div#bar {
+        /* style */
+      }
+  
+  </div></td>
+  </tr>
+  <tr>
+  <td></td>
+  <td>**the single element** (any type) with **id** "bar"
+  <div style="width:200px;">
+
+      :::css
+      #bar {
+        /* style */
+      }
+  
+  </div></td>
+  </tr>
+  <tr><td colspan="2">
+  <i class="fa fa-hand-o-right"></i> Remember, **no two elements in any 
+  document can have the same `id` attribute.**
+  </td></tr>
+  <tr>
+  <td>Child elements are nested inside the parent tags:<div style="width:200px;">
+
+      :::html
+      <div class="foo">
+         <p>Hi, there!</p>
+      </div>
+
+  </div></td>
+  <td>Parents precede children, separated by a space:<div style="width:200px;">
+  
+      :::css
+      div.foo p {
+        /* style */
+      }
+      
+  </div></td>
+  </tr>
+  </tbody>
+  </table>
+     
+  </div>
+  
+  ### HTML elements to know
+  
+  <a href="notes21.html" class="label label-info">Class 4/4</a>
+  <a href="homework7.html" class="label label-info">Homework 7</a>
+  
+  For the written part of the test only, consider this list exhaustive. For the
+  practical part, you may have to work with others, especially if we've used
+  them before in projects/homework.
+  
+   - `<head>` the part of an HTML document where metadata is placed; not usually
+     rendered by the browser
+     
+       - <code>
+           &lt;link rel="stylesheet" href="<em>somefile.css</em>"&gt;
+         </code> - used to associate a CSS document containing style
+          specifications to the present HTML doc.
+         
+       - <code>
+           &lt;script src="<em>somefile.js</em>"&gt;
+         </code> - used to load JavaScript from a separate document
+  
+   - `<div>` a generic document division
+   
+   - `<h1>` - `<h5>` text headings
+   
+   - `<table>` - a table
+   
+      - `<thead>` - encloses one or more table rows designated as header material
+   
+      - `<tbody>` - encloses rows designated as the main part of the table
+   
+      - `<tr>` - a table row
+   
+      - `<th>` - a cell, designated as a row or column heading   
+   
+      - `<td>` - a normal cell
+      
+   - `<form>` - a form, containing user input fields
+  
+      - `<label>` - label for user input fields
+  
+      - `<input type="text">` - a text box
+      
+      - `<select>` a drop-down
+      
+          - `<option>` a choice in a drop-down
+  
+      <div></div>
+  
+      - `<input type="submit">` - a submit button
+      
+      <div></div>
+      
+   - <code>&lt;a href="<em>otherdoc.html</em>"&gt;</code> - a hypertext link
+  
+   - <code>&lt;img src="<em>somefile.jpg</em>"&gt;</code> - an image
+  
+  ### CSS to know
+  
+  <a href="notes21.html" class="label label-info">Class 4/4</a>
+  <a href="homework7.html" class="label label-info">Homework 7</a>
+    
+  For the written part of the test, these three examples are enough. In the 
+  practical part, you may need to work with others.
+
+   - `color` - sets text color 
+   
+      - can use named values, e.g.: `color: red;`
+     
+      - or use `#rrggbb` where `rr`, `gg`, `bb` are two-digit hex values for
+        red, green and blue intensities
+
+      - e.g.: `color: #f500f5;` <span style="color: #f500f5;">(magenta)</span>
+     
+   - `border` - sets the border around an element
+   
+      - takes three arguments: width, style, color
+     
+      - e.g.: `border: 1px solid red;` or `border: 2px dashed blue;`
+       
+   - `padding` - sets the space around an element's contents
+   
+      - values can be specified in pixels, e.g.: `padding: 15px;`
+     
+      - can specify only one side at a time, e.g.: `padding-left: 5px;`
+  
+   <div></div>
+     
+  ### Bootstrap
+  
+  <a href="notes21.html" class="label label-info">Class 4/4</a>
+  <a href="homework7.html" class="label label-info">Homework 7</a>
+  
+  - What is Bootstrap?
+  
+      - A framework of stylesheets and JavaScript that can be used to style your
+        web site.
+      
+      - Can be linked from a local copy or a remote content delivery network
+        (CDN)
+        
+      - Designed to be responsive, "mobile-first" (i.e. optimized for small
+        devices)
+  
+  - What is responsive design?
+  
+      - Layout adapts to the shape, orientation of the client window
+      
+  <div></div>
+  
+  - Bootstrap grid system <a class="label label-info" href="https://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp">w3schools</a>
+  
+      - `<div class="container">` encloses page content
+  
+      - page divided into rows (`<div class="row">`)
+     
+      - rows divided into columns (`<div class="col-*-*">`)
+         
+         - columns specify width in **units** with respect to an ideal screen
+           **size**
+        
+        - ideal screen is considered to be 12 units wide
+        
+        - if the screen is smaller than the size specified, columns may stack
+          vertically instead of appearing side-by-side
+           
+         - example: `<div class="col-sm-6">` is a column that takes up 6 of 12
+           units, or half the screen, optimized for a "small" screen (i.e. a
+           phone)
+           
+  - For the practical part, be prepared to copy-paste the necessary tags into
+    the `<head>` of a new HTML page to load Bootstrap from a CDN.
+    <a class="label label-info" 
+    href="https://www.bootstrapcdn.com">BootstrapCDN</a>
+          
+  ### JavaScript and JQuery
+  
+  <a href="notes22.html" class="label label-info">Class 4/6</a>
+  <a href="notes23.html" class="label label-info">Class 4/11</a>
+  <a href="homework8.html" class="label label-info">Homework 8</a>  
+  
+  - How is client-side programming different from server-side?
+  
+      - in server-side programming, the computation happens on the server,
+        before the HTML is sent to the client
+     
+      - in client-side programming, it happens in the client's browser, after
+        the content has already been sent by the server.
+  
+  - What is JavaScript?
+  
+      - a full-featured scripting language (like Python)
+      
+      - runs in your browser
+     
+      - can read and manipulate web document content on the fly
+     
+      - may be embedded in the HTML document or loaded from an external resource
+  
+  - What is JQuery?
+  
+      - a JavaScript library that defines useful helper functions for 
+        creating, selecting, and manipulating elements within the HTML document
+      
+      - JQuery statements tend to start with `$`
+      
+      - JQuery methods can be chained together using `.` notation
+    
+  <h5>JavaScript syntax to know:</h5>
+    
+   - ends statements with `;`
+      
+   - encloses blocks in `{}`
+    
+   - JavaScript `for` loops iterate over list indicies, not items as in Python:
+        
+          :::javascript
+          
+          var people = ['alice', 'bob', 'carol'];
+          
+          for (i in people) {
+             console.log(people[i]);  // i is the index, not the person
+          }
+
+   - declare variables with `var`
+   
+   - declare functions with `function` (not `def` as in Python)
+
+   - invoke a function by using parentheses after its name
+
+          :::javascript
+          
+          // declare
+          function sayHello(name) {
+             alert("Hello, " + name);
+          }
+          
+          // invoke
+          sayHello("Chris");
+          
+   - comments use
+      - `//` (single line) 
+      - and `/*`, `*/` (multi-line)
+  
+  <h5>JQuery to know</h5>
+  
+  <a href="notes23.html" class="label label-info">Class 4/11</a>
+  
+  - create new elements: `$("<div>")`
+  
+  - select existing elements:
+    
+      - `$("div")` - select all divs
+      
+      - `$(".foo")` - select everything in class "foo"
+      
+      - `$("#bar")` - select the element with id "bar"
+  
+  - set contents, attributes
+  
+      - `$("#bar").empty();`
+      
+      - `$("#my_table").html("<thead><tr><td>foo</td></tr></thead>");`
+      
+      - `$("a.foo").attr("href", "http://example.com");`
+  
+  - put some element inside another
+  
+          :::javascript
+        
+          $("div.main").append(
+            $("<h1>").text("Hello, world!")
+          );
+        
+  - using comma-separated lists and chaining things together:
+  
+          :::javascript
+  
+          $("table tbody").append(
+            $("<tr>").append(
+              $("<th>").text("Name"),
+              $("<td>").text("Alice")
+            ),
+
+            $("<tr>").append(
+              $("<th>").text("Number"),
+              $("<td>").text("123-456-7890")
+            )
+          );
+  
+  ### Asynchronous web programming
+  
+  <a href="notes23.html" class="label label-info">Class 4/11</a>
+  <a href="homework8.html" class="label label-info">Homework 8</a>  
+  <a href="https://gitlab.com/nd-cdt-30020-sp17/project_3" class="label label-info">Project 3</a>  
+  
+  What is asynchronous programming (or Ajax)?
+  
+  - the document is not built from top to bottom in order
+  
+  - instead, different elements are build piecemeal
+  
+  - data for each part is requested independently
+  
+  - callback functions deal with requested data as it arrives
+  
+  What is a callback function?
+  
+  - a function (named or anonymous) that specifies code to be executed _in the
+    future_, once some requested resource has been delivered
+
+  <h5>Using `$.get()`:</h5>
+  
+  - `$.get()` is used to request data from a server and do something with it
+  
+  - `$.getJSON()` is a handy form that assumes the data will be JSON
+    
+  - three arguments:
+    
+      - a resource to request
+      
+      - a set of query parameters (formatted like a dictionary)
+      
+      - a callback function to invoke when the resource is returned
+      
+          - the callback should take an argument
+         
+          - that argument will be filled by the data returned by the server
+      
+  - example (try pasting this into the console):
+  
+          :::javascript
+  
+          function displayData(json) {
+            $("#icon_bar").empty();
+            for (i in json.data) {
+              $("#icon_bar").append(
+                $("<span>").attr("class", "btn btn-default").append(
+                  json.data[i]['name'] + " ",
+                  json.data[i]['symbol']
+                )
+              );
+            }
+          }
+          
+          $.getJSON("static/misc/foods.json", {}, displayData);
+  <div id="icon_bar"></div>
+  
+  <h5>Custom event handlers</h5>
+  
+  Attach your own functions to **events** on the page:
+    
+    - `$(document).ready()`
+    
+        - this attaches a custom function to the document's "ready" event
+        
+        - note that `$(document)` doesn't use quotation marks
+        
+        - your code will be invoked once the page is finished loading
+        
+        - probably should be wrapped in an anonymous function, e.g.:  
+        
+              :::javascript
+
+              $(document).ready(function() {
+                // your code here
+              });
+    
+    - `.click()`
+    
+        - this is used to attach code to some element on the page, to be
+          executed when the user clicks on it
+          
+        - use a JQuery **selector** to identify the element(s) you want your
+          event handler attached to
+          
+        - e.g. 
+        
+              :::javascript
+
+              $("span").click(function() {
+                alert("You clicked on a span element!");
+              });
+  
+  
+  <h5><i class="fa fa-warning"></i> What happens when?</h5>
+  When you're using custom handlers to do something with Ajax, you'll probably
+  want two functions:
+    
+     1. one function that does something with the data -- this will be your
+        callback
+       
+     2. one function to request the data and queue up the callback -- this will
+        be your handler, or part of it
+       
+          :::javascript
+
+          function do_something(json) {
+            // use the data
+          }
+
+          $("#click_me").click(function() {
+            // when clicked, request data
+            $.get("/myresource", {}, do_something);
+          });
+       
