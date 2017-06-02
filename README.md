@@ -9,9 +9,9 @@ stole all of this.
 
 To view the archived version of the site:
 
-   virtualenv env
-   . env/bin/activate
-   pip install -r requirements.txt
-   python scripts/webserver.py
+    virtualenv env
+    . env/bin/activate
+    pip install -r requirements.txt
+    python scripts/webserver.py
 
-Then point your browser to http://localhost:8888.
+Then point your browser to `http://localhost:8888`.
