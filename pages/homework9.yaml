@@ -5,33 +5,33 @@ navigation:
         link: "final.html"
         icon: "fa-list-alt"
       - name: "Class Home"
-        link: "/~cforstal/cdt-30020-sp17"
+        link: index.html
         icon: "fa-home"
 internal:
 external:
 body:       |
 
   # Final project planning
-  
+
   Homework for today:
-    
+
     - Pick a group, and email me the names of the members
-    
+
     - Look at the <a href="final.html">Project Specs</a> and write down:
-      
+
         - a brief description of your app
-        
+
         - what functionality the core module will provide
-        
+
         - how you will use the database
-        
+
         - what the principal endpoints are for your server
-        
+
         - what input/output the interface will provide
 
         - how the functionality might be divided between server-side and
           client-side programming
-          
+
     - Sign up for a time to present:
       <a class="label label-info" href="https://doodle.com/poll/8a349ehsnthw45np">
       <i class="fa fa-calendar"></i> Doodle

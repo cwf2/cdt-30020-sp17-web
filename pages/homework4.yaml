@@ -2,14 +2,14 @@ title:      "Homework 4: Databases"
 icon:       fa-book
 navigation:
       - name: "Class Home"
-        link: "/~cforstal/cdt-30020-sp17"
+        link: index.html
         icon: "fa-home"
 internal:
 external:
 body:       |
 
   Homework for **Tuesday, February 21**  and **Thursday, February 23**
-  
+
   Last week we began discussing [Databases] and ways to organize large
   collections of related data. This week we continue, using Python to
   save and retrieve data from an SQLite database.
@@ -23,20 +23,20 @@ body:       |
       - [Inserting data](http://www.pythonschool.net/databases/inserting-data/)
       - [Updating and deleting data](http://www.pythonschool.net/databases/updating-and-deleting-data/)
       - [Searching and sorting data](http://www.pythonschool.net/databases/searching-and-sorting-data/)
-  
+
   2. [SQL Joins Explained](http://www.sql-join.com/)
-  
+
   ## Optional references
-  
+
   1. [w3schools SQLite](https://www.w3schools.com/sql/) -
      a nice list of useful SQL commands, somewhat easier to read than ...
-     
+
   2. The official [SQLite documentation](
      http://www.sqlite.org/keyword_index.html)
-     
+
   3. [Python SQLite documentation](
      https://docs.python.org/2/library/sqlite3.html)
-    
+
   ## Questions
 
   Once you have completed these readings, please answer the following
@@ -63,87 +63,85 @@ body:       |
       d. **DELETE**
 
   ## Activity
-  
+
   <h5>Data</h5>
-  
-  If you don't already have it, download the JSON data we used last week 
+
+  If you don't already have it, download the JSON data we used last week
      from the catalogue of the [Carnegie Museum of Art](http://cmoa.org):
-       
+
   <div>
-  <h4><a class="label label-info" 
-  href="/~cforstal/cdt-30020-sp17/static/misc/catalog.json">
+  <h4><a class="label label-info" href="static/misc/catalog.json">
   <i class="fa fa-file-code-o"></i> catalog.json</a></h4><br />
   </div>
-  
+
   <h5>Code</h5>
 
   Download the skeleton Python script:
-    
+
   <div>
-  <h4><a class="label label-info" 
-  href="/~cforstal/cdt-30020-sp17/static/misc/homework4.py">
+  <h4><a class="label label-info" href="static/misc/homework4.py">
   <i class="fa fa-file-code-o"></i> homework4.py</a></h4><br />
   </div>
-    
+
   Fill in the `# TODO` sections in the CMOAdb class as follows:
-    
+
     a. `__init__()`
-    
+
      - create a new database connection using the filename provided
-      
+
     b. `_create_tables()`
-    
+
      - use the database connection to create a new cursor object
-      
+
      - use the cursor to execute a statement dropping any preexisting
         table named 'Catalog'
-        
+
      - write a SQL statement to create the table Catalog. assign it to
         `create_sql`.  Columns in the table should include at least:
-          
+
         - id (make this the primary key)
-        
+
         - creator
-        
+
         - date
-        
+
         - title
-        
+
         - something interesting to search on, like nationality or medium
-          
+
       - use the cursor to execute your `create_sql` string
-      
+
     c. `_populate_tables()`
-    
+
      - create a cursor again
-      
+
      - write `row_sql`, an SQL statement that inserts a row into 'Catalog'
-      
+
        - use `?` or named parameters for the values
 
      - use the cursor to execute your `row_sql`, passing values for the
         parameters from the JSON data, so that the whole table is filled
-        
-    
+
+
     d. `get_artthings()`
-    
+
      - create another cursor
-      
+
      - write `sql_query` an SQL statement that selects rows based on the value
         of a given field.
-        
+
         - use `LIKE` so that we can do partial matching.
-        
+
         - you'll have to use `.format` to set the field name
-        
+
         - use `?` to set the value to search for
-        
+
       - use the cursor to execute your query and pass the value to search
-      
+
       - use the cursor again to fetch all the matching rows
-      
+
     e. **optional**
-    
+
      - try changing the way results are displayed to something you like
 
   ## Feedback

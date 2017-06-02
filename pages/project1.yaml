@@ -1,8 +1,8 @@
 title:      "Project 01: DrawIt"
 icon:       fa-code
-navigation: 
+navigation:
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
+      link: index.html
       icon: "fa-home"
 internal:
 external:
@@ -10,13 +10,13 @@ body:       |
 
   ## Overview
 
-  The goal of the first project is to refresh some basic logic and Python coding 
-  practices from last semester,  while also exploring the basics of 
+  The goal of the first project is to refresh some basic logic and Python coding
+  practices from last semester,  while also exploring the basics of
   object-oriented programming.  Therefore, this project requires you to complete
   a Python package, originally written by Peter Bui, called **DrawIt**, which is
   a simple drawing library for composing two-dimensional images in [PPM] format.
 
-  You should work in small groups. Three people is probably ideal, two or four 
+  You should work in small groups. Three people is probably ideal, two or four
   is ok too. One copy of the repository will be submitted for the group, but
   everyone should have contributed. There will be an in-class test covering
   concepts from the project and you are responsible for being able to explain
@@ -29,7 +29,7 @@ body:       |
 
   To keep track of your work and to facilitate collaboration, your group will
   use a dedicated repository on [GitLab](https://gitlab.com).
-  
+
     1. **one** member of your group should fork the **project1**
        repository [https://gitlab.com/nd-cdt-30020-sp17/project_1](
        https://gitlab.com/nd-cdt-30020-sp17/project_1)
@@ -37,43 +37,43 @@ body:       |
     2. That person should give the other members access by going to `Settings` >
        `Members` and then adding the other group members. Don't forget to add
        the instructor and TAs as well.
-       
+
     3. As with the 'Homework' repo, you can use the Settings menu again to
-       mark your project as private to protect your work, and click the 
+       mark your project as private to protect your work, and click the
        "remove fork relationship" button to prevent annoying merge request
        prompts.
 
     4. Now clone the project on your virtual machine.
-      
+
           :::text
           git clone https://gitlab.com/USER/project_1  # user is whoever forked the project, not necessarily you
-       
+
        <i class="fa fa-hand-o-right"></i> If you've never used git on the VM,
        you have to install it:
-       
+
           :::text
           sudo apt-get update
           sudo apt-get install -y git
-          
+
        <div class="alert alert-info">
           <h5><i class="fa fa-warning"></i> Update</h5>
           A couple of minor bugs have been pointed out and fixed. In order to
           benefit from these fixes, you should add the original repository as
           an "upstream" source:
-             
+
             :::text
             $ git remote add upstream https://gitlab.com/nd-cdt-30020-sp17/project_1
             $ git pull upstream master
-               
-         
+
+
        </div>
-      
-       <i class="fa fa-hand-o-right"></i> Each group member can clone the repo 
-       if you choose. Since we're new to git, you should avoid all working on 
-       the same files and trying to push conflicting changes back to GitLab. 
-       
-       <i class="fa fa-hand-o-right"></i> Instead, either have one person make 
-       the official commits (safest), or have everyone work on different parts 
+
+       <i class="fa fa-hand-o-right"></i> Each group member can clone the repo
+       if you choose. Since we're new to git, you should avoid all working on
+       the same files and trying to push conflicting changes back to GitLab.
+
+       <i class="fa fa-hand-o-right"></i> Instead, either have one person make
+       the official commits (safest), or have everyone work on different parts
        of the code (works just fine if you're careful).
 
        <i class="fa fa-life-ring"></i> If you just can't get git to work, let me
@@ -82,18 +82,18 @@ body:       |
     5. For full functionality, you should also install a couple of helper
        applications on your vagrant machine. One is ImageMagick, which will
        provide the ability to convert between PPM and PNG formats, the other
-       is Python's matplotlib library, which will allow you to do some of the 
+       is Python's matplotlib library, which will allow you to do some of the
        tricks you've already used in Jupyter on the vagrant machine as well.
-       
+
           :::text
           $ sudo apt-get install -y imagemagick
           $ sudo apt-get install -y python-matplotlib
-          
+
       <br />
-      
-       <h4><a class="label label-info" href="/~cforstal/cdt-30020-sp17/project1-cheatsheet.html">
+
+       <h4><a class="label label-info" href="project1-cheatsheet.html">
        <i class="fa fa-life-ring"></i> Quick Start Cheatsheet</a></h4>
- 
+
   ## Activity 2: DrawIt Package
 
   Once you have **forked** and **cloned** the [Projects] repository, you should
@@ -119,15 +119,15 @@ body:       |
           \_ draw_rectangle.py                Rectangle
           \_ img                              Some PPM images to play with
 
-  For this activity, you only need to modify the `color.py`, `image.py`, and 
+  For this activity, you only need to modify the `color.py`, `image.py`, and
   `point.py` modules, adding the code detailed below to get the project working.
   Then in Activity 3, you will write a couple new scripts of your own.
 
   ### Color Module
 
   The first module is `drawit.color` which defines the `drawit.color.Color`
-  class.  As we discussed [last semester](https://docs.google.com/presentation/d/1y-mKJLfX3iY6ZRbDh3O9nAzAmjAwkHwJagMutGGXWSk/edit#slide=id.p), 
-  colors typically store `red`, `green`, and `blue` (aka `rgb`) values which 
+  class.  As we discussed [last semester](https://docs.google.com/presentation/d/1y-mKJLfX3iY6ZRbDh3O9nAzAmjAwkHwJagMutGGXWSk/edit#slide=id.p),
+  colors typically store `red`, `green`, and `blue` (aka `rgb`) values which
   define the color value for a **pixel**.
 
   For this activity you are to complete the `drawit.color.Color` class by
@@ -135,34 +135,34 @@ body:       |
 
   1. `__init__(self, r=0, g=0, b=0)`:
 
-      > This is a **constructor method** which initializes the instance 
+      > This is a **constructor method** which initializes the instance
       variables of a new Color object (ie. r, g, b).
 
   2. `__eq__(self, other)`:
 
-      > This is a **protocol method** which is called when we evaluate an 
-      equality expression comparing two `drawit.color.Color` objects (ie. 
-      `color0 == color1`).  It should return `True` if the respective instance 
+      > This is a **protocol method** which is called when we evaluate an
+      equality expression comparing two `drawit.color.Color` objects (ie.
+      `color0 == color1`).  It should return `True` if the respective instance
       variables of the objects have equal values.
 
   3. `__ne__(self, other)`:
 
       > This is the complement to `__eq__()` above, called when we evaluate
       `color0 != color1`. It should return `True` when the two objects compared
-      *don't* have the same values for their instance variables. 
-      
-      <i class="fa fa-hand-o-right"></i> **Hint**: you can just use the `not` 
+      *don't* have the same values for their instance variables.
+
+      <i class="fa fa-hand-o-right"></i> **Hint**: you can just use the `not`
       operator on `__eq__()`.
 
   4. `__repr__(self)`:
 
       > This is a **protocol method** which is called when we want a string
-      representation of the object (e.g. `print color`).  It should return a 
+      representation of the object (e.g. `print color`).  It should return a
       string of the form `Color(r=?,g=?,b=?)` with the appropriate `r`, `g`, `b`
       instance variables.
-      
+
   5. `brightness(self)`:
-     
+
       > This is a method that returns the average brightness of the pixel
       (taking into account r, g, and b values) as single integer (0-255).
 
@@ -176,7 +176,7 @@ body:       |
           MAGENTA
           YELLOW
           BLACK
-       
+
    <br />
 
   ### Point Module
@@ -192,24 +192,24 @@ body:       |
 
       > This is a **constructor method** which should set the instance variables
       of newly created Point objects (ie. `x`, `y`).
-       
-      <i class="fa fa-hand-o-right"></i> **Hint**: This method should ensure 
+
+      <i class="fa fa-hand-o-right"></i> **Hint**: This method should ensure
       that the attributes are stored as type `int`.
 
   2. `__eq__(self, other)`:
 
-      > This is a **protocol method** which is called when we evaluate an 
-      equality expression comparing two `drawit.point.Point` objects (ie. 
+      > This is a **protocol method** which is called when we evaluate an
+      equality expression comparing two `drawit.point.Point` objects (ie.
       `point0 == point1`).  It should return `True` if the instance variables of
       each object are equal.
-      
+
   3. `__ne__(self, other)`:
-     
-      > This is a **protocol method** which is called when we evaluate an 
-      *inequality* expression comparing two `drawit.point.Point` objects 
+
+      > This is a **protocol method** which is called when we evaluate an
+      *inequality* expression comparing two `drawit.point.Point` objects
       (i.e. `point0 != point1`).  It should return the logical negation of
       `__eq__()`.
-      
+
   4. `__repr__(self)`:
 
       > This is a **protocol method** which is called when we want a string
@@ -243,14 +243,14 @@ body:       |
 
   2. `__eq__(self, other)`:
 
-      > This is a **protocol method** which is called when we evaluate an 
-      equality expression comparing two `drawit.image.Image` objects (ie. 
-      `image0 == image1`).  It should return `True` if the instance variables 
+      > This is a **protocol method** which is called when we evaluate an
+      equality expression comparing two `drawit.image.Image` objects (ie.
+      `image0 == image1`).  It should return `True` if the instance variables
       of each object have equal values.
-      
+
   3.  `__ne__(self, other)`:
-     
-      > This is a **protocol method** which is called when we evaluate an 
+
+      > This is a **protocol method** which is called when we evaluate an
       *inequality* expression comparing two `drawit.image.Image` objects (i.e.
       `image0 != image1`. It should return the logical negation of `__eq__()`.
 
@@ -281,7 +281,7 @@ body:       |
       > This is a **method** which clears the image by setting all pixels to
       default the `Color`.
 
-      <i class="fa fa-hand-o-right"></i> **Hint**: You can call this in the 
+      <i class="fa fa-hand-o-right"></i> **Hint**: You can call this in the
       **constructor** to reduce code duplication.
 
   8. `draw_line(self, point0, point1, color)`:
@@ -289,10 +289,10 @@ body:       |
       > This is a **method** which draw a line from `point0` to `point1` with
       the given `color`.
 
-      To draw a **line** using [polar coordinates], you can use the following 
+      To draw a **line** using [polar coordinates], you can use the following
       recipe:
 
-      1. Compute the angle defined by the two points using the `math.atan2()` 
+      1. Compute the angle defined by the two points using the `math.atan2()`
          function.
 
       2. Compute the distance between the two points.
@@ -307,7 +307,7 @@ body:       |
 
   9. `draw_rectangle(self, point0, point1, color)`:
 
-      > This is a **method** which draws a solid rectangle with one corner at 
+      > This is a **method** which draws a solid rectangle with one corner at
       `point0` and another at `point1`, filled in with the given `color`.
 
       To draw a **rectangle** one row at at time, you can use the following
@@ -333,10 +333,10 @@ body:       |
       To draw a **circle** by walking the rectangular area, you can use the
       following recipe:
 
-      1. Determine the column start and end based on the center point and the 
+      1. Determine the column start and end based on the center point and the
          radius.
 
-      2. Determine the row start and end based on the center point and the 
+      2. Determine the row start and end based on the center point and the
          radius.
 
       3. For each row from the start to the end determined in step 2:
@@ -346,28 +346,28 @@ body:       |
               - If point p is in circle then draw a pixel at point(column, row)
 
       <br/>
-      
+
   11. `gradient(self, center, color0, color1)`:
-     
-       > This is a **method** which paints the entire image with a radial color 
-       gradient. Pixel color should gradually transition from `color0` to 
+
+       > This is a **method** which paints the entire image with a radial color
+       gradient. Pixel color should gradually transition from `color0` to
        `color1` based on distance from a point `center`.
-        
+
        To calculate a given pixels' `r`, `g`, and `b` values based on its
        distance from the center, use the following recipe:
-          
+
        1. Figure out the maximum distance any pixel in the image can be from
           center. Hint: it will be one of the corners.
-          
+
        2. For a given pixel, each component will be a weighted average of color0
           and color1 based on the proportion of the max distance covered:
 
                new_color = color_0(1 - progress) + color_1(progress)
-             
-          where 
-          
+
+          where
+
                progress = this_distance / max_distance
-          
+
           <br />
 
   ### Testing
@@ -411,27 +411,27 @@ body:       |
 
       $ ./draw_point.py > draw_point.ppm
 
-  ![draw_point](/~cforstal/cdt-30020-sp17/static/img/draw_point.png)
+  ![draw_point](static/img/draw_point.png)
 
 
       $ ./draw_line.py > draw_line.ppm
 
-  ![draw_line](/~cforstal/cdt-30020-sp17/static/img/draw_line.png)
+  ![draw_line](static/img/draw_line.png)
 
       $ ./draw_rectangle.py > draw_rectangle.ppm
 
-  ![draw_rectangle](/~cforstal/cdt-30020-sp17/static/img/draw_rectangle.png)
+  ![draw_rectangle](static/img/draw_rectangle.png)
 
       $ ./draw_circle.py > draw_circle.ppm
 
-  ![draw_circle](/~cforstal/cdt-30020-sp17/static/img/draw_circle.png)
+  ![draw_circle](static/img/draw_circle.png)
 
   One special script, demonstrates how you can put all of these things together
   to make a pretty cool image:
 
       $ ./draw_freight_train.py > draw_freight_train.ppm
 
-  ![draw_freight_train](/~cforstal/cdt-30020-sp17/static/img/draw_freight_train.png)
+  ![draw_freight_train](static/img/draw_freight_train.png)
 
   For your convenience, you can run all of these scripts at once by doing:
 
@@ -440,7 +440,7 @@ body:       |
   This will generate [PPM] files that you can view.  If you prefer [PNG] files,
   you will first have to install a conversion tool on your vagrant machine.
   (See Activity 1, Step 5, above)
-  
+
   Now you can do the following:
 
       $ make pngs
@@ -449,10 +449,10 @@ body:       |
 
       $ make draw_line.ppm.  # or draw_line.png
 
-  <i class="fa fa-hand-o-right"></i> **Note**: The `make` commands will 
-  automatically run any script that begins with `draw_`, so if you use that 
+  <i class="fa fa-hand-o-right"></i> **Note**: The `make` commands will
+  automatically run any script that begins with `draw_`, so if you use that
   prefix for your scripts, then you can also use the `make` command.
-  
+
   <i class="fa fa-warning"></i> **However**: If the destination image exists,
   `make` won't overwrite it. Delete the old version manually, or do `make clean`
   to get rid of everything and start over.
@@ -473,11 +473,11 @@ body:       |
   2. Draws a smiley face.
 
   3. Loads an image from the `img/` folder and "decorates" it with your own art.
-  
+
   4. Loads an image and converts it to greyscale
-  
-      <i class="fa fa-hand-o-right"></i> **Hint**: use the 
-      `color.Color.brightness()` method. 
+
+      <i class="fa fa-hand-o-right"></i> **Hint**: use the
+      `color.Color.brightness()` method.
 
   5. Draws something super awesome and cool!
 
@@ -487,18 +487,18 @@ body:       |
 
    - For steps 3 and 4 (and possibly 5), you can use `ppm.PPM.read(path)` to load
      a PPM file from the `img/` folder.
-  
-   - If you want to load PNG images (e.g. from the Internet), you have two 
+
+   - If you want to load PNG images (e.g. from the Internet), you have two
      choices:
-       1.  At the command line (if you installed ImageMagic above): 
-        
+       1.  At the command line (if you installed ImageMagic above):
+
               $ convert some_file.png new_name.ppm
-            
+
        2. In your Python script:
 
               :::python
               from drawit import MPImage
-            
+
               MPImage.write_png(image, path)
 
       <br />

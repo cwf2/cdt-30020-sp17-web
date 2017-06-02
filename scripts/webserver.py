@@ -16,14 +16,12 @@ class MainHandler(tornado.web.RequestHandler):
 
 if __name__ == '__main__':
     app = tornado.web.Application([
-        (r"/~cforstal/cdt-30020-sp17\/?$", MainHandler),
+        (r"^/$", MainHandler),
         (r"/([^\/]+)\.html", PagesHandler),
-        (r"/~cforstal/cdt-30020-sp17/(.+)\.html", PagesHandler),
-        (r"/~cforstal/cdt-30020-sp17/static/(.*)", tornado.web.StaticFileHandler, {'path':'static'}),
-    ], 
+        (r"/static/(.*)", tornado.web.StaticFileHandler, {'path':'static'}),
+    ],
     debug=True)
 
     # run the app
     app.listen(8888)
     tornado.ioloop.IOLoop.current().start()
-    

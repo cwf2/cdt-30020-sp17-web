@@ -2,47 +2,47 @@ title:      "Homework 7: HTML, CSS and Bootstrap"
 icon:       fa-book
 navigation:
       - name: "Class Home"
-        link: "/~cforstal/cdt-30020-sp17"
+        link: index.html
         icon: "fa-home"
 internal:
 external:
 body:       |
 
   Homework for **Tuesday, Aril 4**  and **Thursday, April 6**
-  
+
   ## Readings
 
   1. [w3schools Bootstrap Tutorial](https://www.w3schools.com/bootstrap/default.asp)
-  
+
       - [Get Started](https://www.w3schools.com/bootstrap/bootstrap_get_started.asp)
-      
+
       - [Grid Basic](https://www.w3schools.com/bootstrap/bootstrap_grid_basic.asp)
-      
+
       - [Tables](https://www.w3schools.com/bootstrap/bootstrap_tables.asp)
-      
+
       - [Images](https://www.w3schools.com/bootstrap/bootstrap_images.asp)
-      
+
       - [Navbar](https://www.w3schools.com/bootstrap/bootstrap_navbar.asp)
-      
+
       - [Forms](https://www.w3schools.com/bootstrap/bootstrap_forms.asp)
-      
+
       - [Inputs](https://www.w3schools.com/bootstrap/bootstrap_forms_inputs.asp)
-      
+
   ## Questions
-  
+
   1.  What is the main division of labor between HTML and CSS in building a web
       page?
-          
+
   2.  How do you represent each of the following in HTML and in CSS?
-  
+
         i) a `div` element
-        
+
         ii) a `div` element in the `row` class
-        
+
         iii) a `div` element with id `header`
-  
+
   3.  What does "responsive design" mean in the context of web development?
-  
+
 
   ## Feedback
 
@@ -51,6 +51,6 @@ body:       |
 
   ## Submission
 
-  Answer the questions above in the README.md file of your **homework7** 
+  Answer the questions above in the README.md file of your **homework7**
   directory. Push your modified file to GitLab or work directly through the
   GitLab web interface.

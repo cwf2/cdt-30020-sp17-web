@@ -2,89 +2,89 @@ title:      Typical Git Workflow
 icon:       fa-life-ring
 navigation:
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
+      link: index.html
       icon: "fa-home"
 internal:
 external:
 body:       |
    ### Working with Git
-   
+
    <h4> Git on the Vagrant VM ... </h4>
-  
-   <i class="fa fa-hand-o-right"></i> 
+
+   <i class="fa fa-hand-o-right"></i>
    We are going to install git **on our Vagrant virtual machine**. That way
-   the same instructions will work for everyone.  
-   
+   the same instructions will work for everyone.
+
    <h5>Installing git</h5>
 
        :::bash
        # install
        $ sudo apt-get update
        $ sudo apt-get install -y git
-   
+
        # configure your identity
        #   - This can be anything you want, but it makes sense to
        #     use the name and email that you signed up for GitLab with
        $ git config --global user.name "My Name"     # keep the quotes, change the name inside
        $ git config --global user.email myid@nd.edu  # change the address
-      
+
    <h5>Clone the repository</h5>
-   
+
        :::bash
        $ cd /vagrant
        $ git clone https://gitlab.com/USERID/homework.git # where USERID is you
 
-   
+
       - You'll be prompted to enter your GitLab username and password
-     
+
       - Don't freak out if the password prompt doesn't show that your typing --
         this is a security feature.
 
       Now you should have a new folder, `/vagrant/homework`, that looks just like
       the repository on GitLab.
-     
+
    <h5>Check that it worked</h5>
-  
+
        :::bash
        $ git remote -v
        origin	https://gitlab.com/USERID/homework.git (fetch).   # USERID is
        origin	https://gitlab.com/USERID/homework.git (push)     # still you
-  
-   <i class="fa fa-history"></i> You can browse the long and illustrious history 
-   of the **Homework** repo by typing `git log`. At the top will be changes 
-   you've made when you submitted your homework. Below that, changes I made when 
+
+   <i class="fa fa-history"></i> You can browse the long and illustrious history
+   of the **Homework** repo by typing `git log`. At the top will be changes
+   you've made when you submitted your homework. Below that, changes I made when
    I set up our GitLab group. Back at the dawn of time, you can see where Dr. Bui
    originally created it for an earlier version of the course. Type `q` to quit
    the log.
-   
+
    <h5>Make some changes</h5>
 
    To work on this week's assignment, go to, e.g, `/vagrant/homework/homework02/`.
-   
+
      - You should be able to use your usual text editor to navigate to this
        folder and edit `README.md`.
-      
+
      - If you've been working on `counter1.py` etc. in another directory, you can
-       just copy them into `homework2/`. 
+       just copy them into `homework2/`.
 
          - for example, assuming I'm already in `/vagrant/`, and my scripts were
            in a folder called `practice/`:
-   
+
                :::bash
                cp practice/counter*.py homework/homework2/
                cp practice/letters.py homework/homework2/
 
           - note that the `*` lets me copy all the 'counter' scripts at once
-           
-     - If you're just starting now, you can create the new Python files in 
+
+     - If you're just starting now, you can create the new Python files in
        `homework2/` using your text editor.
-      
-   
+
+
     <h5>Review your changes</h5>
-   
+
     Use the `git status` command to see how the current state of the repository
     differs from the last **commit**:
-   
+
        :::text
        $ git status
        On branch master
@@ -106,24 +106,24 @@ body:       |
                letters.pyc
 
        no changes added to commit (use "git add" and/or "git commit -a")
-   
-   
+
+
     This tells us that one file has been modified, and a bunch have been added.
     As of right now, no changes are **staged**, that is, prepped for the next
     **commit**.
-   
+
     <h5>Stage the changes you want to commit</h5>
-   
-    Because we do want to commit the changes to README and the new Python 
+
+    Because we do want to commit the changes to README and the new Python
     scripts, we can **stage** them with `git add`.
-   
+
        :::text
        $ git add README.md
        $ git add counter*.py
        $ git add letters.py
 
     Now check the status again:
-      
+
        :::text
        $ git status
        On branch master
@@ -142,94 +142,94 @@ body:       |
          (use "git add <file>..." to include in what will be committed)
 
        	letters.pyc
-         
+
    You can see that the files we want to commit are listed under "Changes to be
    committed" now instead of "Changes not staged" or "Untracked files"
-   
-   <i class="fa fa-hand-o-right"></i> Note that `letters.pyc` is still not 
+
+   <i class="fa fa-hand-o-right"></i> Note that `letters.pyc` is still not
    staged. We don't care about this file, and don't want to save it in the
    snapshot created by **commit**. That's one reason why the staging area is
    useful -- it allows us to get things just as we want them before the we
    **commit**.
-  
+
    <div class="alert alert-info" markdown="1">
-  
+
    <h5><i class="fa fa-life-ring"></i> Unstaging</h5>
-  
-   If you see something in the list of changes to be committed that shouldn't be 
+
+   If you see something in the list of changes to be committed that shouldn't be
    there (maybe `letters.pyc` got `add`ed by mistake), you can remove files from
    the staging area like this:
    <br /><br />
-   
+
        :::text
        git reset HEAD -- letters.pyc
-   
-   <i class="fa fa-hand-o-right"></i> <b>Note</b>: the <code>--</code> is necessary. Add the 
+
+   <i class="fa fa-hand-o-right"></i> <b>Note</b>: the <code>--</code> is necessary. Add the
    filename(s) you want to unstage after this.
-      
+
    </div>
-  
+
    <h5>Commit changes</h5>
-  
+
    When the list of files to be committed looks good, you can commit the changes
    by doing `git commit`. You must use the `-m` flag to specify a commit message
    for the log (in quotes). The convention is to make it present tense, like:
- 
+
        git commit -m "Add Python scripts to homework2"
-  
+
    The changes are saved in your local repo! **But they're not on GitLab yet**...
-  
+
    <h5>Push to GitLab</h5>
-  
-   To send your changes "upstream" to GitLab, use `git push origin master`. 
+
+   To send your changes "upstream" to GitLab, use `git push origin master`.
    That means, push the latest commits to the "origin" repo (the one on GitLab)
    on branch "master" (ideally, you only have one branch).
-   
-   
+
+
    <div class="alert alert-success" markdown="1">
    <h3>Project Group Work</h3>
-   
-   Working with a team makes your Git workflow a little more complicated. 
-   
+
+   Working with a team makes your Git workflow a little more complicated.
+
     - There is the potential to cause some headaches when more than one person
       tries to modify the same part of the same file.
-   
+
     - At the same time, Git is really designed to facilitate this kind of work.
       If you can get the hang of it, it can be very useful.
-      
-      
+
+
    <h5>Clone the team's repository</h5>
-   
+
    This step is only slightly different from the **Homework** use case.
    For the group projects, only one team member's respository will be graded.
    That **team leader** will fork the project to create their own repo
    on GitLab.
-   
+
     - Nobody else in the team needs a GitLab fork of the project.
-    
+
     - You *can* maintain a local working copy of the *team leader*'s repo.
-    
+
     - If you push changes, you'll be pushing them back to the *team
       leader*'s GitLab account.
-      
+
     - For this to work, make sure the team leader adds everyone else as members
       on the project through the GitLab web page.
-      
+
    **On your vagrant machine:**
-   
+
        :::bash
        $ cd /vagrant
        $ git clone https://gitlab.com/LEADERID/project_1.git
 
     <i class="fa fa-hand-o-right"></i> Here, `LEADERID` is the GitLab id of
     the team leader.
-    
+
     <h5>Check for changes</h5>
-    
+
     Each time you start work, it makes sense to check for:
-    
+
       1. Your own, uncommitted changes
-      
+
       2. Other team members' changes committed in the meanwhile
 
        :::text
@@ -238,25 +238,25 @@ body:       |
        (use "git pull" to update your local branch)
 
        nothing to commit, working directory clean
-   
+
     <h5>Make some changes</h5>
- 
+
     Let's say we're working on Project 1's `point.py` file. We add the following
     text:
-       
+
     **project_1/drawit/point.py**
-    
+
        :::python
        def __init__(self, x=0, y=0):
            ''' Initialize Point object's instance variables '''
            self.x = x
-           self.y = y   
-   
+           self.y = y
+
    <h5>Review your changes</h5>
-   
+
        :::text
        $ git status
        On branch master
        Your branch is up-to-date with 'origin/master'.
-   
+
    </div>

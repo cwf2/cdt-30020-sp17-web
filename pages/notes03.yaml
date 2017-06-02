@@ -2,102 +2,102 @@ title:      Notes for January 24
 icon:       fa-sticky-note
 navigation:
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
+      link: "index.html"
       icon: "fa-home"
 internal:
 external:
 body:       |
   ### GitLab checkup
-  
+
    - Some people are running into a few snags with GitLab. In particular, if you
    have not yet made your personal Homework repository *private*, please check
    [these instructions](sidebar-gitlab-setup.html#visibility).
 
    - We will talk a little more about how to upload your homework on Thursday.
-  
-  
+
+
   ### Vagrant checkup
-  
+
    - Many can now `vagrant ssh` into a virtual machine running Ubuntu
-   
+
    - On Thursday we will go over a suggested workflow for organizing
-   
+
       - what happens on the virtual machine
       - what happens on your own computer
       - how they interact
-  
+
    - It seems likely that many Windows users will connect to the virtual
      machine using PuTTY. The steps listed in [this guide](
      https://www.sitepoint.com/getting-started-vagrant-windows/) worked for
      almost everyone who had difficulties with `vagrant ssh`.
-   
-   - <i class="fa fa-warning"></i> For a few Windows people, `vagrant up` is 
+
+   - <i class="fa fa-warning"></i> For a few Windows people, `vagrant up` is
      timing out or seems to hang indefinitely. In at least some of these cases,
      the solution was to enable the processor's virtualization capability
-     through the BIOS settings. If you're having a problem like this, let me 
+     through the BIOS settings. If you're having a problem like this, let me
      know.
-  
-  
+
+
   ### Python workflow
-  
+
   #### Fooling around (I mean, "development")
-  
+
      - Jupyter notebook
-     
+
      - interactive mode
-     
+
         - just type `python` at the shell
         - you can enter one line of code at a time
         - the result of each executed statement (if any) will print to the terminal
-     
+
      - separate 'scratch' scripts
-     
+
   #### Scripts
-  
+
      - should be on VM (eventually)
-     
+
      - can be edited there
-     
+
         - [nano](https://www.nano-editor.org/dist/v2.7/nano.html)
         - [vim](http://vimdoc.sourceforge.net/htmldoc/usr_02.html)
         - [emacs](https://www.gnu.org/software/emacs/tour/)
         - ...
-     
+
      - can be shared, and edited, on your own computer
-     
+
         - [Notepad++](https://notepad-plus-plus.org)
         - [Atom](https://atom.io)
         - [Brackets](http://brackets.io)
         - [Sublime Text](http://www.sublimetext.com)
         - ...
-        
+
      - run (on the VM) from the command line
-     
+
           :::bash
-          python my_script.py    
-     
+          python my_script.py
+
   ### Exercises
-  
+
   #### A few experiments with words
-  
+
     1. Create a function, *is_anagram()*, that takes two words as arguments
        and determines whether the second is an anagram of the first.
-       
+
           :::python
-          
+
           def is_anagram(word1, word2):
               '''Returns true if word2 is an anagram of word1.'''
               # TODO
-             
+
        **Bonus:**  check a given word for all possible anagrams using
        a [dictionary](static/text/aspell_en.txt).
-       
+
        <h5><i class="fa fa-hand-o-right"></i> First answer </h5>
-       
+
           :::python
           def is_anagram(word1, word2):
               '''Returns true if word2 is an anagram of word1.'''
-    
+
               d1={}
               d2={}
               for letter in word1:
@@ -108,37 +108,37 @@ body:       |
                   return True
               else:
                   return False
-       
+
        Points to review:
-          
+
        - dictionaries
        - accessing their values with [] and .get()
-      
+
        <h5><i class="fa fa-hand-o-right"></i> Second answer </h5>
-          
+
           :::python
           def is_anagram2(word1, word2):
               '''Returns true if word2 is an anagram of word1.'''
-          
+
               return sorted(word1) == sorted(word2)
-          
-       Points to review: 
+
+       Points to review:
 
          - strings are treated as lists
-         
+
             - so what does `sorted` do to the words?
-         
+
          - since the expression `sorted(word1) == sorted(word2)` evaluates to
            the **True** or **False** we want out of our function anyway, we
            were able to remove an `if` statement and just return the result of
            the expression directly.
 
-       
+
     2. Create a function, *is_palindrome()*, that takes one word as an argument
        and determines whether it is a palindrome.
-      
+
           :::python
-          
+
           def is_palindrome(word):
               '''Returns true if word is a palindrome.'''
               # TODO
@@ -147,18 +147,18 @@ body:       |
        static/text/aspell_en.txt).
 
        <h5><i class="fa fa-hand-o-right"></i> First answer </h5>
-       
+
           :::python
           def is_palindrome(word):
               '''Returns true if word is a palindrome.'''
-              
+
               forwards = word
               reverse  = word[::-1]
-    
+
               return forwards == reverse
 
        Points to review:
-          
+
        - Using `[::]` to "slice" the a string (i.e. a list)
        - The third value is the step: set to -1 to go backwards
        - There's a short discussion of simple list slicing, including the
@@ -170,118 +170,118 @@ body:       |
       Since the really *good* palindromes are full sentences, we decided to
       strip whitespace and punctuation, and to lowercase everything. That way
       non-letter characters wouldn't count against us.
-      
+
           :::python
           import string
-          
+
           def is_palindrome(word):
               '''Returns true if word is a palindrome.'''
-          
-              base_string = word.translate(None, 
+
+              base_string = word.translate(None,
                   string.punctuation + string.whitespace).lower()
-          
+
               forwards = base_string
               reverse  = base_string[::-1]
 
               return forwards == reverse
 
        Points to review:
-       
+
        - we used str.[translate](
          https://docs.python.org/2/library/stdtypes.html?highlight=str.translate#str.translate
          )()
          for its side benefit (when the first argument is **None**) of removing
          characters in a given set from our string.
-      
+
        - string.whitespace and string.punctuation are just what they sound like;
          we concatenated them
 
        Now we can do:
-          
+
           :::python
           >>> is_palindrome("kayak")
           True
           >>> is_palindrome("canoe")
-      
+
        And also:
-       
+
           :::python
           >>> is_palindrome("Madam, I'm Adam")
           True
           >>> is_palindrome("Hey, Bro, I'm Cain")
           False
-          
-           
-    3. Create a function, *char_count()*, that takes a phrase as input and 
-       counts how many times each letter occurs. Return the tallies as a 
+
+
+    3. Create a function, *char_count()*, that takes a phrase as input and
+       counts how many times each letter occurs. Return the tallies as a
        dictionary.
-      
+
           :::python
-           
+
           def char_count(phrase):
               '''Returns a dictionary containing character counts for phrase.'''
                #TODO
-       
+
        **Bonus:** Use the result to figure out the most frequent 10 letters in
        [Pride and Prejudice](static/text/austen.pride_and_prejudice.txt).
 
        **Double bonus:** What about the most common two-character strings?
-       
+
        <h5><i class="fa fa-hand-o-right"></i> Answers ...? </h5>
-    
+
        We'll take up this one, as well as some of the bonus questions if we have
        time, in class on [Thursday](agenda04.html).
-       
+
   ### Modules: Reusing our code
-  
-  Let's put the *is_palindrome()* function in a **script**, that is, in a 
+
+  Let's put the *is_palindrome()* function in a **script**, that is, in a
   dedicated file that we can run later from the commandline. In class, we
   just copy-pasted the function out of a Jupyter notebook into a new file
   in our text editor. We called the file something like `palindrome.py` and
   added a couple of lines to take user input and give an answer.
-  
+
   <h5>palindrome.py</h5>
-     
+
       :::python
       def is_palindrome(word):
           '''Returns true if word is a palindrome.'''
-         
+
           forwards = word
           reverse  = word[::-1]
 
           return forwards == reverse
-     
+
       word = raw_input("Enter any word: ")
-       
+
       if is_palindrome(word):
          print "Hooray, {} is a palindrome".format(word)
       else:
          print "Sorry, {} is not a palindrome".format(word)
-          
+
   Then we ran it from the command line using `python palindrome.py`. It looked
   like this (**$** stands for the shell prompt here):
-  
+
       :::bash
       $ python palindrome.py
       Enter any word: kayak
       Hooray, kayak is a palindrome
-  
+
   What if we want access to the same function somewhere else? We can `import`
   our script, either in another script or in interactive mode, and gain access
   to the functions it defines.
-  
+
   We started the python interpreter in interactive mode:
 
       :::bash
       $ python
-      Python 2.7.6 (default, Oct 26 2016, 20:30:19) 
+      Python 2.7.6 (default, Oct 26 2016, 20:30:19)
       [GCC 4.8.4] on linux2
       Type "help", "copyright", "credits" or "license" for more information.
       >>>
 
   Then we imported our script as a **module** (>>> stands for the Python
   interactive mode prompt):
-   
+
       :::python
       >>> import palindrome
       Enter any word: kayak
@@ -290,35 +290,35 @@ body:       |
       True
       >>> palindrome.is_palindrome("canoe")
       False
-      
+
   So now we have access to our function *is_palindrome()*, but it's name has
-  changed to *palindrome.is_palindrome()*. 
-  
+  changed to *palindrome.is_palindrome()*.
+
   It's kind of annoying that it executes those statements asking for input
   every time we import the module. When you `import`, every line of code
   will be run. But we can check to see whether the script is being run as a
   script itself, or whether it's being `import`ed, by looking at the special
   variable `__name__`.
-  
+
   <h5>Modified palindrome.py</h5>
-     
+
       :::python
       # Import statements
       import string
-       
+
       # Function definitions
       def is_palindrome(word):
           '''Returns true if word is a palindrome.'''
-         
+
           forwards = word
           reverse  = word[::-1]
 
           return forwards == reverse
-     
+
       # Code to execute if run as a script:
       if __name__ == "__main__":
           word = raw_input("Enter any word: ")
-       
+
           if is_palindrome(word):
               print "Hooray, {} is a palindrome".format(word)
           else:
@@ -328,37 +328,33 @@ body:       |
   script directly. When we use `import` to load the same code, this variable
   has the name of the module instead, and so the stuff in the `if` block at
   the end is not executed.
-  
+
   We checked the value of `__name__` using a one-off test script:
-     
+
   <h5>foo.py</h5>
-  
+
       :::python
       '''
-      Check the value of __name__ when we run this as a script, 
+      Check the value of __name__ when we run this as a script,
       versus import it as a module
       '''
-      
+
       def my_func():
          '''Do something'''
-         
+
          print "This is my_func()!"
-      
-      
+
+
       print "Foo.py thinks the value of __name__ is '{}'".format(__name__)
 
   From the command line:
-     
+
       :::bash
       $ python foo.py
       Foo.py thinks the value of __name__ is '__main__'
-      
+
   Using `import`:
-     
+
       :::python
       >>> import foo
       Foo.py thinks the value of __name__ is 'foo'
-
-      
-      
-      

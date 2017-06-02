@@ -22,13 +22,13 @@ body:       |
 
    <div class="row">
    <div class="col-md-12">
-   
+
    <p>
    <strong>CSE 10102</strong>/<strong>CDT 30020</strong> is the second course
    of the <a href="http://cdt.nd.edu">Computing & Digital Technologies</a>'s
    core programming sequence.  Building on your prior experience with the
-   <a href="www.python.org">Python</a> programming language, you will explore
-   advanced programming paradigms such as regular expressions and
+   <a href="http://www.python.org">Python</a> programming language, you will
+   explore advanced programming paradigms such as regular expressions and
    object-oriented programming, familiarize yourself with elements of software
    engineering such as the command line interface, version control, development
    environments, and testing, and utilize web technologies such as SQL
@@ -37,15 +37,15 @@ body:       |
    team projects throughout the semester that apply your knowledge to problems
    related to the different CDT areas of focus.
    </p>
-   
+
    </div>
    </div>
-      
+
    <div class="row">
    <div class="col-md-12">
-   
-   <img src="{{ page.prefix }}static/img/python-logo.png" class="pull-right" style="margin-left: 10px;"/>
-   
+
+   <img src="static/img/python-logo.png" class="pull-right" style="margin-left: 10px;"/>
+
    <p>
    Upon successful completion of this course, you will be able to:
    </p>
@@ -78,13 +78,13 @@ body:       |
       </li>
    </div>
    </div>
-   
+
    <div class="row">
    <div class="page-header">
       <h2 id="logistics"><i class="fa fa-cogs"></i> Logistics</h2>
    </div>
    </div>
-   
+
    <div class="row">
    <div class="col-sm-3">
       <h3>Class Information</h3>
@@ -102,7 +102,7 @@ body:       |
          <dd><a href="https://gitlab.com/groups/nd-cdt-30020-sp17">nd-cdt-30020-sp17</a></dd>
       </dl>
    </div><!-- col 1 -->
-   
+
    <div class="col-sm-3">
    <h3>Instructor</h3>
    <dl>
@@ -124,7 +124,7 @@ body:       |
       </dd>
    </dl>
    </div><!-- col 2 -->
-   
+
    <div class="col-sm-6">
       <h3>Teaching Assistants</h3>
         <div class="row">
@@ -143,7 +143,7 @@ body:       |
         </div>
    </div><!-- col 3 -->
    </div><!-- outer row -->
-   
+
    <div class="row">
    <div class="col-md-10 col-md-offset-1">
       <div class="alert alert-info">
@@ -164,13 +164,13 @@ body:       |
       </div>
    </div>
    </div>
-   
+
    <div class="row">
    <div class="page-header">
       <h2 id="schedule"><i class="fa fa-calendar"></i> Schedule</h2>
    </div>
-   </div>   
-   
+   </div>
+
    <table class="table condensed table-striped schedule">
       <thead>
          <tr>
@@ -245,13 +245,13 @@ body:       |
       {% end %}
       </tbody>
    </table>
-   
+
    <div class="row">
    <div class="page-header">
       <h2 id="Requirements"><i class="fa fa-balance-scale"></i> Requirements</h2>
    </div>
-   </div>   
-   
+   </div>
+
    <div class="row">
       <div class="col-md-6">
          <h3>Coursework</h3>
@@ -342,7 +342,7 @@ body:       |
          </table>
       </div> <!-- closes col 2 -->
    </div> <!-- closes row -->
-   
+
    <div class="row">
    <div class="col-md-10 col-md-offset-1">
       <div class="alert alert-info">
@@ -371,20 +371,20 @@ body:       |
       </div>
    </div>
    </div>
-   
+
    <div class="row">
    <div class="col-md-12">
       <h3>Policies</h3>
-      
+
       <div class="row">
       <div class="col-md-3">
          <h4>Participation</h4>
          <p>
          You are expected to attend and contribute regularly in class. This
-         means answering questions in class, participating in discussions, 
+         means answering questions in class, participating in discussions,
          and helping other students. Foreseeable absences should be discussed
          with the instructor ahead of time.
-         </p>      
+         </p>
          <p>
          You are equally expected to follow and to use the class Slack team.
          If you have a question, ask on Slack first. That way everyone can
@@ -400,7 +400,7 @@ body:       |
          by the same number of days as the excused absence.
          </p>
          <p>
-         Otherwise, there is a penalty of 25% per day late (except where 
+         Otherwise, there is a penalty of 25% per day late (except where
          noted). You may submit some parts of an assignment on time and some
          parts late. Each submission must clearly state which parts it
          contains; no part can be submitted more than once.
@@ -432,13 +432,13 @@ body:       |
       </div><!-- inner row-->
    </div><!-- outer col -->
    </div><!-- outer row -->
-   
+
    <div class="row">
    <div class="page-header">
       <h2 id="resources"><i class="fa fa-external-link"></i> Resources</h2>
    </div>
    </div>
-   
+
    <div>
    {% set cols = page.external['resources'] %}
    {% set i = 0 %}
@@ -463,7 +463,7 @@ body:       |
                {% raw desc_html %}
                </p>
             </li>
-         {% end %}   
+         {% end %}
          </ul>
          </div>
       {% if i==2 %}
@@ -474,4 +474,3 @@ body:       |
       {% end %}
    {% end %}
    </div>
-

@@ -2,7 +2,7 @@ title:      "Homework 5: Relational Databases"
 icon:       fa-book
 navigation:
       - name: "Class Home"
-        link: "/~cforstal/cdt-30020-sp17"
+        link: index.html
         icon: "fa-home"
 internal:
 external:
@@ -20,17 +20,17 @@ body:       |
   1. Given the **URL**,
      `http://localhost:8888/search?nationality=Japanese`, identify each
      component:
-       
+
        - protocol
-       
+
        - host
-       
+
        - port
-       
+
        - resource path
-       
+
        - query
-    
+
 
   2. In the context of [HTTP], what is a **client** and what is a **server**?
   What is each side responsible for in a [HTTP] transaction?
@@ -40,86 +40,86 @@ body:       |
 
   This week, you're going to use Tornado to create a simple web front-end for
   the database search script you wrote in Homework 4.
-  
+
   <h5>Download the files for your app</h5>
 
-  <a class="label label-info"
-  href="/~cforstal/cdt-30020-sp17/static/misc/hw5_files.zip">
+  <a class="label label-info" href="static/misc/hw5_files.zip">
   <i class="fa fa-file-o"></i> hw5_files.zip</a>
-  
+
   This zip contains the following files. Extract them and copy them into your
   `homework5/` directory.
-    
+
     - `homework5.py` - The skeleton for a simple web server using Tornado.
-      
+
     - `query.html` -  A template for the search page.
-      
+
     - `results.html` - A template for the results page.
 
   <h5>Copy the script and CMOA data from last week into the same directory</h5>
-    
+
     - your working copy of `homework4.py`
-    
+
     - the `catalog.json` file
 
   <h5>Make some changes to your Vagrant virtual machine</h5>
-  
+
   To allow web traffic between your real computer and the VM, you need to
   enable port forwarding on Tornado's default port, 8888:
-  
+
     - On you own computer, add this line to your Vagrantfile
-    
+
           :::text
           config.vm.network "forwarded_port", guest: 8888, host: 8888
-  
+
     - Restart the virtual machine with `vagrant reload` (or `vagrant halt`
       followed by `vagrant up`)
-    
-    
+
+
    Now, back on the VM, install tornado from the command line
-      
+
       :::bash
       sudo apt-get install python-tornado
 
   <h5>Finally, edit the skeleton code to make your app work</h5>
-  
+
   In **homework5.py**:
-    
+
     - **line 8**: add an `import` statement so you can access the **CMOAdb**
       class from `homework4.py`.
-      
+
     - **line 28**: use the `get_argument()` method to access the user's choice
       for which field (i.e. column) to search on
-      
+
     - **line 29**: use the same method to access the search string entered by
       the user.
-      
+
     - **line 31**: call the get_artthings() method from homework 4, passing
       `field` and `search_string` as its arguments.
-      
+
     - **line 40**: create a new database connection using the CMOAdb class.
       pass 'cmoa.db' as the name for the new database, and 'catalog.json' as
       the JSON data file.
-      
+
   In **query.html**:
-    
+
     - add some more &lt;option&gt; elements to fill out the dropdown list.
-    
+
     - they have the format `<option value="COLNAME">LABEL</option>`, where
-    
+
       - `COLNAME` is the value that will get passed to your Python script,
         i.e., the name of one of your database columns
-        
-      - `LABEL` is what the user will see in the list. 
+
+      - `LABEL` is what the user will see in the list.
 
   <h5>Run your web server and test the app</h5>
-  
+
   On the virtual machine, do `python homework5.py`.
-  
+
     - if all goes well, the program will run without terminating or giving any
       error message (i.e., nothing will happen)
-      
-  Now, on back on your own computer, point your web browser to <a href="http://localhost:8888/">http://localhost:8888</a>
+
+  Now, on back on your own computer, point your web browser to
+  <a href="http://localhost:8888/">http://localhost:8888</a>
 
     - You should see the search form
 
@@ -132,19 +132,18 @@ body:       |
 
   When everything is working to your satisfaction, please commit your changes
   to the following files to your git repository.
-  
+
     - `README.md` (with your reading responses, feedback, etc.)
-    
+
   Please add and commit the following:
-    
+
     - `homework4.py`
-    
+
     - `homework5.py`
-    
+
     - `results.html`
-    
+
     - `query.html`
-  
+
   After everything has been committed, please push the changes back to your
   GitLab account.
-  

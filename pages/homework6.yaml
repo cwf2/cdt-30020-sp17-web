@@ -2,14 +2,14 @@ title:      "Homework 6: Tornado Templates"
 icon:       fa-book
 navigation:
   - name: "Class Home"
-    link: "/~cforstal/cdt-30020-sp17"
+    link: index.html
     icon: "fa-home"
 internal:
 external:
 body:       |
-  [HTML]:           https://developer.mozilla.org/en-US/docs/Web/HTML
-  [render]:     http://www.tornadoweb.org/en/stable/web.html?highlight=get_argument#tornado.web.RequestHandler.render
-  [Tornado]: http://www.tornadoweb.org
+  [HTML]:      https://developer.mozilla.org/en-US/docs/Web/HTML
+  [render]:    http://www.tornadoweb.org/en/stable/web.html?highlight=get_argument#tornado.web.RequestHandler.render
+  [Tornado]:   http://www.tornadoweb.org
   [templates]: http://www.tornadoweb.org/en/stable/guide/templates.html
   [separation of concerns]: https://en.wikipedia.org/wiki/Separation_of_concerns
 
@@ -17,7 +17,7 @@ body:       |
 
   ## Readings
   1. [Tornado Templates and UI](http://www.tornadoweb.org/en/stable/guide/templates.html)
-  
+
   ## Template Review
 
   The idea behind using [templates] in web application frameworks such as
@@ -96,171 +96,171 @@ body:       |
   ## Activity
 
   <h4> Download the app skeleton </h4>
-  
+
   <h4><a href="static/misc/hw6.zip" class="label label-info">
   <i class="fa fa-file-archive-o"></i> hw6.zip</a></h4>
 
   <h4> Structure of the application </h4>
-  
+
   <h5>kidslit.py</h5>
-  
+
   This is a lightweight module for interfacing with the children's literature
-  database we looked at last week. **You shouldn't need to modify this code at 
+  database we looked at last week. **You shouldn't need to modify this code at
   all.**
-  
+
    - **LibraryDB** This class represents a connection to the database.
      Instantiating a new LibraryDB object generates the database,
      builds and populates the tables using supplied JSON data.
-     
+
    - `search_authors_name(NAME)` -- This method of the LibraryDB class will
      search the **Author** table for authors whose name matches *NAME*
      (anywhere in the string). It returns a list of rows containing matching
      author records. Each row has the following fields:
 
        - *auth_id*
-       
+
        - *first_name*
-       
+
        - *last_name*
-       
+
        - *birth*
-       
+
        - *death* - NB may be **NULL** if the author is alive
-       
+
     - `search_books_author(ID)` -- This method of the LibraryDB class will
       search the **Book** table for books whose *auth_id* matches *ID*. It
       returns a list of rows, each of which has:
-        
+
         - *title*
-        
+
         - *pub* - date of publication
 
     - `author_detail(ID)` -- This method of the LibraryDB class will search the
-      **Author** table for an author whose *auth_id* matches *ID*. It returns 
+      **Author** table for an author whose *auth_id* matches *ID*. It returns
       a row containing the following fields
-        
+
         - *auth_id*
-        
+
         - *first_name*
-        
+
         - *last_name*
-        
+
         - *birth*
-        
+
         - *death* - NB may be **NULL** if the author is alive
-        
+
         - *nationality*
-        
+
         - *bio*  - a short paragraph stolen from Wikipedia
-        
+
         - *image_url* - the address of an author pic
-        
+
   <h5>web.py</h5>
-  
+
   This is the tornado web front-end for the kidslit database. It contains two
   handlers. **You shouldn't have to modify either of them.**
-    
+
     - **AuthorSearchHandler**
-    
+
       - called when the client requests the root (i.e. home page)
-      
+
       - performs `search_authors_name(NAME)` where by default *NAME* is blank,
         matching all authors.
-        
+
       - renders the template `author_index.html`, passing the `rows` returned
         by the search.
-        
+
     - **AuthorDetailHandler**
-    
+
       - called when the client requests a specific author by id, using a path
         like `/author/ID`, where *ID* is a number.
-        
-      - performs `author_detail(ID)` to get the author's record from the 
+
+      - performs `author_detail(ID)` to get the author's record from the
         *Author* table
-        
-      - performs `search_books_author(ID)` to get the list of books by that 
+
+      - performs `search_books_author(ID)` to get the list of books by that
         author out of the *Books* table
-        
+
       - renders the template `author_detail.html`, passing `author` with the
         contents of the author record and `books` with the list of book records.
-  
+
   <h4>Modify the templates</h4>
-  
+
   Here is where you get to write some code! All you need to do is fill in the
-  two HTML files, including some Tornado template control code, so that the 
+  two HTML files, including some Tornado template control code, so that the
   web front-end shows the results of the backend database searches.
-  
+
   <h5>author_index.html</h5>
-  
+
   Inside the <div class="results"> </div> element, use template code to
   display the list of authors.
-       
-   - use either 
-   
+
+   - use either
+
        - a `<table>` with one `<tr>` per author, or,
-     
+
        - just a set of `<div>` elements, one per author
-     
+
    - loop over each record in `rows`
-   
+
    - for each author, display
-   
+
        - the author's name
-     
+
        - birth date
-     
+
        - death date <i class="fa fa-hand-o-right"></i> check for `NULL`
-     
+
    - make at least part of each record a link to the author's detail page
-   
+
        - i.e. `/author/ID`
-     
+
        - where *ID* is the author's *auth_id*
-     
-     
+
+
   <h5>author_detail.html</h5>
-  
+
   1. Fill in the `<title>` tag with the name of the author
-  
+
   2. Inside the `<div class="header"></div>` add an `<h1>` tag with the author's
      name again.
-     
+
   3. Inside the `<div class="details"></div>` display the author's `bio` string
      and add an `<img src="URL">` where *URL* is the author's `image_url`.
-     
+
   4. Inside the `<div class="bibliography"></div>`, display all the books we
      have by this author.
-       
+
        - loop over `books`
-       
+
        - inside the `<table></table>` add one `<tr>` per book
-       
+
        - display the title and publication date, each in its own `<td>`
-  
+
   <h5>Optional customization</h5>
-  
-  Grades for this homework will be given according to the specs above. 
+
+  Grades for this homework will be given according to the specs above.
   Apart from these, feel free to spruce up the page any way you like, or add
   extra material.
-  
+
   In particular, you might want to mess around with `/css/style.css`. See the
   examples and reference material [here](
   https://www.w3schools.com/css/default.asp). For example,
-  
-    - try setting `font-family` or other text properties in `body` or in 
+
+    - try setting `font-family` or other text properties in `body` or in
       `.container`, to affect the whole page.
-      
+
     - add a background, or change the color scheme
-      
+
     - try changing `h1`
-    
+
     - change the display of `div` elements by specifying `margin` `padding`
       `border` `box-shadow` etc.
-  
+
     - right now all that's in `syle.css` is a line to keep the displayed
       images small - if you alter it, some of the images might be really huge
-  
- 
+
+
   ## Feedback
 
   If you have any questions, comments, or concerns regarding the course, please
@@ -270,9 +270,9 @@ body:       |
 
   To submit your work, please commit the following files to your **homework6**
   folder, and then push to GitLab (or upload using the web interface).
-    
+
     - `author_detail.html`
-    
+
     - `author_index.html`
-    
+
     - if you modify other files, include them, too

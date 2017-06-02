@@ -2,29 +2,29 @@ title:      "Final Projects"
 icon:       fa-list-alt
 navigation:
   - name: "Class Home"
-    link: "/~cforstal/cdt-30020-sp17"
+    link: index.html
     icon: "fa-home"
 internal:
 external:
 body:       |
 
   # Overview
-  
+
   Your final project will combine elements drawn from throughout the semester
   to produce a lightweight web application, with a backend built on Python and
-  SQLite3, a server built using Tornado, and a dynamic interface incorporating 
+  SQLite3, a server built using Tornado, and a dynamic interface incorporating
   Bootstrap as well as your own custom CSS and JavaScript.
-  
+
   Below I've outlined the major aspects of the project, highlighting the minimal
-  requirements as well as some options for elaboration. 
-  
+  requirements as well as some options for elaboration.
+
   <div class="alert alert-danger" markdown="1">
     <h4><i class="fa fa-warning"></i> Don't overdo it!</h4>
-    
-    Although this project is an important part of your grade, its main goal is 
+
+    Although this project is an important part of your grade, its main goal is
     to show that you understand how all of the work we've done this year comes
-    together to produce a working application. 
-    
+    together to produce a working application.
+
     **You are not expected to innovate radically** at this late point in the
     semester, but rather to show mastery of what we have covered already. It's
     okay if the final product thus looks structurally quite a bit like things
@@ -32,187 +32,186 @@ body:       |
     that you can turn familiar techniques and building blocks to a novel
     application.
   </div>
-  
+
   The principal pieces of the app will be:
-    
+
     - A Python module containing the core functionality of your app
-    
+
     - An SQLite database to organize your data
-    
+
     - A web server built on Tornado
-    
+
     - A custom, dynamic frontend built using
-    
+
        - Tornado templates and HTML
-       
+
        - Bootstrap
-       
-       - custom JavaScript and JQuery functions 
-       
+
+       - custom JavaScript and JQuery functions
+
        - custom CSS
 
     - Your creativity
-      
+
   # Components
-  
+
   ### Python module
-  
-  This is the core of your app, containing its basic logic and functionality, 
+
+  This is the core of your app, containing its basic logic and functionality,
   independent of the interface.
-  
+
     - It must define a class that provides access to app functions via methods
-    
+
     - In particular, it should provide access to interactions with the database
       in addition to any other functionality you choose to add
-    
+
     - Your functions should be generalized (within reason)
-    
+
          - e.g., they should return generic Python data structures, or at least
            SQLite row objects, rather than, say, formatted HTML specific to the
            web app
-           
+
          - this way you can reuse your code later for some other app
-         
+
   ### Database
-  
-  Note that the requirements listed here will be addressed in the methods of 
+
+  Note that the requirements listed here will be addressed in the methods of
   the module mentioned above.
-  
+
     - You must perform all of the following SQL actions:
-    
+
        - `CREATE TABLE`
-       
+
        - `INSERT`
-       
+
        - `SELECT`
-       
+
     - Your column definitions must include all of the following:
-      
+
        - `INTEGER`
-       
+
        - `STRING`
-       
-       - `PRIMARY KEY` 
-       
+
+       - `PRIMARY KEY`
+
     - You are also expected to use two or more of the following (if you want
       to use SQL keywords not mentioned here instead, just let me know)
-    
+
        - `WHERE`
-       
+
        - `JOIN`
-       
+
        - `DISTINCT`
-       
+
        - `COUNT`
-       
+
        - `AVG`
-       
+
        - `GROUP BY`
-       
+
        - `ORDER BY`
-       
-       
+
+
   ### Web server
-  
+
   This will be the backbone of your user interface. It must:
-    
+
     - import the class you've defined from your module
-  
+
     - provide HTTP endpoints for your custom methods
-  
+
         - e.g., a url like `/search` hooked up to a method that searches the
           database
-        
+
         <div></div>
-  
-    - contain custom handlers that 
-  
+
+    - contain custom handlers that
+
        - serve requests for the endpoints
-       
+
        - retrieve user-specified parameters
-       
+
           - **either** using `self.get_argument()`
-          
+
           - **or** using capture groups in the URL spec
-     
+
        - call your core methods
-     
+
        - deliver the results to the client in an appropriate way
-     
+
     - specifically:
-  
+
        - one of your handlers must use `self.render()` to render at least one
          Tornado template
-     
+
        - one of your handlers must use `self.write()` to deliver data in JSON
          format
-         
+
     - the server must also use the StaticFileHandler class to serve static files
       including
-      
+
        - your custom JavaScript
-       
+
        - your custom CSS stylesheet
-         
+
        - optionally, any images you decide to serve as part of your app
-      
+
   ### HTML
-  
+
   You must have at least one Tornado template written in HTML with Tornado
   markup. This should include:
-  
+
     - links to JQuery and Bootstrap in the `<head>`
-    
+
     - links to your local JS and CSS as well
-    
+
     - an enclosing Bootstrap `.container` div
-    
+
     - at least one Bootstrap `.row`
-    
+
     - at least two Bootsrap `.col` elements, correctly filling the row
-    
+
     - at least one use of Tornado template markup, i.e.
-    
+
        - `{{! }}` or
-       
+
        - `{%! %}`
-       
+
        - NB: `{%! block %}` and `{%! extends %}` count for this
-       
+
     - at least one user input element
-    
+
   ### JavaScript
-  
+
   This is where you design the dynamic, asynchronous aspects of your interface.
-  Your JavaScript/JQuery code should be in a separate file, served by the 
+  Your JavaScript/JQuery code should be in a separate file, served by the
   static handler in your web app.
-  
+
   Must include:
-  
+
    - getting or setting the contents of a changeable element on the page
-  
+
    - setting an event handler to capture user actions
-  
+
    - creating new elements and adding them to the page
-  
+
    - an Ajax request using JQuery: probably `$.getJSON()`, or else `$.get()`
-  
+
       - this should call one of your custom handlers
-    
+
       - must do something with the returned data
-      
+
   ### CSS
-  
+
   You must add your own CSS stylesheet, served as a static file by your server.
   This doesn't have to be overly complex, since Bootstrap will do most of the
   work for you. Nevertheless, you must
-  
+
     - style at least one element by `id`
-    
+
     - style at least one group of elements by `class`
-    
+
   # Grading
-  
-  The project is worth 50 points, of which 45 will be assigned for mastering 
+
+  The project is worth 50 points, of which 45 will be assigned for mastering
   core competences of the class, and 5 for showing creativity in applying them.
-      

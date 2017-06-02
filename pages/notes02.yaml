@@ -2,15 +2,15 @@ title:      Notes for January 19
 icon:       fa-code
 navigation:
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
-      icon: "fa-home"
+      link: index.html
+      icon: fa-home
 internal:
 external:
 body:       |
   ## Notes for January 19
-   
+
   Today we made a lot of progress:
-   
+
    - Everyone should now be a member of our [GitLab Group](
      https://gitlab.com/groups/nd-cdt-30020-sp17/) and able
      to **fork** the [Homework](https://gitlab.com/nd-cdt-30020-sp17/homework)
@@ -21,45 +21,45 @@ body:       |
      will be **posted there first**. Especially if you only check in once or
      twice a week, it's important that you have it configured to notify you
      by email when I send you a direct message (this is the default).
-     
-   - Quite a few people have Vagrant running now, and can **ssh** into their 
+
+   - Quite a few people have Vagrant running now, and can **ssh** into their
      virtual Ubuntu machine. Of those that don't have it yet, most were able
      to log into one of ND's remote machines, or to practice shell commands
      locally on their Mac using the Terminal app.
 
    - Below, I'll run down a few of the things we covered in class,
-     plus a few extra shell commands and some tricks we figured out in 
+     plus a few extra shell commands and some tricks we figured out in
      office hours troubleshooting.
-     
+
    - We've seen a lot of stuff fly by this week, but **don't panic**. The
      initial learning curve can be steep, but we'll soon establish a familiar
      pattern of work.
-     
+
 
   ### GitLab
 
    - Now that you're in the group, fork the [Homework repository](
      https://gitlab.com/nd-cdt-30020-sp17/homework) and complete this week's
-     [homework]({{ page.prefix }}homework1.html)
-     
+     [homework](homework1.html)
+
    - You can safely **ignore the warning** about adding an SSH key for now.
      We'll walk through this next week. (If you've already added one,
      that's fine too.)
-     
-     <img class="img-thumbnail img-responsive" 
-     src="{{ page.prefix }}static/img/screenshot_gitlab-warning-keygen.png">
+
+     <img class="img-thumbnail img-responsive"
+     src="static/img/screenshot_gitlab-warning-keygen.png">
 
    - Remember to make your personal copy of **Homework** private to protect
-     your work, then add me (**cwf2**) and the TAs (**schneeying** and 
+     your work, then add me (**cwf2**) and the TAs (**schneeying** and
      **njones7**) so we can upload grades and comments.
 
-   - Use the web interface to edit the README.md file---the one that serves as 
+   - Use the web interface to edit the README.md file---the one that serves as
      front page for your repo. Click on the pencil <i class="fa fa-pencil"></i>
      to the right of the title.
-     
+
    - Each week's homework is in a separate folder. Click on "Files" to see them.
-     <img class="img-thumbnail img-responsive" 
-     src="{{ page.prefix }}static/img/screenshot_gitlab-files.png">
+     <img class="img-thumbnail img-responsive"
+     src="static/img/screenshot_gitlab-files.png">
 
    - Click on the " <i class="fa fa-folder"></i> homework1 " folder,
      and you'll see it has its own " <i class="fa fa-file-text-o"></i>
@@ -67,126 +67,126 @@ body:       |
      Each week's homework is in
      its own directory because in the weeks to come you'll often upload
      multiple python scripts here as well as writing out your answers.
-     
+
 
   ### Vagrant
-  
-  For many, it looked like the instructions in the [homework](
-  {{ page.prefix }}homework1.html) were sufficient to get the software 
-  installed. Now the trick is not getting lost setting up the virtual machine
-  and logging in.
-     
+
+  For many, it looked like the instructions in the [homework](homework1.html)
+  were sufficient to get the software installed. Now the trick is not getting
+  lost setting up the virtual machine and logging in.
+
    - Remember to specify **ubuntu/trusty** when you `vagrant init`
-   
+
    - `vagrant up` brings up the machine
-   
+
    - `vagrant halt` shuts it down
-   
+
    - **Mac users**: `vagrant ssh` logs in
-   
+
    - **Windows users**: after running `vagrant up`, you may have to go back
      to the Start menu and log in via PuTTY.
-     
+
        - The hostname is (probably) **127.0.0.1**
-       
+
        - The port is (probably) **2222**
-       
+
        - The user name is **vagrant**
-       
+
        - The password is **vagrant**
-       
+
        - You should then be logged into your virtual machine inside the
-         PuTTY window. You can leave the CMD window (where you typed 
+         PuTTY window. You can leave the CMD window (where you typed
          `vagrant up`) open or minimized.
-         
+
    - In either case, after you log out of the virtual machine, remember to
      `vagrant halt`. This will save memory and battery when you're not coding.
-     
+
    - If you think a virtual machine is running and you don't know how to
      find it again, you can start up VirtualBox from the Start Menu (Windows)
      / Launchpad (Mac). It should list any running VMs and let you shut them
      down.
-     
+
   ### Linux shell commands
-  
+
   We looked at a number of shell (i.e. [Bash](
   https://en.wikipedia.org/wiki/Bash_(Unix_shell) )) commands and tricks.
 
   #### navigation
-  
+
   - cycle through history
-  
+
       `[Up]` and `[Down]` arrows
-    
+
   - line completion
-  
+
       `[Tab]` (twice to show all possibilities)
-  
+
   - clear screen
-  
+
       `clear`
-    
-  - **PuTTY users** might check out [this tip]( https://kb.site5.com/shell-access-ssh/putty/putty-how-to-increase-the-scroll-buffer-size/)
+
+  - **PuTTY users** might check out [this tip](
+    https://kb.site5.com/shell-access-ssh/putty/putty-how-to-increase-the-scroll-buffer-size/)
     for increasing the amount of output scrollback you can keep.
-    
+
   #### help
-  
+
    - check manual for *CMD*
-   
+
        `man CMD` (type `q` to exit)
-   
+
    - see if manual page exists on *TOPIC*
-   
+
        `apropos TOPIC`
-  
+
   #### user and system information
-  
+
    - what's my user name?
-   
+
       `whoami`
-   
+
    - what's the name of this machine?
-   
+
       `hostname`
-      
+
    - what's the name of the operating system?
-   
+
       `uname` (or `uname -a` for more details)
 
    - who else is logged in?
-   
+
       `who` or `w`
-      
+
    - what resources are being used?
-   
+
       - `df -h` for system free disk space
-      
+
       - `du -h` to count up space used by some files(s), directory(-ies)
-      
+
       - `free -h` shows available memory; it's not on my Mac, but you'll find
         it on your virtual machine and the ND remote machines.
-      
-      - `top` will show memory and cpu use. `htop` is even better, but you 
+
+      - `top` will show memory and cpu use. `htop` is even better, but you
         have to install it.
-      
+
    - what are my network connections (e.g., to identify ip address)
 
       `ifconfig` (on the ND remote machine I had to type `/sbin/ifconfig`)
-      
+
   #### directories
-  
+
    - where is the current working directory? (where am i)
-   
+
       `pwd`
-      
+
    - change working directory
-   
+
       `cd`
-      
+
    - list directory contents
-   
+
       `ls` (use `ls -lh` for details like size, ownership and permissions)
-      
+
    - create a directory
 
       `mkdir`
@@ -208,26 +208,26 @@ body:       |
    - move or rename a file
 
       `mv`
-      
+
           :::bash
-      
+
           # move myfile.txt into new_directory
-      
+
           mv myfile.txt new_directory/
-      
+
           # rename myfile.txt to newname.txt
           #
-          # - Note: if newname.txt already exists, 
+          # - Note: if newname.txt already exists,
           #         it is overwritten!
-          
-          mv myfile.txt newname.txt 
-          
+
+          mv myfile.txt newname.txt
+
           # this way refuses to overwrite newname.txt
-          
+
           mv -n myfile.txt newname.txt
 
    - copy a file
-   
+
       `cp` or `cp -n` to avoid overwriting an existing file
 
    - remove a file
@@ -238,9 +238,9 @@ body:       |
 
       - `cat` - dump whole file to screen, if multiple files specified,
         put them together
-      
+
       - `more` - show one screenful at a time
-      
+
       - `less` - open file in a simple reader with search, scrolling, etc.
 
    - view the attributes about a file
@@ -248,107 +248,106 @@ body:       |
       `file` or `ls -lh`
 
    - change file permissions
-   
+
       `chmod`
 
    - compare two text (or code) files
-   
+
       - `diff` - no result if they're identical, otherwise prints differences
-      
+
       - check out `diff -q` for simple yes/no answer, `diff -y` for side-by-side
         comparison
-      
+
    - edit scripts or text files from within Linux shell
-   
+
       - `nano` a "small, free and friendly editor"
-     
+
       - for more adventurous, look at `vim` or `emacs`
-     
+
   #### file globbing (i.e. wildcards)
-  
+
     - `?` match any single char
-   
+
     - `[abc]` match any char in a set
 
     - `[a..z]` match any char in a range
-   
+
     - `*` match any number of chars
-   
+
     - `{foo,bar}` match a set of longer elements
-    
-     
+
+
   #### processes
-  
+
     - see my running processes
 
        `ps`
-     
+
     - see all processes, not just mine
-      
+
        `ps aux`
-       
+
     - see live updates of processes ranked by resource use
-   
+
        `top` or `htop`
-     
+
     - stop a process;
-   
+
        - `kill` - you need to know its PID (first column
          in the output of `ps` or `top`)
-       
+
        - `killall` to stop processes by name (NB `killall python`
          might match several running processes!)
-  
+
   #### I/O redirection
-  
+
     - save the output messages of a command to a file
 
        `command > output.file`
 
     - save the error messages of a command to a file
-   
+
        `command 2> error.file`
 
     - do both at once
-   
-       `command > output.file 2> error.file`  
+
+       `command > output.file 2> error.file`
 
     - "pipe" the output of *cmd1* to the input of *cmd2*
-   
+
        `cmd1 | cmd2`
-     
+
   #### filters
-  
+
   These are useful as the right hand side of pipes, or you can run them
   on individual files.
-  
+
     - show just the beginning of something (by default 10 lines)
-   
-       `head` 
-   
+
+       `head`
+
     - show just the end
-   
+
        `tail`
-     
+
     - search for all lines matching a pattern
-   
+
        `grep`
-     
+
     - count lines, words, characters
-   
+
        `wc`
-     
+
     - translate characters
-   
+
        `tr`
-     
+
     - extract particular columns
-   
+
        `cut` (see `awk` for more complex tricks)
-     
+
     - edit a stream of text in arbitrary ways
-   
+
        `sed`  - good for one-line pattern matching/substitution
-     
+
        `awk`  - good for working with data in columns or fields
-  

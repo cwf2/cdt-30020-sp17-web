@@ -2,7 +2,7 @@ title:      "Homework 2: Packaging"
 icon:       fa-book
 navigation:
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
+      link: index.html
       icon: "fa-home"
 internal:
 external:
@@ -31,13 +31,13 @@ body:       |
   2. What is the difference between these two statements? How do I call the
   `math` module's `cos` function in each case? Do I have access to `math`'s
   other functions?
-  
+
           # Version 1
           import math
-    
+
           # Version 2
           from math import cos
-  
+
   3. Create a script, `counter1.py`, that asks the user for a word and then
   counts the number of characters in it. Here is an example execution of
   your script:
@@ -48,15 +48,15 @@ body:       |
 
   4. Create another script, `counter2.py` that does the same thing, but takes
   its input from a single command line argument. I.e.
-  
+
           $ ./counter2.py providential
           You typed 12 characters.
-  
+
   5. Create a **module** called `letters.py` that contains a single function:
 
           :::python
           def letter_count(string):
-              ''' Prints "You typed N characters." 
+              ''' Prints "You typed N characters."
                   Where N is the number of chars in STRING.
               '''
               # TODO: Implement function
@@ -125,7 +125,7 @@ body:       |
           # Write counter3.py script
           $ nano counter3.py
 
-  3. Once you have recorded your answers and written your scripts, you can 
+  3. Once you have recorded your answers and written your scripts, you can
   **commit** to the [Git] log and then send your changes to [GitLab]:
 
           :::bash

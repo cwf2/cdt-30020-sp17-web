@@ -5,7 +5,7 @@ navigation:
       link: checklist3.html
       icon: fa-list
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
+      link: index.html
       icon: "fa-home"
 internal:
 external:
@@ -13,33 +13,33 @@ body:       |
   ### A minimalist client-side web interface
 
   In this exercise, we're going to build a web front-end for a mini search
-  function (pirated from the [ND netid 
+  function (pirated from the [ND netid
   API](http://dev.nd.edu/apis/json-netid-attributes/))
-  
+
   Get the code here:
     <a class="label label-info" href="https://gitlab.com/nd-cdt-30020-sp17/test3_skills">
     GitLab repo</a>
-    
+
     Download or clone it somewhere on your virtual machine, and run `web.py`.
-    
+
     The project contains:
-  
+
      - a blank HTML document, `test_3_practice.html`
-     
+
      - a blank JavaScript document, `test_3_practice.js`
-     
+
      - a blank CSS stylesheet, e.g. `test_3_practice.css`
-     
+
   Now let's build them up:
-    
+
   ### HTML
-  
+
   The idea of this page is to search for an ND userid and display some minimal
   info about the person.
-    
-    1. Add the necessary tags to the `<head>` section to load JQuery and 
+
+    1. Add the necessary tags to the `<head>` section to load JQuery and
        Bootstrap from CDNs.
-       
+
        <div class="alert alert-info" markdown="1">
        **Hint:**
 
@@ -48,7 +48,7 @@ body:       |
          - a link tag pointing to Bootstrap's CSS
 
        </div>
-       
+
     2. Also in the `<head>` add links to your local JS and CSS files
 
        <div class="alert alert-info" markdown="1">
@@ -57,165 +57,162 @@ body:       |
          - don't add a leading `/` or any other path details to the filename
            when you're linking the .js and .css files.
          - note that `<script>` gets a closing tag but `<link>` doesn't
-       
+
        Example:
-       
+
           :::html
-         
+
           <link rel="stylesheet" href="test_3_practice.css">
           <script src="test_3_practice.js"></script>
        </div>
 
-    
+
     3. In the `<body>` create a `<div>` of class `container`
-    
+
     4. Inside that, create a `<div>` of class `jumbotron`
-    
+
         - add to it an `<h1>` tag saying "Test 3" or something similar
-        
+
         <div></div>
-        
+
     5. After the jumbotron, use a `<div>` to create a Bootstrap **row**
-    
+
         - put two **col** divs in the row, unevenly splitting the screen
-        
+
         - the left one should be about a quarter of the screen width
-        
+
            - give this one the `id` "col_left"
-           
+
            <div></div>
-        
+
         - the right one should be about three quarters of the screen
-        
+
            - give this one the `id` "col_right"
-           
+
            <div></div>
-           
-        - we're going to develop each of these a little further . . . 
-        
+
+        - we're going to develop each of these a little further . . .
+
     6. **col_left**:
-      
+
         - add a new `<div>` to col_left
-        
+
             - give it `class` "alert alert-info"
-            
+
             - add a `<label>` with text "Search by user ID"
-            
+
             - add an `<input>`
-            
+
                 - `type` is "text"
-                
+
                 - `class` is "form-control"
-                
+
                 - `id` is "uid"
-                
+
             - add another `<input>`
-            
+
                 - `type` is `submit`
-                
+
                 - `class` is "btn btn-default"
-                
+
                 - `id` is "submit"
-                
+
                 - `value` is "Search"
-                
+
             - [optionally, you can enclose each of the two `<input>` elements
               in its own `<div>`, `class` "form-group", to add some vertical
               space between them]
-       
+
     7. **col_right**:
-      
+
          - add a new `<div>` to col_right
-         
+
              - give it `class` "alert alert-warning"
-           
+
              - give it `id` "results"
-        
+
         - inside it, create a `<table>`:
-          
+
             - give the table the `class` "table table-striped"
-          
-            - add a `<thead>`, with 
-            
+
+            - add a `<thead>`, with
+
                 - a single `<tr>`
-            
+
                 - the row has three column heading cells
-                
+
                 - their text contents should be
-            
+
                      - "given name"
-               
+
                      - "family name"
-               
+
                      - "email"
 
             - finally, add a `<tbody>` and give it the `id` "results_table"
-            
-            
+
+
   ### Interlude
-  
-  Let's test out the Notre Dame netid API. The `web.py` server acts as a 
+
+  Let's test out the Notre Dame netid API. The `web.py` server acts as a
   mirror for ND's service.
-  
+
   Point your browser to `/search?uid=cforstal` (or search for your own netid)
   to see what the JSON data looks like when it is returned
-  
+
   For the practice exercise, we'll use JQuery's `$.getJSON()` to request a
   user's record and then add some of the fields to our table.
-  
-  
+
+
   ### JavaScript
-  
+
   1. declare a new **function** to add a record to the table
-  
+
       - give it a name like `add_record`
-     
+
       - it takes one argument, called `data` (this will be the JSON that you
         saw in your browser)
-     
+
       - use a **selector** to grab the element with `id` "results_table"
-     
+
       - **append** the following:
-      
+
             - a brand new `<tr>`, to which **append**:
-        
+
                  - a new `<td>` with `text` set to the "givenname" field of
                   `data`,
-            
+
                  - a new `<td>` with `text` set to the "sn" field of `data`,
-           
+
                  - a new `<td>` with `text` set to the "mail" field of `data`
-  
+
   2. declare a new **function** to search for a uid and call `add_record`
-  
+
       - give this function the name `search_uid`
-      
+
       - get `value` of the text input element, using its `id` in a JQuery
         selector, and save it to a variable
-        
+
       - use `$.getJSON()` to call the ND netid API:
-        
+
           - the URL to request is `/search`
-          
+
           - for parameters, pass a single key-value pair
-          
+
                - key is "uid"
-               
+
                - value is whatever you got from the text box
-          
+
           - pass the `add_record` function you defined above as the callback
-  
+
       <i class="fa fa-life-ring"></i> Remember your can test your code as you
       go along using the console in your browser.
-  
+
   3. Add a handler for the document's `ready` event:
-    
+
         - this is an anonymous function
-        
+
         - inside, you do one thing:
-  
+
             - set `search_uid` as a handler for the "submit" button's `click`
               event
-  
-       
-          

@@ -2,8 +2,8 @@ title:      "Homework 1: Command-Line Crash Course"
 icon:       fa-book
 navigation:
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
-      icon: "fa-home"   
+      link: index.html
+      icon: "fa-home"
 internal:
 external:
 body:       |
@@ -12,29 +12,29 @@ body:       |
 
   ## Activities
     1. **Slack**
-    
+
       If you haven't already, **sign up** for the Elements of Computing II
       [Slack team](https://cdt-30020-sp17.slack.com). Anybody with an '@nd.edu'
       email address should be able to join; if you really need to use a
       different one, let me know.
-       
+
     2. **GitLab**
-    
+
       Make sure you have a [GitLab](https://gitlab.com) account -- most of you
       should have one from last semester.
-       
+
        **Fork** the [homework](https://gitlab.com/nd-cdt-30020-sp17/homework)
        repository. Make your copy private under "Settings." Then, under
        "Members," add users `cwf2` (Chris), `schneeying` (Xueying) and
        `njones7` (Nick) as "developers."
-       
+
     3. **VirtualBox &plus; Vagrant**
-    
+
       **Install** [VirtualBox](https://www.virtualbox.org/)
       and [Vagrant](https://www.vagrantup.com/) on your personal computer.
-              
+
       Try to **create** a Vagrant virtual machine.
-      
+
         1. Create a new directory to hold your work.
 
         2. Use Terminal (OS X) or CMD (Windows) to navigate to this directory.
@@ -42,34 +42,34 @@ body:       |
         3. Issue these commands to setup the virtual machine. (This involves
            downloading a machine image from the Internet, and could take a
            little while.)
-              
+
               vagrant init ubuntu/trusty64
               vagrant up
 
     4. **Linux command line**
-    
+
       **Connect** to a Linux machine and work through the readings below.
       If you got Vagrant working, try logging into the virtual machine with
       `vagrant ssh`.
-      
-      *Note for Windows users*: If you have trouble logging in, take a look at 
-      [this guide](https://www.sitepoint.com/getting-started-vagrant-windows/) 
+
+      *Note for Windows users*: If you have trouble logging in, take a look at
+      [this guide](https://www.sitepoint.com/getting-started-vagrant-windows/)
       for help with setting up keys and using [PuTTY] with Vagrant.
-      
+
       After you log out of your virtual machine, you can shut it down with
       `vagrant halt`. To start it back up again later, use `vagrant up`.
-      For more help on Vagrant see their 
+      For more help on Vagrant see their
       [Getting Started](https://www.vagrantup.com/docs/getting-started/).
-      
+
   <div class="alert alert-info" markdown="1">
   #### <i class="fa fa-life-ring"></i> Alternate Method
-   
+
   If you can't get Vagrant working, you have some options for test-driving
   the Linux shell:
-            
+
   ##### Windows
 
-  For Windows users, you can connect to a remote Unix machine 
+  For Windows users, you can connect to a remote Unix machine
   [run by Notre Dame](http://www.cse.nd.edu/resources/student-machines.html).
   To do so, you will again need to use the [PuTTY] terminal application.
 
@@ -82,9 +82,9 @@ body:       |
     - For the **Username**: you must use your Notre Dame **netid**.
 
     - For the **Password**: you must use your Notre Dame password.
-      
+
   ##### OSX
-   
+
   For Mac OS X users, you can simply open a **Terminal** to practice the
   commands.  If you wish to login to remote Unix machine, you can use the
   `ssh` command as follows:
@@ -94,7 +94,7 @@ body:       |
   This will connect to the remote machine `student00.cse.nd.edu` using the
   username `NETID`.
   </div>
-   
+
   ## Readings
 
     1. [Learning the Shell](http://linuxcommand.org/lc3_learning_the_shell.php)
@@ -119,7 +119,7 @@ body:       |
   1. In the bash shell, what do the following keys do?
 
        1. tab
-  
+
        2. up-arrow
 
   2. Identify which shell commands you would use to perform the following

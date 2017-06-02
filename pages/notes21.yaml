@@ -2,75 +2,75 @@ title:      "Notes for April 4"
 icon:       fa-list-alt
 navigation:
   - name: "Class Home"
-    link: "/~cforstal/cdt-30020-sp17"
+    link: index.html
     icon: "fa-home"
 internal:
 external:
 body:       |
 
   ## Review: HTML and CSS
-  
+
   - What happened on Thursday?
-  
+
   - What is the relationship between HTML and CSS?
-  
+
   - How do we designate document elements in HTML and in CSS?
-  
+
   ## Bootstrap
-    
+
   - A front-end framework
-  
+
      - what does this change about your website?
-    
+
      - what remains the same?
-    
+
   - Online references:
- 
+
      - The Bootstrap site: [https://getbootstrap.com](https://getbootstrap.com)
- 
+
      - Reference and tutorial: [https://www.w3schools.com/bootstrap/bootstrap_get_started.asp](
        https://www.w3schools.com/bootstrap/bootstrap_get_started.asp)
-    
-  - Download a local copy, or use an online copy provided by a Content Delivery 
+
+  - Download a local copy, or use an online copy provided by a Content Delivery
     Network (CDN)
-    
+
        - We'll use [https://www.bootstrapcdn.com](https://www.bootstrapcdn.com)
-     
+
        - Likewise with [Font Awesome](https://www.bootstrapcdn.com/fontawesome/)
          for our now-familiar icon set
-     
+
        - And [Bootswatch](https://www.bootstrapcdn.com/bootswatch/) for additional
          Bootstrap themes
-       
+
   - What is [responsive design](https://getbootstrap.com/examples/offcanvas/)?
-  
+
   - Sidetrack: where is "developer mode" on your browser?
-  
+
   ## Activity
-  
-  - Let's redo the children's literature exercise from Homework 6 together, 
+
+  - Let's redo the children's literature exercise from Homework 6 together,
     using Bootstrap for the interface.
-    
+
   - You can get a working copy of the project on [GitLab](
     https://gitlab.com/nd-cdt-30020-sp17/class_21)
-  
+
   <div class="alert alert-warning" markdown="1">
     <h4>Sidetrack: inheritance in Tornado templates</h4>
-    
+
     **Using `{%! block %}` and `{%! extends %}` in Tornado templates.**
-    
+
     - Where we have some HTML that is common to many different pages,
-    we can create one basic template and then use `{%! extends %}` to 
+    we can create one basic template and then use `{%! extends %}` to
     *inherit* its HTML in other pages.
-    
-    - Regions defined using `{%! block %}` syntax in the master template 
-    will be replaced with the corresponding `{%! block %}` regions in the 
+
+    - Regions defined using `{%! block %}` syntax in the master template
+    will be replaced with the corresponding `{%! block %}` regions in the
     pages that `extend` it.
-    
+
     Example (see also the `working` branch of the **class_21** repo above):
-      
+
     <h5>base.html</h5>
-    
+
       :::html
 
       <!DOCTYPE html>
@@ -88,16 +88,16 @@ body:       |
         </div>
       </body>
       </html>
-    
+
     In this file, we've defined two `blocks`: one called `title` which
     should be replaced with the text of the `<title>` element; and one
     called `main` which should be replaced with the page's content.
-    
+
     Here's an example template to `extend` this parent file and create an
     individual page:
-      
+
     <h5>search.html</h5>
-    
+
       :::html
 
       {%! extends "base.html" %}
@@ -117,19 +117,17 @@ body:       |
           </form>
         </div>
       {%! end main %}
-    
-    <i class="fa fa-hand-o-right"></i> This file lacks the usual HTML 
-    structure: no `<!DOCTYPE>` declaration or enclosing `<html>` element, 
+
+    <i class="fa fa-hand-o-right"></i> This file lacks the usual HTML
+    structure: no `<!DOCTYPE>` declaration or enclosing `<html>` element,
     among other things.
-    
-    - Instead, it begins with an `{%! extends %}` statement that indicates 
+
+    - Instead, it begins with an `{%! extends %}` statement that indicates
     we should *inherit* the structure of `base.html`, which already includes
     everything we need.
-    
-    - The remainder of the file consists of `{%! block %}` sections that 
-    correspond to blocks with the same names in `base.html`. The contents 
-    of each will be substituted into the appropriate places in `base.html` 
+
+    - The remainder of the file consists of `{%! block %}` sections that
+    correspond to blocks with the same names in `base.html`. The contents
+    of each will be substituted into the appropriate places in `base.html`
     to produce the final output.
   </div>
-  
-  

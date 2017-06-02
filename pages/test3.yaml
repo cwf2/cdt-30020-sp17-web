@@ -5,7 +5,7 @@ navigation:
       link: checklist3.html
       icon: fa-list
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
+      link: index.html
       icon: "fa-home"
 internal:
 external:
@@ -14,204 +14,203 @@ body:       |
 
   In this exercise, we're going to build a minimalist web front-end for an app
   that counts words in the Presidential State of the Union address.
-  
+
   Get the code here:
     <a class="label label-info" href="static/misc/test3.zip">
     Zip file</a>
-    
+
     Download and unzip it somewhere on your virtual machine, and run `web.py`.
-    
+
     The project contains:
-  
+
      - a blank HTML document, `html/test3.html`
-     
+
      - a blank JavaScript document, `js/test3.js`
-     
+
      - a blank CSS stylesheet, e.g. `css/test3.css`
-     
+
     Plus:
-      
+
      - `web.py` the server: you don't need to alter this
-     
+
      - feel free to explore the SOTU texts in `/data` some other time
-     
-  
+
+
   ## Activities
-    
+
   ### HTML
-  
+
   The idea of this page is to select a document to analyse from a dropdown list.
   To make things simpler, I'm going to give you the document IDs to hard-code
   into the dropdown.
-    
-    1. Add the necessary tags to the `<head>` section to load JQuery and 
+
+    1. Add the necessary tags to the `<head>` section to load JQuery and
        Bootstrap from CDNs.
-       
+
          - a script tag pointing to JQuery
          - a script tag pointing to Bootstrap's JavaScript
          - a link tag pointing to Bootstrap's CSS
-       
+
     2. Also in the `<head>`, add links to your local JS and CSS files
 
          - `/js/test3.js`
          - `/css/test3.css`
-          
+
         <div></div>
-          
+
     3. In the `<body>` create a `<div>` of class `container`
-    
+
     4. Inside that, create a `<div>` of class `page-header`
-    
+
         - add to it an `<h1>` tag saying "SOTU word counts" or something similar
-        
+
         <div></div>
-        
+
     5. Below that, use a `<div>` to create a Bootstrap **row**
-    
+
         - put two **col** divs in the row, unevenly splitting the screen
-        
+
         - the left one should be about a quarter of the screen width
-        
+
            - give this one the `id` "col_control"
-           
+
            <div></div>
-        
+
         - the right one should be about three quarters of the screen
-        
+
            - give this one the `id` "col_results"
-           
+
            <div></div>
-           
-        - we're going to develop each of these a little further . . . 
-        
+
+        - we're going to develop each of these a little further . . .
+
     6. **col_control**:
-      
+
         - add a new `<div>` to col_control
-        
+
             - give it `class` "alert alert-warning"
-            
+
             - add a `<label>` with text "Select an address"
-            
+
             - add a dropdown element
-            
+
                 - `class` is "form-control"
-                
+
                 - `id` is "doc_id"
-                
+
             - *inside the dropdown*, add the following three options
-                
+
                 - `value` is "29457", text is "James Madison, 1815"
-                
+
                 - `value` is "41698", text is "Ronald Reagan, 1983"
-                
+
                 - `value` is "29644", text is "George W. Bush, 2002"
-                
+
             - below the dropdown, add an `<input>`
-            
+
                 - `type` is `submit`
-                
+
                 - `class` is "btn btn-default"
-                
+
                 - `id` is "btn_load"
-                
+
                 - `value` is "Load"
-                       
+
     7. **col_results**:
-      
+
          - add a new `<div>` to col_results
-         
+
              - give it `class` "well"
-        
+
         - inside it, create a `<table>`:
-          
+
             - give the table the `class` "table table-striped"
-          
-            - add a `<thead>`, with 
-            
+
+            - add a `<thead>`, with
+
                 - a single `<tr>`
-            
+
                 - the row has two column heading cells
-                
+
                 - their text contents should be
-            
+
                      - "term"
-               
+
                      - "count"
 
-            - finally, add a `<tbody>` and give it the `id` "results"  
-  
+            - finally, add a `<tbody>` and give it the `id` "results"
+
   ### Interlude
-  
+
   Before starting, take a look at the data. If you haven't already, browse to
   `http://localhost:8888/search?doc_id=29457`. You should see JSON output.
   Consider the structure of this data. You'll want to extract a *list* of word
   counts later. Each item is a *dictionary*, with two keys, "word" and "count".
-  
+
   ### JavaScript
-  
+
   1. declare a new **function** to add a record to the table
-  
+
       - call it "display_counts"
-     
+
       - It takes one argument, called `json` (this will be the JSON that you
         saw in your browser)
-        
+
       - use a **selector** to grab the element with `id` "results", and clear
         its contents
-     
+
       - Use a `for` loop to iterate over the list of word counts.
         In each iteration:
-     
+
           - use a **selector** to grab the element with `id` "results" again,
             and
-     
+
           - **append** the following:
-      
+
               - a brand new `<tr>`, to which **append**:
-        
+
                  - a new `<td>` with `text` set to the word in that record
-            
+
                  - a new `<td>` with `text` set to the corresponding count
-        
+
   2. declare a new **function** to load the analysis of a given speech
-  
+
       - give this function the name `load_sotu`
-      
+
       - it takes no arguments
-      
+
       - get `value` of the dropdown element, using its `id` in a JQuery
         selector, and save it to a variable
-        
+
       - use `$.getJSON()` to call server and request the data:
-        
+
           - the URL to request is `/search`
-          
+
           - for parameters, pass a single key-value pair
-          
+
                - key is "doc_id"
-               
+
                - value is whatever you got from the dropdown
-          
+
           - pass the `display_counts` function you defined above as the callback
-  
+
       <i class="fa fa-life-ring"></i> Remember your can test your code as you
       go along using the console in your browser.
-  
+
   3. Add a handler for the document's `ready` event:
-    
+
         - this is an anonymous function
-        
+
         - inside, you do one thing:
-  
+
             - set `load_sotu` as a handler for the "submit" button's `click`
               event
-  
+
   ### CSS
-  
+
    - For all `h1` tags inside any element of class `page-header`, set
     `text-align` to "center"
-   
+
    - change the `color` of all "td" elements to anything you like
-   
+
    - set the `font-family` of the `<body>` to "serif"
-          

@@ -2,28 +2,28 @@ title:      Checklist for Test 1
 icon:       fa-list-alt
 navigation:
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
+      link: index.html
       icon: "fa-home"
 internal:
 external:
 body:       |
 
   ## Part I
-  
-  <h4>Identification / short answer about the topics below. [Around 5 
+
+  <h4>Identification / short answer about the topics below. [Around 5
   points]</h4>
-  
+
   Expect:
-  
+
    - about five questions where I give a command and ask what it does
-   
+
    - about five questions where I describe a task and ask for the command,
      e.g. "Copy a file called `scripts/foo.py` to `backup/foo_backup.py`"
-     
+
   ### Linux shell commands
-  
+
   Be prepared to identify the following commands, and say what they do.
-     
+
    - `whoami`
    - `hostname`
    - `pwd`
@@ -40,164 +40,164 @@ body:       |
    - `python`
 
 
-  ### Working with Vagrant 
-  
+  ### Working with Vagrant
+
   Be able to explain the following.
-  
+
    - How to initialize a new Vagrant machine using the "ubuntu/trusty64" image
-   
+
    - How to start it up
-   
+
    - How to shut it down
-   
-   - How to log in (i.e. how **you** log in. You're not responsible for 
+
+   - How to log in (i.e. how **you** log in. You're not responsible for
      special Mac/Windows details that don't apply to your laptop.)
 
    - Where is the shared folder on the Vagrant machine?
-   
+
    - Where is the shared folder on own computer?
-  
+
 
   ## Part II
-  
+
   <h4>Short answers about code. [Around 10 points]</h4>
-  
-  
-  Expect about 5 questions where you read code and explain something about it, 
+
+
+  Expect about 5 questions where you read code and explain something about it,
   or write short (1-5 lines) answers in Python code showing how to accomplish a
   task.
-  
+
   For example, consider the following module:
-        
+
   <h5>birds.py</h5>
-        
+
       :::python
       '''All about our feathered friends'''
-      
+
       def sing(n=3):
           '''tweet n times'''
           for i in range(n):
              print "Tweet!"
   <br />
-        
+
   If you want to use this same function in a new script called `sparrow.py` (in the same
   directory),
-     
+
    - what do you add to `sparrow.py` in order to load the module?
-   
+
    - now, how would you call `sing()` and make it tweet 5 times?
 
 
   ### Python topics to review
-  
+
    - basic data structures (especially integers, strings, lists,
      dictionaries)
-     
+
    - basic math operators
 
       - i.e. `+`, `-`, `*`, `/`
-      
+
       - the modulo operator (`%`) might come in handy, too
-      
+
    - basic logic and program flow control, especially,
-   
+
       - `for ... in ... :` and `for ... in range(...) :`
-     
+
       - `while ...`
 
       - `if` and `else`
-     
+
       - `==`, `!=`, `and`, `or`, `not`
-  
+
    - how to define a function, including
-   
+
       - how to use arguments passed to the function
-      
+
       - how to return a value
-      
+
    - how to call the function later, pass arguments, and get the return value
 
    - how to add a shebang (#!) line to your script and what it's good for
-   
-   - how to mark your file as executable (cross-listed under Linux concepts 
+
+   - how to mark your file as executable (cross-listed under Linux concepts
      above)
-   
+
    - how to `import` a module
-   
+
    - how to use functions or variables defined in an imported module
-   
+
    - what a package is
-   
+
    - what role the statement `if __name__ == '__main__':` plays in a Python file
-   
+
    - how to define a class, and what the class definition does
-   
+
    - how to define methods inside your class definition
-   
+
    - how to use an object to call its methods
-   
+
    - what `self` is used for in methods, and how to pass additional arguments
 
    - what the `__init__(self, ...)` method is good for
 
    - how to create a new instance of a class
-   
+
    - how to pass initial attribute values when you create a new instance
-   
+
    - how to get the values of an object's fields (i.e. instance variables)
-   
-   
+
+
   ## Part III
-  
+
   <h4>Working with DrawIt. [Around 10 points]</h4>
-  
+
   In this part, you'll use the DrawIt package from Project 1 to write some new
   code on your computer.
-  
+
   <i class="fa fa-life-ring"></i> I will be able to provide a working version of
   DrawIt in the event that someone doesn't have it or theirs is broken.
-  
+
   Expect:
-    
+
    - one or two longer, multipart questions, in which you
-      
+
    - write a Python file, and/or
-   
+
    - fill in `# TODO` sections within a skeleton script.
-  
+
   ### DrawIt concepts to review
-  
+
    - how to create new `Color`, `Point`, and `Image` instances
-      
+
    - how to get/set their respective fields, and how to use their methods. i.e.:
-   
+
      - Point:
-        
+
         - `x`, `y`
 
         - `distance_from()`
-        
+
      - Color:
-        
+
         - `r`, `g`, `b`
-        
+
         - `brightness()`
-        
+
      - Image:
-        
+
         - `height`, `width`
-        
-        - `clear()`, `draw_line()`, `draw_rectangle()`, `draw_circle()`, 
+
+        - `clear()`, `draw_line()`, `draw_rectangle()`, `draw_circle()`,
           `gradient()`
-   
+
    - how to use a Point to select a particular pixel from an Image,
-   
+
      - how to get/set the Color of that pixel
 
    - the concept of red, green, and blue values and how they mix
-   
+
    - how to make shades of grey
-     
+
    - how to iterate over all the pixels of an image, for example:
 
           :::python
@@ -207,10 +207,9 @@ body:       |
                   # do something ...
 
    - how to find your way around the x,y coordinates of an image, e.g.,
-   
+
       - do x values increase toward the left or the right?
-      
+
       - do y values increase toward the top or the bottom?
-     
+
       - what are the max and min values for x and for y?
-     

@@ -2,14 +2,14 @@ title:      "Homework 3: Object-Oriented Programming"
 icon:       fa-book
 navigation:
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
+      link: index.html
       icon: "fa-home"
 internal:
 external:
 body:       |
 
   Homework for the week of **January 30**
-  
+
   ## Reading
 
     1. [A Byte of Python](http://www.swaroopch.com/notes/python/)
@@ -35,37 +35,37 @@ body:       |
   2. What are **fields** and **methods**?
 
   ## Activites
-  
+
   1. Create a file, `pets.py`, that contains the following class definition:
-     
+
           :::python
           class Dog(object):
               """Man's best friend"""
-             
+
               def bark(self):
                   '''Make a sound'''
                   print "Woof!"
 
   2. Create a second file, `rover.py` that:
-     
+
       - imports the **Dog** class from `pets.py`
-     
+
       - creates an instance of the class
-     
+
       - uses it to call the `bark()` method
 
   3. In `pets.py`, modify the **Dog** class to add an `__init__()` method:
-     
-      - besides *self*, it should take an argument, *breed*  
-     
+
+      - besides *self*, it should take an argument, *breed*
+
       - use it to set a *breed* field when a new instance is created
 
-  4. Modify `rover.py`: 
-     
+  4. Modify `rover.py`:
+
       - give your instance of **Dog** the breed of your choice
-      
+
       - end with a `print` statement that prints out the breed, e.g.:
-         
+
               :::text
               $ python rover.py
               Woof!
@@ -78,6 +78,6 @@ body:       |
 
   ## Submission
 
-  To submit your response, please commit your work (responses and Python files) 
+  To submit your response, please commit your work (responses and Python files)
   to the **homework3** folder of your your **Homework** [GitLab](
   https://gitlab.com) repository.

@@ -2,7 +2,7 @@ title:      Notes for January 26
 icon:       fa-sticky-note
 navigation:
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
+      link: "index.html"
       icon: "fa-home"
 internal:
 external:
@@ -10,38 +10,38 @@ body:       |
   ### Scripts
 
   We created two standalone files, `anagram.py` and `palindrome.py`.
-   
+
    - Inside each one, we put the respective function definition from
      Tuesday.
-     
+
    - We added a [docstring](https://www.python.org/dev/peps/pep-0257/) to
      the beginning of each file
-     
+
    - We used the `if __name__ == "__main__"` syntax, so that the code after
      our function definitions would only be executed when the file was run
      as a standalone **script**, not when it was `import`ed.
-     
+
    - We used `sys.argv` to gain access to take user input from the command
      line arguments, instead of using `raw_input()`
-     
+
        - remember: `sys.argv[0]` contains the name of the program itself,
-         so arguments start at `sys.argv[1]`. 
-     
-       - a better way to collect arguments, if you want to check it out, 
+         so arguments start at `sys.argv[1]`.
+
+       - a better way to collect arguments, if you want to check it out,
          is [argparse](https://docs.python.org/2/howto/argparse.html).
 
-       - note that arguments are split on whitespace, so if we do 
-       
+       - note that arguments are split on whitespace, so if we do
+
               :::bash
               $ python myscript.py these are some arguments
-         
+
             we will have four, one-word arguments.
-         
+
        - if you want to pass a sentence as one argument, put it in quotes:
-       
+
               :::bash
               $ python palindrome.py "Able was I ere I saw Elba"
-              
+
    <h5>anagram.py</h5>
 
       :::python
@@ -56,16 +56,16 @@ body:       |
       # Functions
       def is_anagram(word1, word2):
           '''Returns true if word1 is an anagram of word2'''
- 
-          base_string1 = word1.translate(None, 
+
+          base_string1 = word1.translate(None,
               string.whitespace + string.punctuation).lower()
-     
-          base_string2 = word2.translate(None, 
+
+          base_string2 = word2.translate(None,
               string.whitespace + string.punctuation).lower()
-     
+
 
           return sorted(base_string1) == sorted(base_string2)
- 
+
 
       # Main code block
       if __name__ == "__main__":
@@ -77,9 +77,9 @@ body:       |
               print "Hooray, {} is an anagram of {}".format(word1, word2)
           else:
               print "Sorry, {} and {} are not anagrams".format(word1, word2)
-   
+
    <h5>palindrome.py</h5>
-   
+
       :::python
       #!/usr/bin/env python
       '''Fun with palindromes'''
@@ -92,16 +92,16 @@ body:       |
       # Functions
       def is_palindrome(word):
           '''Returns true if word is a palindrome.'''
- 
-          base_string = word.translate(None, 
+
+          base_string = word.translate(None,
               string.whitespace + string.punctuation).lower()
- 
+
           forwards = base_string
           reverse  = base_string[::-1]
- 
+
           return forwards == reverse
 
-      
+
       # Main code block
       if __name__ == "__main__":
 
@@ -111,75 +111,75 @@ body:       |
               print "Hooray, {} is a palindrome".format(word)
           else:
               print "Sorry, {} is not a palindrome".format(word)
-   
-   
+
+
    <h4> Making scripts executable </h4>
-   
+
    To make our scripts executable (i.e., so that we can run them by typing
    their name at the shell)
-   
-     1. We added a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix)) 
+
+     1. We added a [shebang](https://en.wikipedia.org/wiki/Shebang_(Unix))
         line at the very beginning of each.
-     
+
            #!/usr/bin/env python
-          
-         - this line lets the operating system know what interpreter to use to 
+
+         - this line lets the operating system know what interpreter to use to
             run the script
          - no space after `#!`
          - yes space before `python`
 
-            
-     2. We marked the files as executable using `chown +x`. You can see the 
-        difference using `ls -l` and inspecting the leftmost column where the 
+
+     2. We marked the files as executable using `chown +x`. You can see the
+        difference using `ls -l` and inspecting the leftmost column where the
         file [permissions](http://linuxcommand.org/lc3_lts0090.php) are shown.
-     
+
           :::bash
           # before
           $ ls -l anagram.py
           -rw-r--r-- 1 vagrant vagrant 700 Jan 26 19:50 anagram.py
-          
+
           # make it executable
-          $ chmod +x anagram.py         
-         
+          $ chmod +x anagram.py
+
           # after
-          $ ls -l anagram.py            
+          $ ls -l anagram.py
           -rwxr-xr-x 1 vagrant vagrant 700 Jan 26 19:50 anagram.py
-   
+
    Now we can invoke our scripts from the command line, giving the words to
    check as arguements:
-      
+
       :::bash
       $ ./anagram.py wolves vowels
-      Hooray, wolves is an anagram of vowels         
+      Hooray, wolves is an anagram of vowels
 
 
    <h3> Modules </h3>
-     
+
    1. Having created these standalone files, we then practiced `import`ing them
       to gain access to their functions, using interactive mode:
-   
+
           :::python
           >>> import anagram
           >>> anagram.is_anagram("top", "pot")
           True
-      
+
       - When we import `anagram.py` as a module, **anagram**, then our function
         *is_anagram()* is by default contained in a separate namespace named for
         the module. We have to use `anagram.is_anagram()` to call it.
-       
-      - We can get around that by saying 
 
-              :::python 
+      - We can get around that by saying
+
+              :::python
               from anagram import is_anagram
-   
-   
+
+
       Now, `anagram.py` and `palindrome.py` can be used on their own as scripts or
       imported as modules into interactive mode or a different script.
-   
+
    2. We also tried organizing our code a different way, creating a single file,
       `wordplay.py`, and putting both the function definitions in it. Importing
       this module gave us access to both functions in the same namespace.
-   
+
           :::python
           >>> import wordplay
           >>> wordplay.is_anagram("top", "pot")
@@ -187,228 +187,228 @@ body:       |
           >>> wordplay.is_palindrome("canoe")
           False
 
-   <i class="fa fa-hand-o-right"></i> Note that we can use `help()` in Python 
-   or `pydoc` in the shell to see some useful information about our homemade 
+   <i class="fa fa-hand-o-right"></i> Note that we can use `help()` in Python
+   or `pydoc` in the shell to see some useful information about our homemade
    modules and functions. This is why it pays to add docstrings.
-   
+
   ### Packages
-      
+
   - Finally, we looked at one last way of organizing our code for later reuse.
     We created a new, empty folder called `wordplay2`. Inside, we put copies of
-    our anagram and palindrome modules, now called `anagram2.py` and 
+    our anagram and palindrome modules, now called `anagram2.py` and
     `palindrome2.py`.
-  
+
   - We can get Python to treat this directory as a **package** by creating a new
     file called `__init__.py` inside. This file can be blank, but must exist.
-   
+
           :::bash
           wordplay2/
                     __init__.py
                     anagram2.py
-                    palindrome2.py   
-      
+                    palindrome2.py
+
   - Now we can import these modules from wordplay2. As in the very first case,
     the scripts are separate and still individually executable from the shell.
-    As in the second case, they're now grouped together according to their 
+    As in the second case, they're now grouped together according to their
     common theme (wordplay).
-    
-  - The multi-level names start to get a bit unweildy, though. Here, 
+
+  - The multi-level names start to get a bit unweildy, though. Here,
     the `from ... import` or `from ... import ... as` syntax is useful.
-    
+
           :::python
           # cumbersome
           >>> import wordplay2.palindrome
-          >>> wordplay2.palindrome2.is_palindrome("racecar")  
+          >>> wordplay2.palindrome2.is_palindrome("racecar")
           True
-        
+
           # more convenient
           >>> from wordplay2.palindrome2 import is_palindrome
           is_palindrome("kayak")
           True
-        
+
           # maybe too terse
           >>> from wordplay2.palindrome2 import is_palindrome as pal
           pal("canoe")
           False
-        
+
 
   ### Suggested Vagrant setup
-  
+
   #### On my own computer
-      
+
     - I keep files related to this class in a special folder, like "CDT"
-    
+
     - That's where I do `vagrant init` and other vagrant commands
-    
+
     - I'm going to use Git to maintain a copy of my **Homework** repo here
-    
+
     - I've created a dedicated folder for in-class work and other
       experimentation--let's call it "practice" (or whatever you want)
-   
+
           :::bash
           CDT/
              Vagrantfile                 # created by vagrant
              homework/                   # to be created by git
              practice/                   # I make this folder
              ...                         # ... more to come (project1, etc.)
-             
-             
+
+
   #### On the virtual machine
-   
+
     - On the Vagrant machine, the contents of 'CDT' (or wherever you did
        `vagrant init`) are shared as `/vagrant/`.
-     
+
     - Don't confuse that with `/home/vagrant/`, your home directory.
-   
+
     - That's where you end up when you log in each time. Files you create
       there won't automatically be available to you outside the vm.
-     
+
     - You can do `cd /vagrant/` every time you log in, and just work
       out of the shared directory.
-     
+
       - Alternatively, you could create a symlink to your `practice` directory
-        in your home dir. 
-     
+        in your home dir.
+
               :::bash
               ln -s /vagrant/practice /home/vagrant/practice
-     
+
       - Then you'd see it right when you log in. Talk to me if you
         would like help with this.
 
   <div class="alert alert-info">
   <h4><i class="fa fa-life-ring"></i> Vagrant Tip</h4>
 
-  If you think you've lost track of the virtual machine, or you might have 
+  If you think you've lost track of the virtual machine, or you might have
   more than one running, you can start VirtualBox manually to see a list of
   running VMs.
   </div>
-  
+
   ### Git setup
-  
+
   <h4> Through GitLab</h4>
-  
+
   You can modify README.md as you did last week. You can upload the four Python
   files (`counter1.py`, `counter2.py`, `letters.py` and `counter3.py`) by
   clicking on the little plus sign:
-     
+
      <img class="img-thumbnail img-responsive" alt="img"
      src="{{ page.prefix }}static/img/screenshot_gitlab-add-files.png">
-     
+
   <h5> Merge requests </h5>
-  
+
   A lot of people are getting an annoying dialog asking them to submit a merge
   request every time they upload a file.  Here's how to turn that off.
-  
+
     - Go to the "Settings" menu for your **Homework** project
-     
+
          <img class="img-thumbnail img-responsive" alt="img"
          src="{{ page.prefix }}static/img/screenshot_gitlab-setup-01.png">
-         
+
    - Scroll way down, to where the buttons are red and scary ...
-     
+
    - Click on "Remove fork relationship"
-     
+
         <img class="img-thumbnail img-responsive" alt="img"
         src="{{ page.prefix }}static/img/screenshot_gitlab-remove-fork.png">
-     
-   - It will ask you if you're sure, and make you retype the name of the 
+
+   - It will ask you if you're sure, and make you retype the name of the
      repo as if you were about to launch nuclear missiles. Do it anyway.
-       
+
 
   **Next week** we'll walk through how to work with your **Homework**
-  repository using the **git** command-line tools. **We didn't work on this 
-  today**, but if you're interested in trying it out, here are some 
-  <a data-toggle="collapse" href="#git" aria-expanded="false" 
+  repository using the **git** command-line tools. **We didn't work on this
+  today**, but if you're interested in trying it out, here are some
+  <a data-toggle="collapse" href="#git" aria-expanded="false"
   aria-controls="git">instructions to get you started</a>.
-    
+
   <div class="collapse" id="git" markdown=1>
   <div class="card card-block" markdown="1">
-     
+
   <h4> Git on the Vagrant VM ... </h4>
-  
-  <i class="fa fa-hand-o-right"></i> 
+
+  <i class="fa fa-hand-o-right"></i>
   We are going to install git **on our Vagrant virtual machine**. That way
   the same instructions will work for everyone.
-  
+
   <div class="alert alert-warning" markdown="1">
   <i class="fa fa-warning"></i> **If you aren't able to log in to your
-  vagrant box yet**, and you aren't already familiar with git on your 
-  own machine, then **don't proceed**. 
-  
+  vagrant box yet**, and you aren't already familiar with git on your
+  own machine, then **don't proceed**.
+
   Instead, you can upload your Python scripts to your "homework2" folder
   using the GitLab web interface.
   </div>
-  
-   
+
+
   <h5>Installing git</h5>
 
       :::bash
       # install
       $ sudo apt-get update
       $ sudo apt-get install -y git
-   
+
       # configure your identity
       #   - This can be anything you want, but it makes sense to
       #     use the name and email that you signed up for GitLab with
       $ git config --global user.name "My Name"     # keep the quotes, change the name inside
       $ git config --global user.email myid@nd.edu  # change the address
-      
+
   <h5>Clone the repository</h5>
-   
+
       :::bash
       $ cd /vagrant
       $ git clone https://gitlab.com/USERID/homework.git # where USERID is you
 
-   
+
      - You'll be prompted to enter your GitLab username and password
-     
+
      - Don't freak out if the password prompt doesn't show that your typing --
        this is a security feature.
 
      Now you should have a new folder, `/vagrant/homework`, that looks just like
      the repository on GitLab.
-     
+
   <h5>Check that it worked</h5>
-  
+
       :::bash
       $ git remote -v
       origin	https://gitlab.com/USERID/homework.git (fetch).   # USERID is
       origin	https://gitlab.com/USERID/homework.git (push)     # still you
-  
-  <i class="fa fa-history"></i> You can browse the long and illustrious history 
-  of the **Homework** repo by typing `git log`. At the top will be changes 
-  you've made when you submitted your homework. Below that, changes I made when 
+
+  <i class="fa fa-history"></i> You can browse the long and illustrious history
+  of the **Homework** repo by typing `git log`. At the top will be changes
+  you've made when you submitted your homework. Below that, changes I made when
   I set up our GitLab group. Back at the dawn of time, you can see where Dr. Bui
   originally created it for an earlier version of the course. Type `q` to quit
   the log.
-   
+
   <h5>Make some changes</h5>
 
   To work on this week's assignment, go to `/vagrant/homework/homework02/`.
-   
+
     - You should be able to use your usual text editor to navigate to this
       folder and edit `README.md`.
-      
+
     - If you've been working on `counter1.py` etc. in another directory, you can
-      just copy them into `homework2/`. 
-   
+      just copy them into `homework2/`.
+
           :::bash
-          # for example, assuming I'm already in /vagrant/, 
+          # for example, assuming I'm already in /vagrant/,
           # and my scripts were in a folder called practice/:
           cp practice/counter*.py homework/homework2/
           cp practice/letters.py homework/homework2/
 
          - note that the `*` lets me copy all the 'counter' scripts at once
-      
-    - If you're just starting now, you can create the new Python files in 
+
+    - If you're just starting now, you can create the new Python files in
       `homework2/` using your text editor.
-      
-   
+
+
    <h5>Review your changes</h5>
-   
+
    Use the `git status` command to see how the current state of the repository
    differs from the last **commit**:
-   
+
       :::text
       $ git status
       On branch master
@@ -430,24 +430,24 @@ body:       |
               letters.pyc
 
       no changes added to commit (use "git add" and/or "git commit -a")
-   
-   
+
+
    This tells us that one file has been modified, and a bunch have been added.
    As of right now, no changes are **staged**, that is, prepped for the next
    **commit**.
-   
+
    <h5>Stage the changes you want to commit</h5>
-   
-   Because we do want to commit the changes to README and the new Python 
+
+   Because we do want to commit the changes to README and the new Python
    scripts, we can **stage* them with `git add`.
-   
+
       :::text
       $ git add README.md
       $ git add counter*.py
       $ git add letters.py
 
    Now check the status again:
-      
+
       :::text
       $ git status
       On branch master
@@ -465,39 +465,38 @@ body:       |
       Untracked files:
         (use "git add <file>..." to include in what will be committed)
 
-      	letters.pyc
-         
+        letters.pyc
+
   You can see that the files we want to commit are listed under "Changes to be
   committed" now instead of "Changes not staged" or "Untracked files"
-  
+
   <div class="alert alert-info" markdown="1">
-  
+
   <h5><i class="fa fa-life-ring"></i> Unstaging</h5>
-  
-  If you see something in the list of changes to be committed that shouldn't be 
+
+  If you see something in the list of changes to be committed that shouldn't be
   there (maybe `letters.pyc` got `add`ed by mistake), you can remove files from
-  the staging area like this: 
-   
+  the staging area like this:
+
        git reset HEAD -- letters.pyc   # note: the -- is necessary
-      
+
   </div>
-  
+
   <h5>Commit changes</h5>
-  
+
   When the list of files to be committed looks good, you can commit the changes
   by doing `git commit`. You must use the `-m` flag to specify a commit message
   for the log (in quotes). The convention is to make it present tense, like:
- 
+
       git commit -m "Add Python scripts to homework2"
-  
+
   The changes are saved in your local repo! **But they're not on GitLab yet**...
-  
+
   <h5>Push to GitLab</h5>
-  
-  To send your changes "upstream" to GitLab, use `git push origin master`. 
+
+  To send your changes "upstream" to GitLab, use `git push origin master`.
   That means, push the latest commits to the "origin" repo (the one on GitLab)
   on branch "master" (ideally, you only have one branch).
-  
+
   </div>
   </div>
-  

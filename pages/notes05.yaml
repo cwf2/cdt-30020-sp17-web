@@ -2,209 +2,209 @@ title:      Notes for January 31
 icon:       fa-sticky-note
 navigation:
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
+      link: index.html
       icon: "fa-home"
 internal:
 external:
 body:       |
   ### Object-Oriented Programming concepts
-  
+
   <h4>Review terms</h4>
-  
+
    **function**
-   
+
      - Some python code we want to reuse or refer to later
-     
+
      - Generally has a name so we can call it
-     
+
      - Can take arguments
-     
+
    **script**
-   
+
      - A **file** containing code
-     
+
      - Generally run for its own sake, for example: `python myscript.py`
-     
+
      - We run the script because we want it to *do something*
-     
+
    **module**
-   
+
      - A **file** containing reusable code
-     
-     - We `import` the module in order to use its variables, functions, etc., 
+
+     - We `import` the module in order to use its variables, functions, etc.,
        in a new context (for example, in script contained in a different file).
 
      - When the module is imported, all its code is executed
-     
-       - Any statements we want to suppress can be put inside an 
+
+       - Any statements we want to suppress can be put inside an
        `if __name__ == __main__` block. Then they won't be executed on `import`.
-       
+
      - Functions or variables defined in the module are accessable by default
        using the module's name and a dot: e.g., '`module_name.function_name()`
-       
+
      - The functions, variables collected together in a module are usually
        closely related thematically.
-       
+
   **package**
-  
+
      - A **directory** containing modules
-     
+
      - Has an `__init__().py` file (possibly empty)
-     
+
      - We use the dot to mark hierarchical levels, like,
 
           :::python
-          import package_name.module_name 
+          import package_name.module_name
           package_name.module_name.function_name()
-        
-       or 
-       
+
+       or
+
           :::python
           from package_name import module_name
           module_name.function_name()
-        
+
   <h4>New terms</h4>
-  
+
   **object**
-  
-   - A bundle of related data and/or functions collected together and 
+
+   - A bundle of related data and/or functions collected together and
      goven a name
-     
+
    - Also uses dot notation to show subordination. E.g.:
-      
+
       - refer to a **field** (i.e. a variable): `my_object.some_value = 5`
-      
+
       - call a **method** (i.e. a function): `my_object.do_something()`
-      
+
   **class**
-  
+
    - A template for building objects of a given type
-   
+
    - Defined using the `class` keyword
-   
+
   **instance**
-  
-   - a specific object built on the template of a class is called an 
+
+   - a specific object built on the template of a class is called an
      **instance** of the class.
-     
+
   **attribute**
-  
+
    - anything that belongs to an object, that you refer to using the prefix
      `object_name.`, is an **attribute** of the object.
-   
-  **method**   
-   
+
+  **method**
+
    - Function definitions inside the `class` block are bound to the class.
      We call them **methods**.
-     
+
    - By default, methods defined inside a `class` definition are **instance
      methods**. They belong to the specific object that calls them.
-     
+
    - When such **instance methods** are called, Python automatically passes them
      an argument that we call "self" by convention. This is a pointer back to
      the specific object that called the method.
-    
+
    **field** (or **instance variable**)
-         
+
    - Variables bound to an object.
-   
+
 
   ### Exercises
- 
+
   We created a class to model books at the library. Here it is, empty:
-     
+
       :::python
       class LibraryBook(object):
           '''Library book object'''
           pass
 
      - Note that we usually use InitialCapitals to name classes
-     
+
      - It's also wise to give them a doc string
-     
+
      - The `object` in parens means this is a subclass of 'object', the
        basic object in Python. It's good practice to do this, though not always
        necessary
 
   Then we created an instance of the class, by calling the class name as if it
   were a function:
-  
+
       :::python
       >>> my_book = LibraryBook()
       >>> my_book
       <__main__.LibraryBook object at 0x7fdf39db0850>
 
     - We can set arbitrary attributes of the object using dot notation:
-      
+
           :::python
           >>> my_book.isbn = 12345
           >>> print my_book.isbn
           12345
-        
-  But a more usual way to initialize the object's attributes is with the 
+
+  But a more usual way to initialize the object's attributes is with the
   special method `__init__()`:
-      
+
       :::python
       class LibraryBook(object):
           '''Library book object'''
-            
+
           def __init__(self, isbn):
               '''initialize a new LibraryBook'''
               self.isbn = isbn
-   
+
     - Now we can set the isbn value when we create the book object:
 
           :::python
           >>> my_book = LibraryBook(54321)
           >>> print my_book.isbn
           54321
-        
+
      - We pass the initialization values inside the parentheses after the class
        name.
-       
+
      - Remeber that **instance methods** always have one extra argument, `self`.
-       We passed the integer `54321`, but `__init__()` also got a pointer to 
+       We passed the integer `54321`, but `__init__()` also got a pointer to
        `my_book`, which it stored in `self` and used to set `my_book.isbn`.
-       
-  Let's add another field, for borrower name, and a method that reminds the 
+
+  Let's add another field, for borrower name, and a method that reminds the
   borrower to return the book. To make things more modular, we'll save our
   class definition in a new file:
-     
+
   <h5>library.py</h5>
-     
+
       :::python
       class LibraryBook(object):
           '''Library book object'''
-      
+
           def __init__(self, isbn, borrower):
               '''initialize a new LibraryBook'''
               self.isbn = isbn
               self.borrower = borrower
-              
+
           def reminder(self):
               '''remind borrower to return the book'''
               print "Hey, {}, return me!".format(self.borrower)
-              
-  Now we can import the class and use it somewhere else, for example in 
+
+  Now we can import the class and use it somewhere else, for example in
   **script**:
-     
+
   <h5>borrowers.py</h5>
-  
+
       :::python
       #!/usr/bin/env python
       from library import LibraryBook
-      
+
       # lend some books
       my_book = LibraryBook(isbn=11111, borrower="Chris")
       your_book = LibraryBook(isbn=22222, borrower="Lancelot")
-      
+
       # send out reminders
       your_book.reminder()
       my_book.reminder()
 
 
   When we run `borrowers.py`, this is what we get:
-    
+
       :::text
       $ chmod +x borrowers.py
       $ ./borrowers.py
@@ -212,39 +212,38 @@ body:       |
       Hey, Chris, return me!
 
   ### Project 1
-  
-  The next two classes will be dedicated to **project1**. You can find a 
-  description [here](http://www3.nd.edu/~cforstal/cdt-30020-sp17/project1) or 
-  via the course [website](http://www3.nd.edu/~cforstal/cdt-30020-sp17/).
-  
-    - You should organize yourselves into **teams** of **three** (or four or 
+
+  The next two classes will be dedicated to **project1**. You can find a
+  description [here](project1.html) or via the course [website](index.html).
+
+    - You should organize yourselves into **teams** of **three** (or four or
       two).
-    
+
     - If you have a team already, someone email me and let me know who's in it.
       If you're not in a team, email me an I'll put you together with others
       looking for teammates.
-      
-    - On **Thursday, Feb. 2** and **Tuesday, Feb. 7**, you'll have the entire 
-      class period to work in your groups. If you read the [project 
-      instructions](http://www3.nd.edu/~cforstal/cdt-30020-sp17/project1) ahead 
-      of time, you'll be in a better position when you get to class.
-      
+
+    - On **Thursday, Feb. 2** and **Tuesday, Feb. 7**, you'll have the entire
+      class period to work in your groups. If you read the [project
+      instructions](project1) ahead of time, you'll be in a better position
+      when you get to class.
+
     - On Thursday, Feb 2, I will be away, but Xueying and Nick will be in class
       to troubleshoot and answer questions.
-      
+
     - I will miss my office hours this **Friday, Feb 3**. I'll be available
       most of **Monday, Feb 6**, though, so let me know if you'd like to meet.
-    
+
     - I'll also be available for questions on [Slack](
       https://cdt-30020-sp17.slack.com) while I'm away.
-    
+
   ### Test 1
-  
+
   On Thursday, Feb 9, after the projects have been submitted, there will be an
   in-class test on concepts from the project and the first three homework
   assignments.
-  
-  **Don't panic**: the test is largely redundant with the project work, it's 
+
+  **Don't panic**: the test is largely redundant with the project work, it's
   simply to ensure that everyone understands what their team has been doing all
   along. A study guide / checklist will be posted later this week on the course
   web site.  I'll remind you by [Slack](https://cdt-30020-sp17.slack.com) when

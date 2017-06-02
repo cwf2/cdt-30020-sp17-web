@@ -5,7 +5,7 @@ navigation:
       link: "test2.html"
       icon: "fa-code"
     - name: "Class Home"
-      link: "/~cforstal/cdt-30020-sp17"
+      link: index.html
       icon: "fa-home"
 internal:
 external:
@@ -13,24 +13,24 @@ body:       |
 
   ## Topics covered
 
-  ### Database structure 
-  
+  ### Database structure
+
   <a class="label label-default" href="notes10.html">Notes 2/16</a>
   <a class="label label-default" href="notes12.html">Notes 2/23</a>
   <a class="label label-info" href="homework4.html">Homework 4</a>
-   
-   - database  
+
+   - database
    - table
    - row
    - column
    - (inner) joins
-  
+
   ### SQL
 
   <a class="label label-default" href="notes10.html">Notes 2/16</a>
   <a class="label label-default" href="notes12.html">Notes 2/23</a>
   <a class="label label-info" href="homework4.html">Homework 4</a>
-       
+
    - `CREATE TABLE`
    - `DROP TABLE`
    - `INSERT`
@@ -47,23 +47,23 @@ body:       |
 
   <a class="label label-default" href="notes13.html">Notes 2/28</a>
   <a class="label label-info" href="homework5.html">Homework 5</a>
-  
+
    - **server** versus **client**
    - URL structure
      - protocol
      - host
      - resource path
      - query
-   - HTTP 
+   - HTTP
    - HTML
    - web browser
-   
+
   ### Python and sqlite
-  
-  <a class="label label-default" href="notes11.html">Notes 2/21</a> 
+
+  <a class="label label-default" href="notes11.html">Notes 2/21</a>
   <a class="label label-info" href="homework4.html">Homework 4</a>
-  <a class="label label-info" href="homework5.html">Homework 5</a>  
-  
+  <a class="label label-info" href="homework5.html">Homework 5</a>
+
    - connection: e.g., `conn = sqlite3.connect()`
    - cursor: e.g., `cur = conn.cursor()`
    - sql strings, with two kinds of placeholders: e.g.,
@@ -72,7 +72,7 @@ body:       |
    - executing sql, with bindings for placeholders: e.g.,
       - `cur.execute(sql1, (val1, val2, val3))`
       - `cur.execute(sql2, {'colA': val1, 'colB': val2, 'colC': val3})`
-   - fetching rows: e.g., 
+   - fetching rows: e.g.,
       - `rows = cur.fetchall()`
       - `row = cur.fetchone()`
    - working with row data
@@ -81,8 +81,8 @@ body:       |
    - committing after adding/changing rows: e.g., `conn.commit()`
 
   ### Tornado web apps
-  
-  <a class="label label-default" href="notes14.html">Notes 3/2</a> 
+
+  <a class="label label-default" href="notes14.html">Notes 3/2</a>
   <a class="label label-info" href="homework5.html">Homework 5</a>
   <a class="label label-info" href="homework6.html">Homework 6</a>
 
@@ -93,11 +93,11 @@ body:       |
       - render a template and pass arguments to it
    - creating an **Application** object:
       - use a URL spec to link a requested resource to a handler
-  
+
   ### HTML
     <a class="label label-info" href="homework6.html">Homework 6</a>
     additional examples: [w3schools](https://www.w3schools.com/html/default.asp)
-  
+
    - `<title>` (inside <head>) to set the document title
    - `<div>` - an arbitrary section within the page
    - `<h1>` - a heading
@@ -119,45 +119,45 @@ body:       |
       - `href` attribute designates what it links to
    - `<img>` an image
       - `src` attribute designate the URL for the image file
-  
+
   ### Tornado Templates
-  
+
    <a class="label label-info" href="homework6.html">Homework 6</a>
-  
+
    - <code>&#123;&#123; &#125;&#125;</code> to evaluate a Python expression
    - <code>&#123;% %&#125;</code> encloses control strucures like `for` and `if`
       - remember these require an explicit `&#123;% end %&#125`
    - <code>&#123;% set %&#125;</code> used to assign new variables inside the template,
       - e.g., <code>&#123;% set myvar = "foo" %&#125;</code>
-  
+
   ## Test structure
-  
+
   This test will be much like Test 1. It will begin with a paper part, with identification and short answer questions. Then there will be a practical part for you to do on your computer.
-  
+
   <h5>Identification</h5>
-  
+
   Single word answers, or one-sentence definitions. About 10 points total, 1 or 2 points each question.
-  
+
   Examples:
-    
+
     - which SQL verb is used to add a row to a table?  (`INSERT`)
-    
+
     - in an HTML document, what element is represented by `<input type="submit">`? (a submit button)
-    
+
     - in a Tornado RequestHandler, what method is used to retrieve query data
       from a web form? (`get_argument()`)
-    
+
     - who sends an HTTP request, the client or the server? (client)
 
   <h5>Short answer</h5>
-  
+
   Two or three sentence descriptions, short code snippets, maybe a diagram. About 10 points.
-  
+
   Examples:
-    
+
     - Invent a data model for the following data: for each field, pick a name
       and a data type.
-      
+
              Last week  This week  Title                    Artist
              1          1          Shape of you             Ed Sheeran
              2          2          Galway Girl              Ed Sheeran
@@ -169,63 +169,62 @@ body:       |
              12         8          Solo Dance               Martin Jensen
              -          9          KMT                      Drake ft. Giggs
              20         10         Ciao Adios               Anne-Marie
-    
+
       - last_week: integer
       - this_week: integer
       - title: text
       - artist: text
-    
+
     - Now write out an SQL `CREATE` statement to define the table
-    
+
           :::sql
           CREATE TABLE Singles (
             last_week  INTEGER,
             this_week  INTEGER,
             title      TEXT,
             artist     TEXT
-          )  
-  
+          )
+
     - draw a picture of the way this HTML might look in a browser
-    
+
           :::html
           <form action="/search">
               Artist:  <input type="text" name="artist">
               <input type="submit" value="Go">
           </form>
 
-       <img class="img img-responsive" width="250" src="/~cforstal/cdt-30020-sp17/static/img/form_example.png">
+       <img class="img img-responsive" width="250" src="static/img/form_example.png">
 
   <h5>Practical</h5>
-  
+
   Unlike Test 1, this won't be one monolithic script, nor will it use any of your existing Project 2 code. Instead, it will be a series of related tasks that recap the principal aspects of the project.
-  
+
   Total 15 points, probably three scripts of 5 points each. These will have some skeleton structure already, with <code>#TODO</code> sections to fill in.
-  
+
   Examples:
-    
+
    - Write python to
 
       - connect to a database
-      
+
       - create a table in the database
-     
+
       - read a text file with data and add rows to the table
-    
+
       - write a search function that performs a `SELECT` and returns a list of rows
-    
+
    - Given a skeleton tornado app
-   
+
       - write a handler to do some or all of the following
-      
+
            - parse form data using `get_argument()`
-           
+
            - use a capture group from the URL specification
-           
+
            - render a template
-     
+
       - fill in a skeleton template, including
-     
-           - iterating over a list of results using <code>&#123;%  for %&#125;</code> . . .
-       
+
+           - iterating over a list of results using `{{! for }}` . . .
+
            - . . . to generate rows for an HTML table
-  
